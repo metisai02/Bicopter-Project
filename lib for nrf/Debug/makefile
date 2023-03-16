@@ -60,8 +60,8 @@ all: main-build
 main-build: Test_ADC.elf secondary-outputs
 
 # Tool invocations
-Test_ADC.elf Test_ADC.map: $(OBJS) $(USER_OBJS) C:\Users\DELL\Desktop\Lib\ For\ RC\Test_ADC\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Test_ADC.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\DELL\Desktop\Lib For RC\Test_ADC\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Test_ADC.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Test_ADC.elf Test_ADC.map: $(OBJS) $(USER_OBJS) C:\Users\DELL\Desktop\Bicopter_p\lib\ for\ nrf\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Test_ADC.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\DELL\Desktop\Bicopter_p\lib for nrf\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Test_ADC.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
