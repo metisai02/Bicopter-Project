@@ -4,10 +4,10 @@
 #include "stdint.h"
 #include "stdio.h"
 
-#define RX_SINGLE 0
-#define TX_SINGLE 1
+#define RX_SINGLE 1
+#define TX_SINGLE 0
 
-extern uint32_t value[3];
+extern uint32_t value[5];
 extern UART_HandleTypeDef huart2;
 
 void Toggle_LED()
@@ -20,8 +20,12 @@ void UART_SendStr(char *string)
 }
 typedef struct
 {
-    uint8_t ID;
-    uint8_t Data[10];
+    uint8_t throttle; // left hand
+    uint8_t yaw;      // left hand
+    uint8_t pitch;    // right hand
+    uint8_t roll;     // right hand
+    uint8_t button;
+    uint8_t button_1;
 } NRF_Packet;
 
 typedef enum
@@ -32,7 +36,19 @@ typedef enum
 } Controler;
 
 NRF_Packet payload_packet;
-uint8_t payload_length = 10;
+uint8_t payload_length;
+
+uint8_t convert_to_8bits(uint32_t val, uint32_t min, uint32_t middle, uint32_t max)
+{
+    if (val > max)
+        val = max;
+    if (val < min)
+        val = min;
+    if (val < middle)
+        return (val - min) * (127 - 0) / (middle - min) + 0;
+    else
+        return (val - middle) * (255 - 128) / (max - middle) + 128;
+}
 
 // Kinda foolproof :)
 #if ((RX_SINGLE + TX_SINGLE) != 1)
@@ -50,10 +66,10 @@ uint8_t payload_length = 10;
 // Result of packet transmission
 typedef enum
 {
-    nRF24_TX_ERROR = (uint8_t)0x00, 
-    nRF24_TX_SUCCESS,               
-    nRF24_TX_TIMEOUT,               
-    nRF24_TX_MAXRT                  
+    nRF24_TX_ERROR = (uint8_t)0x00,
+    nRF24_TX_SUCCESS,
+    nRF24_TX_TIMEOUT,
+    nRF24_TX_MAXRT
 } nRF24_TXResult;
 
 // Length of received payload
@@ -91,6 +107,15 @@ nRF24_TXResult nRF24_TransmitPacket(uint8_t *pBuf, uint8_t length)
 
     return nRF24_TX_ERROR;
 }
+void reset_controller(void)
+{
+    payload_packet.throttle = 0;
+    payload_packet.yaw = 127;
+    payload_packet.pitch = 127;
+    payload_packet.roll = 127;
+    payload_packet.button = 0;
+    payload_packet.button_1 = 0;
+}
 
 #endif // DEMO_TX_
 
@@ -122,6 +147,8 @@ int runRadio(void)
     nRF24_ClearIRQFlags();
     nRF24_SetPowerMode(nRF24_PWR_UP);
     nRF24_CE_H();
+    uint8_t data_char[30];
+    payload_length = sizeof(payload_packet);
 
     // The main loop
     while (1)
@@ -129,11 +156,10 @@ int runRadio(void)
         if (nRF24_GetStatus_RXFIFO() != nRF24_STATUS_RXFIFO_EMPTY)
         {
             nRF24_RXResult pipe = nRF24_ReadPayload((uint8_t *)&payload_packet, &payload_length);
-
             // Clear all pending IRQ flags
             nRF24_ClearIRQFlags();
-            Toggle_LED();
-            UART_SendStr((char *)&payload_packet);
+            sprintf((char *)data_char, "value: %u  %u  %u  %u\n", (size_t)payload_packet.throttle, (size_t)payload_packet.roll, (size_t)payload_packet.pitch, (size_t)payload_packet.yaw);
+            UART_SendStr((char *)data_char);
         }
     }
 
@@ -156,22 +182,20 @@ int runRadio(void)
     nRF24_SetOperationalMode(nRF24_MODE_TX);
     nRF24_ClearIRQFlags();
     nRF24_SetPowerMode(nRF24_PWR_UP);
-    Controler i = HEIGHT;
 
+    payload_length = sizeof(payload_packet);
+    uint8_t data_char[30];
+    reset_controller();
     while (1)
     {
 
-        // sprintf((char *)&payload_packet.ID, "%u", (size_t)i);
-        payload_packet.ID = i;
-        if (payload_packet.ID == HEIGHT)
-            sprintf((char *)payload_packet.Data, "%f\n", ((value[HEIGHT] * 10.0) / 4095));
-        else if (payload_packet.ID == SERVO_LEFT)
-            sprintf((char *)payload_packet.Data, "%d\n", (size_t)value[SERVO_LEFT]);
-        else // servo right
-            sprintf((char *)payload_packet.Data, "%d\n", (size_t)value[SERVO_RIGHT]);
+        payload_packet.throttle = convert_to_8bits(value[0], 450, 1585, 3620);
+        payload_packet.roll = convert_to_8bits(value[1], 450, 1585, 3620);
+        payload_packet.pitch = convert_to_8bits(value[2], 450, 1585, 3620);
+        payload_packet.yaw = convert_to_8bits(value[3], 450, 1585, 3620);
 
-        UART_SendStr((char *)&payload_packet);
-        //       HAL_UART_Transmit(&huart2,(uint8_t*)&payload_packet,payload_length,1000);
+        sprintf((char *)data_char, "value: %u  %u  %u  %u\n", (size_t)payload_packet.throttle, (size_t)payload_packet.roll, (size_t)payload_packet.pitch, (size_t)payload_packet.yaw);
+        UART_SendStr((char *)data_char);
         nRF24_TXResult result = nRF24_TransmitPacket((uint8_t *)&payload_packet, payload_length);
         switch (result)
         {
@@ -185,11 +209,7 @@ int runRadio(void)
             // todo: Bị lỗi khi truyền đi
             break;
         }
-        i++;
-        if (i > 2)
-            i = HEIGHT;
-        Toggle_LED();
-        Delay_ms(50);
+        Delay_ms(10);
     }
 
 #endif // TX_SINGLE
