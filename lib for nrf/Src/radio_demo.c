@@ -4,8 +4,8 @@
 #include "stdint.h"
 #include "stdio.h"
 
-#define RX_SINGLE 1
-#define TX_SINGLE 0
+#define RX_SINGLE 0
+#define TX_SINGLE 1
 
 extern uint32_t value[5];
 extern UART_HandleTypeDef huart2;

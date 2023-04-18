@@ -1,0 +1,2 @@
+pid.c:32:6:PID_RollPitchYaw	56	static
+pid.c:80:6:reset_rate_PID	4	static
