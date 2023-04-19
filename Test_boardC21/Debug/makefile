@@ -37,8 +37,8 @@ Test_boardC21.list \
 all: Test_boardC21.elf secondary-outputs
 
 # Tool invocations
-Test_boardC21.elf: $(OBJS) $(USER_OBJS) C:\Users\DELL\Desktop\Lib\ For\ RC\Test_boardC21\STM32F103C8TX_FLASH.ld
-	arm-none-eabi-gcc -o "Test_boardC21.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\DELL\Desktop\Lib For RC\Test_boardC21\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Test_boardC21.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Test_boardC21.elf: $(OBJS) $(USER_OBJS) C:\Users\DELL\Desktop\Bicopter_p\Test_boardC21\STM32F103C8TX_FLASH.ld
+	arm-none-eabi-gcc -o "Test_boardC21.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\DELL\Desktop\Bicopter_p\Test_boardC21\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Test_boardC21.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

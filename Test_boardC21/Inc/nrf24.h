@@ -4,7 +4,22 @@
 
 // Low level functions (hardware depended)
 #include "support.h"
+typedef struct
+{
+    uint32_t throttle; // left hand
+    uint32_t yaw;      // left hand
+    uint32_t pitch;    // right hand
+    uint32_t roll;     // right hand
+    uint32_t button;
+    uint32_t button_1;
+} NRF_Packet;
 
+typedef enum
+{
+    HEIGHT = (uint8_t)0x00,
+    SERVO_LEFT,
+    SERVO_RIGHT
+} Controler;
 
 // nRF24L0 instruction definitions
 #define nRF24_CMD_R_REGISTER       (uint8_t)0x00 // Register read
