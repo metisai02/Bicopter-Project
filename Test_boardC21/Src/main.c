@@ -36,7 +36,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define SERVO_RIGHT_OFFSET 0 // Servo offset for right servo
+#define SERVO_LEFT_OFFSET 0  // Servo offset for left servo
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -56,7 +57,7 @@ UART_HandleTypeDef huart1;
 /* USER CODE BEGIN PV */
 MPU9255_t MPU9255;
 uint32_t value[5];
-pid_t pid;
+PID_t pid;
 
 // setpoint declaration
 float setpoint_roll = 0;
@@ -65,7 +66,6 @@ float setpoint_yaw = 0;
 
 // absolute angle
 float abs_yaw_angle = 0;
-float yaw_angle_rate = 0;
 
 // PWM for ESC, Servo
 int old_servo_right = 0;
@@ -77,9 +77,10 @@ int esc_right, esc_left;
 // value from rc
 int roll_rc, pitch_rc, yaw_rc, throttle_rc;
 
-float pitch;
-float yaw;
-float roll;
+// float pitch;
+// float yaw;
+// float roll;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -90,6 +91,11 @@ static void MX_SPI2_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
+int16_t map(int16_t x, int16_t in_min, int16_t in_max, int16_t out_min, int16_t out_max)
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
 int _write(int file, char *ptr, int len)
 {
   HAL_UART_Transmit(&huart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
@@ -135,11 +141,20 @@ int main(void)
   MX_TIM3_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  //  while (MPU9255_Init(&hi2c1) == 1)
-  //  {
-  //		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_2);
-  //		HAL_Delay(100);
-  //  }
+
+  while (MPU9255_Init(&hi2c1) == 1)
+  {
+    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_2);
+    HAL_Delay(100);
+  }
+
+  while (throttle_rc < 1020 || throttle_rc > 1050)
+  {
+    // Read again
+    HAL_Delay(20);
+  }
+
+  HAL_TIM_Base_Start_IT(&htim3);
 
   // int count;
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
@@ -155,7 +170,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    readAll(&hi2c1, &MPU9255);
 
     runRadio();
   }
@@ -302,9 +316,18 @@ static void MX_TIM3_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 1000;
+  sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfigOC.Pulse = 1000;
   if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
   {
     Error_Handler();
@@ -362,8 +385,8 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, BUTTON1_Pin | BUTTON2_Pin | BUTTON3_Pin, GPIO_PIN_RESET);
@@ -397,7 +420,39 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  if (htim->Instance == htim3.Instance)
+  {
+    readAll(&hi2c1, &MPU9255);
+    abs_yaw_angle = abs_yaw_angle + MPU9255.GyroX * 0.02;
+    // receive rc
 
+    // convert to us
+    throttle_rc = map(throttle_rc, 0, 4095, 1000, 2000);
+    setpoint_roll = map(roll_rc, 0, 4095, 1000, 2000);
+    setpoint_pitch = map(pitch_rc, 0, 4095, 1000, 2000);
+    yaw_rc = map(yaw_rc, 0, 4095, 1000, 2000);
+
+    if (yaw_rc > 1390)
+    {
+      setpoint_yaw = setpoint_yaw + 0.7; // 0.7 is the rate of change of yaw
+    }                                    // more than 0.7 means faster yaw rotation
+                                         // less than 0.7 means slower yaw rotation
+    else if (yaw_rc < 1357)
+    {
+      setpoint_yaw = setpoint_yaw - 0.7;
+    }
+    // calculate PID
+    calculate_PID(roll_rc, pitch_rc, yaw_rc, MPU9255.roll, MPU9255.pitch, MPU9255.yaw, &pid);
+
+    // value PWM
+    esc_right = throttle_rc + pid.PID_roll_out - 70;
+    esc_left = throttle_rc - pid.PID_roll_out;
+    servo_right = 1500 + pid.PID_pitch_out - pid.PID_yaw_out + SERVO_RIGHT_OFFSET;
+    servo_left = 1500 - pid.PID_pitch_out - pid.PID_yaw_out + SERVO_LEFT_OFFSET;
+  }
+}
 /* USER CODE END 4 */
 
 /**

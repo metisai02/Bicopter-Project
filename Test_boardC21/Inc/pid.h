@@ -9,7 +9,7 @@ typedef struct
     float PID_roll_out;
     float PID_pitch_out;
     float PID_yaw_out;
-}pid_t;
+}PID_t;
 
 
 //+40deg =  2070 us,, -40deg = 1160 us,, 910 us range,, 1615 us = 0deg
@@ -30,6 +30,6 @@ typedef struct
 #define Ki_yaw      0.0
 #define Kd_yaw      3.0
 
-void calculate_PID(float setpoint_roll, float setpoint_pitch, float setpoint_yaw, float roll_angle, float pitch_angle, float yaw_angle);
+void calculate_PID(float setpoint_roll, float setpoint_pitch, float setpoint_yaw, float roll_angle, float pitch_angle, float yaw_angle, PID_t *PID_out);
 
 #endif /* PID_H_ */

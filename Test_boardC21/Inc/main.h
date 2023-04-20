@@ -66,6 +66,10 @@ void Error_Handler(void);
 #define BUTTON2_GPIO_Port GPIOC
 #define BUTTON3_Pin GPIO_PIN_15
 #define BUTTON3_GPIO_Port GPIOC
+#define PWM_SR_Pin GPIO_PIN_6
+#define PWM_SR_GPIO_Port GPIOA
+#define PWM_SL_Pin GPIO_PIN_7
+#define PWM_SL_GPIO_Port GPIOA
 #define PWM1_Pin GPIO_PIN_0
 #define PWM1_GPIO_Port GPIOB
 #define PWM2_Pin GPIO_PIN_1

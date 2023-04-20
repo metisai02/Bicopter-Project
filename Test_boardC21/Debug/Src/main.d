@@ -27,7 +27,7 @@ Src/main.o: ../Src/main.c ../Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Inc/mpu9255.h ../Inc/mpu9255_defs.h ../Inc/nrf24.h ../Inc/support.h \
- ../Inc/main.h
+ ../Inc/main.h ../Inc/pid.h
 ../Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Inc/stm32f1xx_hal_conf.h:
@@ -61,3 +61,4 @@ Src/main.o: ../Src/main.c ../Inc/main.h \
 ../Inc/nrf24.h:
 ../Inc/support.h:
 ../Inc/main.h:
+../Inc/pid.h:

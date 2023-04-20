@@ -13,15 +13,17 @@ float Pterm_pitch, Iterm_pitch, Dterm_pitch, last_error_pitch, PID_pitch_out;
 float Pterm_roll, Iterm_roll, Dterm_roll, last_error_roll, PID_roll_out;
 float Pterm_yaw, Iterm_yaw, Dterm_yaw, last_error_yaw, PID_yaw_out;
 
-extern float abs_yaw_angle = 0;
+extern float abs_yaw_angle;
+
+
 
 //-----------------------------------------------------------------------------
 // calculate PID
 //-----------------------------------------------------------------------------
-void calculate_PID(float setpoint_roll, float setpoint_pitch, float setpoint_yaw, float roll_angle, float pitch_angle, float yaw_angle, pid_t *PID_out)
+void calculate_PID(float setpoint_roll, float setpoint_pitch, float setpoint_yaw, float roll_angle, float pitch_angle, float yaw_angle, PID_t *PID_out)
 {
     // pitch PID calculations
-    error = setpoint_pitch - pitch_angle * 11.125 - 1615;
+    error = setpoint_pitch - pitch_angle * 12.5 - 1500;
     Pterm_pitch = error * Kp_pitch;
     Iterm_pitch += error;
     Dterm_pitch = (error - last_error_pitch) * Kd_pitch;
@@ -33,7 +35,7 @@ void calculate_PID(float setpoint_roll, float setpoint_pitch, float setpoint_yaw
         PID_pitch_out = -MAX_pitch_output;
 
     // roll PID calculations
-    error = setpoint_roll + roll_angle * 11.125 - 1615;
+    error = setpoint_roll + roll_angle * 12.5 - 1500;
     Pterm_roll = error * Kp_roll;
     Iterm_roll += error;
     Dterm_roll = (error - last_error_roll) * Kd_roll;
@@ -45,7 +47,7 @@ void calculate_PID(float setpoint_roll, float setpoint_pitch, float setpoint_yaw
         PID_roll_out = -MAX_roll_output;
 
     // yaw PID calculations
-    error = (setpoint_yaw + abs_yaw_angle) * 11.125;
+    error = (setpoint_yaw + abs_yaw_angle) * 12.5;
     Pterm_yaw = error * Kp_yaw;
     Iterm_yaw += error;
     Dterm_yaw = (error - last_error_yaw) * Kd_yaw;
