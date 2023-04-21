@@ -422,14 +422,14 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   if (htim->Instance == htim3.Instance)
   {
     readAll(&hi2c1, &MPU9255);
-    abs_yaw_angle = abs_yaw_angle + MPU9255.GyroX * 0.02;
+    abs_yaw_angle = abs_yaw_angle + MPU9255.GyroX * dt;
     // receive rc
 
     // calculate PID
     calculate_PID(roll_rc, pitch_rc, yaw_rc, MPU9255.roll, MPU9255.pitch, MPU9255.yaw, &pid);
 
     //value PWM
-    calculate_motor_output(&esc_right, &esc_left, &servo_right, &servo_left, throttle_rc, pid);
+    calculate_motor_output(&esc_right, &esc_left, &servo_right, &servo_left, throttle_rc, &pid);
   }
 }
 /* USER CODE END 4 */

@@ -30,6 +30,8 @@ typedef struct
 #define Ki_yaw      0.0
 #define Kd_yaw      3.0
 
+#define dt 0.02
+
 void calculate_PID(uint16_t roll_rc, uint16_t pitch_rc, uint16_t yaw_rc, float roll_angle, float pitch_angle, float yaw_angle, PID_t *PID_out);
 
 #endif /* PID_H_ */
