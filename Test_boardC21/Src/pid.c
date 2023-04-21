@@ -25,12 +25,31 @@ extern float abs_yaw_angle;
 //-----------------------------------------------------------------------------
 void calculate_PID(uint16_t roll_rc, uint16_t pitch_rc, uint16_t yaw_rc, float roll_angle, float pitch_angle, float yaw_angle, PID_t *PID_out)
 {
+    // set a dead band at zero to improve stability on roll
+    if (roll_rc > 1500 || roll_rc < 1440)
+    {
+        setpoint_roll = roll_rc;
+    }
+    else
+    {
+        setpoint_roll = 1500;
+    }
 
+    // set a dead band at zero to improve stability on pitch
+    if (pitch_rc > 1540 || pitch_rc < 1440)
+    {
+        setpoint_pitch = pitch_rc;
+    }
+    else
+    {
+        setpoint_pitch = 1500;
+    }
+
+    // set a dead band at zero to improve stability on yaw
     if (yaw_rc > 1390)
     {
-        setpoint_yaw = setpoint_yaw + 0.7; // 0.7 is the rate of change of yaw
-    }                                      // more than 0.7 means faster yaw rotation
-                                           // less than 0.7 means slower yaw rotation
+        setpoint_yaw = setpoint_yaw + 0.7;
+    }
     else if (yaw_rc < 1357)
     {
         setpoint_yaw = setpoint_yaw - 0.7;
