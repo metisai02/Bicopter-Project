@@ -7,6 +7,7 @@
 C_SRCS += \
 ../Src/drone_controller.c \
 ../Src/main.c \
+../Src/motor.c \
 ../Src/mpu9255.c \
 ../Src/nrf24.c \
 ../Src/pid.c \
@@ -20,6 +21,7 @@ C_SRCS += \
 OBJS += \
 ./Src/drone_controller.o \
 ./Src/main.o \
+./Src/motor.o \
 ./Src/mpu9255.o \
 ./Src/nrf24.o \
 ./Src/pid.o \
@@ -33,6 +35,7 @@ OBJS += \
 C_DEPS += \
 ./Src/drone_controller.d \
 ./Src/main.d \
+./Src/motor.d \
 ./Src/mpu9255.d \
 ./Src/nrf24.d \
 ./Src/pid.d \
@@ -51,7 +54,7 @@ Src/%.o Src/%.su Src/%.cyclo: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/drone_controller.cyclo ./Src/drone_controller.d ./Src/drone_controller.o ./Src/drone_controller.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/mpu9255.cyclo ./Src/mpu9255.d ./Src/mpu9255.o ./Src/mpu9255.su ./Src/nrf24.cyclo ./Src/nrf24.d ./Src/nrf24.o ./Src/nrf24.su ./Src/pid.cyclo ./Src/pid.d ./Src/pid.o ./Src/pid.su ./Src/radio_demo.cyclo ./Src/radio_demo.d ./Src/radio_demo.o ./Src/radio_demo.su ./Src/stm32f1xx_hal_msp.cyclo ./Src/stm32f1xx_hal_msp.d ./Src/stm32f1xx_hal_msp.o ./Src/stm32f1xx_hal_msp.su ./Src/stm32f1xx_it.cyclo ./Src/stm32f1xx_it.d ./Src/stm32f1xx_it.o ./Src/stm32f1xx_it.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su ./Src/system_stm32f1xx.cyclo ./Src/system_stm32f1xx.d ./Src/system_stm32f1xx.o ./Src/system_stm32f1xx.su
+	-$(RM) ./Src/drone_controller.cyclo ./Src/drone_controller.d ./Src/drone_controller.o ./Src/drone_controller.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/motor.cyclo ./Src/motor.d ./Src/motor.o ./Src/motor.su ./Src/mpu9255.cyclo ./Src/mpu9255.d ./Src/mpu9255.o ./Src/mpu9255.su ./Src/nrf24.cyclo ./Src/nrf24.d ./Src/nrf24.o ./Src/nrf24.su ./Src/pid.cyclo ./Src/pid.d ./Src/pid.o ./Src/pid.su ./Src/radio_demo.cyclo ./Src/radio_demo.d ./Src/radio_demo.o ./Src/radio_demo.su ./Src/stm32f1xx_hal_msp.cyclo ./Src/stm32f1xx_hal_msp.d ./Src/stm32f1xx_hal_msp.o ./Src/stm32f1xx_hal_msp.su ./Src/stm32f1xx_it.cyclo ./Src/stm32f1xx_it.d ./Src/stm32f1xx_it.o ./Src/stm32f1xx_it.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su ./Src/system_stm32f1xx.cyclo ./Src/system_stm32f1xx.d ./Src/system_stm32f1xx.o ./Src/system_stm32f1xx.su
 
 .PHONY: clean-Src
 

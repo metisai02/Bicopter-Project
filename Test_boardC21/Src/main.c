@@ -27,6 +27,7 @@
 #include <stdio.h>
 #include "nrf24.h"
 #include "pid.h"
+#include "motor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -36,8 +37,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define SERVO_RIGHT_OFFSET 0 // Servo offset for right servo
-#define SERVO_LEFT_OFFSET 0  // Servo offset for left servo
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -59,10 +59,7 @@ MPU9255_t MPU9255;
 uint32_t value[5];
 PID_t pid;
 
-// setpoint declaration
-float setpoint_roll = 0;
-float setpoint_pitch = 0;
-float setpoint_yaw = 0;
+
 
 // absolute angle
 float abs_yaw_angle = 0;
@@ -70,12 +67,12 @@ float abs_yaw_angle = 0;
 // PWM for ESC, Servo
 int old_servo_right = 0;
 int old_servo_left = 0;
-int servo_right = 0;
-int servo_left = 0;
-int esc_right, esc_left;
+uint16_t servo_right = 0;
+uint16_t servo_left = 0;
+uint16_t esc_right, esc_left;
 
 // value from rc
-int roll_rc, pitch_rc, yaw_rc, throttle_rc;
+uint16_t roll_rc, pitch_rc, yaw_rc, throttle_rc;
 
 // float pitch;
 // float yaw;
@@ -428,29 +425,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     abs_yaw_angle = abs_yaw_angle + MPU9255.GyroX * 0.02;
     // receive rc
 
-    // convert to us
-    throttle_rc = map(throttle_rc, 0, 4095, 1000, 2000);
-    setpoint_roll = map(roll_rc, 0, 4095, 1000, 2000);
-    setpoint_pitch = map(pitch_rc, 0, 4095, 1000, 2000);
-    yaw_rc = map(yaw_rc, 0, 4095, 1000, 2000);
-
-    if (yaw_rc > 1390)
-    {
-      setpoint_yaw = setpoint_yaw + 0.7; // 0.7 is the rate of change of yaw
-    }                                    // more than 0.7 means faster yaw rotation
-                                         // less than 0.7 means slower yaw rotation
-    else if (yaw_rc < 1357)
-    {
-      setpoint_yaw = setpoint_yaw - 0.7;
-    }
     // calculate PID
     calculate_PID(roll_rc, pitch_rc, yaw_rc, MPU9255.roll, MPU9255.pitch, MPU9255.yaw, &pid);
 
-    // value PWM
-    esc_right = throttle_rc + pid.PID_roll_out - 70;
-    esc_left = throttle_rc - pid.PID_roll_out;
-    servo_right = 1500 + pid.PID_pitch_out - pid.PID_yaw_out + SERVO_RIGHT_OFFSET;
-    servo_left = 1500 - pid.PID_pitch_out - pid.PID_yaw_out + SERVO_LEFT_OFFSET;
+    //value PWM
+    calculate_motor_output(&esc_right, &esc_left, &servo_right, &servo_left, throttle_rc, pid);
   }
 }
 /* USER CODE END 4 */
