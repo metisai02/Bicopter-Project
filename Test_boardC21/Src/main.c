@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * <h2><center>&copy; Copyright (c) 2023 STMicroelectronics.
+ * All rights reserved.</center></h2>
+ *
+ * This software component is licensed by ST under BSD 3-Clause license,
+ * the "License"; You may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at:
+ *                        opensource.org/licenses/BSD-3-Clause
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
@@ -26,11 +26,15 @@
 #include "mpu9255.h"
 #include <stdio.h>
 #include "nrf24.h"
+#include "pid.h"
+#include "motor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+#if ((DEBUG_RX + DEBUG_MPU + DEBUG_PWM) > 1)
+#error "Define only one DEMO_xx, use the '1' value"
+#endif
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -49,6 +53,7 @@ I2C_HandleTypeDef hi2c1;
 SPI_HandleTypeDef hspi2;
 
 TIM_HandleTypeDef htim3;
+TIM_HandleTypeDef htim4;
 
 UART_HandleTypeDef huart1;
 
@@ -56,6 +61,23 @@ UART_HandleTypeDef huart1;
 MPU9255_t MPU9255;
 uint32_t value[5];
 extern NRF_Packet payload_packet;
+PID_t pid;
+// absolute angle
+float abs_yaw_angle = 0;
+
+// PWM for ESC, Servo
+int old_servo_right = 0;
+int old_servo_left = 0;
+uint16_t servo_right = 0;
+uint16_t servo_left = 0;
+uint16_t esc_right, esc_left;
+
+// value from rc
+uint16_t roll_rc, pitch_rc, yaw_rc, throttle_rc;
+
+// float pitch;
+// float yaw;
+// float roll;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -65,33 +87,35 @@ static void MX_I2C1_Init(void);
 static void MX_SPI2_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_USART1_UART_Init(void);
+static void MX_TIM4_Init(void);
 /* USER CODE BEGIN PFP */
 int _write(int file, char *ptr, int len)
 {
-	HAL_UART_Transmit(&huart1, (uint8_t*)ptr, len, HAL_MAX_DELAY);
-	return len;
+  HAL_UART_Transmit(&huart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
+  return len;
 }
 int runRadio(void);
 void RX_data(void);
+int16_t map(int16_t x, int16_t in_min, int16_t in_max, int16_t out_min, int16_t out_max)
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-float pitch;
-float yaw;
-float roll;
+
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
-  * @retval int
-  */
+ * @brief  The application entry point.
+ * @retval int
+ */
 int main(void)
 {
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
-
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -115,18 +139,27 @@ int main(void)
   MX_SPI2_Init();
   MX_TIM3_Init();
   MX_USART1_UART_Init();
+  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
-//  while (MPU9255_Init(&hi2c1) == 1)
-//  {
-//		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_2);
-//		HAL_Delay(100);
-//  }
+  while (MPU9255_Init(&hi2c1) == 1)
+  {
+    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_2);
+    HAL_Delay(100);
+  }
+  readAll(&hi2c1, &MPU9255);
+  HAL_Delay(6000);
+  runRadio();
+  while (payload_packet.throttle > 1050)
+  {
+    // Read again
+    HAL_Delay(20);
+  }
 
+  HAL_TIM_Base_Start_IT(&htim4);
+
+  // int count;
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
-
-
-  //HAL_Delay(3000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -136,25 +169,23 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  RX_data();
-	  htim3.Instance->CCR4 = payload_packet.throttle;
-	  htim3.Instance->CCR3 = payload_packet.throttle;
-
+    readAll(&hi2c1, &MPU9255);
+    RX_data();
   }
   /* USER CODE END 3 */
 }
 
 /**
-  * @brief System Clock Configuration
-  * @retval None
-  */
+ * @brief System Clock Configuration
+ * @retval None
+ */
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
   /** Initializes the CPU, AHB and APB busses clocks
-  */
+   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
@@ -166,9 +197,8 @@ void SystemClock_Config(void)
     Error_Handler();
   }
   /** Initializes the CPU, AHB and APB busses clocks
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+   */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
@@ -181,10 +211,10 @@ void SystemClock_Config(void)
 }
 
 /**
-  * @brief I2C1 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief I2C1 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_I2C1_Init(void)
 {
 
@@ -211,14 +241,13 @@ static void MX_I2C1_Init(void)
   /* USER CODE BEGIN I2C1_Init 2 */
 
   /* USER CODE END I2C1_Init 2 */
-
 }
 
 /**
-  * @brief SPI2 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief SPI2 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_SPI2_Init(void)
 {
 
@@ -249,14 +278,13 @@ static void MX_SPI2_Init(void)
   /* USER CODE BEGIN SPI2_Init 2 */
 
   /* USER CODE END SPI2_Init 2 */
-
 }
 
 /**
-  * @brief TIM3 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief TIM3 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_TIM3_Init(void)
 {
 
@@ -302,14 +330,57 @@ static void MX_TIM3_Init(void)
 
   /* USER CODE END TIM3_Init 2 */
   HAL_TIM_MspPostInit(&htim3);
-
 }
 
 /**
-  * @brief USART1 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief TIM4 Initialization Function
+ * @param None
+ * @retval None
+ */
+static void MX_TIM4_Init(void)
+{
+
+  /* USER CODE BEGIN TIM4_Init 0 */
+
+  /* USER CODE END TIM4_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM4_Init 1 */
+
+  /* USER CODE END TIM4_Init 1 */
+  htim4.Instance = TIM4;
+  htim4.Init.Prescaler = 639;
+  htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim4.Init.Period = 999;
+  htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim4, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM4_Init 2 */
+
+  /* USER CODE END TIM4_Init 2 */
+}
+
+/**
+ * @brief USART1 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_USART1_UART_Init(void)
 {
 
@@ -335,14 +406,13 @@ static void MX_USART1_UART_Init(void)
   /* USER CODE BEGIN USART1_Init 2 */
 
   /* USER CODE END USART1_Init 2 */
-
 }
 
 /**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief GPIO Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
@@ -353,23 +423,23 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, LED_Pin|BUTTON2_Pin|BUTTON3_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, LED_Pin | BUTTON2_Pin | BUTTON3_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, LED1_Pin|NRF_CSN_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, LED1_Pin | NRF_CSN_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(NRF_CE_GPIO_Port, NRF_CE_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : LED_Pin BUTTON2_Pin BUTTON3_Pin */
-  GPIO_InitStruct.Pin = LED_Pin|BUTTON2_Pin|BUTTON3_Pin;
+  GPIO_InitStruct.Pin = LED_Pin | BUTTON2_Pin | BUTTON3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LED1_Pin NRF_CSN_Pin */
-  GPIO_InitStruct.Pin = LED1_Pin|NRF_CSN_Pin;
+  GPIO_InitStruct.Pin = LED1_Pin | NRF_CSN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -381,17 +451,35 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(NRF_CE_GPIO_Port, &GPIO_InitStruct);
-
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  if (htim->Instance == htim4.Instance)
+  {
+    // readAll(&hi2c1, &MPU9255);
+    abs_yaw_angle = abs_yaw_angle + MPU9255.GyroX * dt;
+    // receive rc
 
+    // calculate PID
+    calculate_PID(payload_packet.roll, payload_packet.pitch, payload_packet.yaw, MPU9255.roll, MPU9255.pitch, MPU9255.yaw, &pid);
+
+    // value PWM
+    calculate_motor_output(&esc_right, &esc_left, &servo_right, &servo_left, payload_packet.throttle, &pid);
+
+    // htim3.Instance->CCR1 = servo_right;
+    // htim3.Instance->CCR2 = servo_left;
+    htim3.Instance->CCR3 = esc_right;
+    htim3.Instance->CCR4 = esc_left;
+  }
+}
 /* USER CODE END 4 */
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
+ * @brief  This function is executed in case of error occurrence.
+ * @retval None
+ */
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
@@ -400,14 +488,14 @@ void Error_Handler(void)
   /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
+ * @brief  Reports the name of the source file and the source line number
+ *         where the assert_param error has occurred.
+ * @param  file: pointer to the source file name
+ * @param  line: assert_param error line source number
+ * @retval None
+ */
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */

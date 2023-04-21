@@ -4,8 +4,8 @@
 #include "stdint.h"
 #include "stdio.h"
 
-#define RX_SINGLE 1
-#define TX_SINGLE 0
+#define RX_SINGLE 0
+#define TX_SINGLE 1
 
 extern uint32_t value[5];
 extern UART_HandleTypeDef huart1;
@@ -25,7 +25,7 @@ uint32_t convert_to_us(uint32_t val, uint32_t min, uint32_t middle, uint32_t max
     if (val < min)
         val = min;
     if (val < middle)
-        return (val - min) * (1500 - 0) / (middle - min) + 1000;
+        return (val - min) * (1500 - 1000) / (middle - min) + 1000;
     else
         return (val - middle) * (2000 - 1500) / (max - middle) + 1500;
 }
@@ -170,12 +170,13 @@ int runRadio(void)
     while (1)
     {
 
-        payload_packet.throttle = convert_to_us(value[0], 450, 1585, 3620);
-        payload_packet.roll = convert_to_us(value[1], 450, 1585, 3620);
-        payload_packet.pitch = convert_to_us(value[2], 450, 1585, 3620);
-        payload_packet.yaw = convert_to_us(value[3], 450, 1585, 3620);
+        payload_packet.throttle = convert_to_us(value[0], 700, 1697, 4095);
+        payload_packet.roll = convert_to_us(value[1], 800, 2530, 4095);
+        payload_packet.pitch = convert_to_us(value[2], 250, 2370, 4095);
+        payload_packet.yaw = convert_to_us(value[3], 0, 2570, 4095);
 #if (DEBUG_FC)
         printf("value: %ld  %ld  %ld  %ld\n", payload_packet.throttle, payload_packet.roll, payload_packet.pitch, payload_packet.yaw);
+        printf("value: %ld  %ld  %ld  %ld\n", value[0], value[1], value[2], value[3]);
 #endif // debug
         nRF24_TXResult result = nRF24_TransmitPacket((uint8_t *)&payload_packet, payload_length);
 
