@@ -59,8 +59,6 @@ MPU9255_t MPU9255;
 uint32_t value[5];
 PID_t pid;
 
-
-
 // absolute angle
 float abs_yaw_angle = 0;
 
@@ -428,8 +426,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     // calculate PID
     calculate_PID(roll_rc, pitch_rc, yaw_rc, MPU9255.roll, MPU9255.pitch, MPU9255.yaw, &pid);
 
-    //value PWM
+    // value PWM
     calculate_motor_output(&esc_right, &esc_left, &servo_right, &servo_left, throttle_rc, &pid);
+
+    // htim3.Instance->CCR1 = servo_right;
+    // htim3.Instance->CCR2 = servo_left;
+    htim3.Instance->CCR3 = esc_right;
+    htim3.Instance->CCR4 = esc_left;
   }
 }
 /* USER CODE END 4 */
