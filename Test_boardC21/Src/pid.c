@@ -22,6 +22,18 @@ float setpoint_yaw = 0;
 
 extern float abs_yaw_angle;
 
+float Kp_pitch = 0.25; //.5
+float Ki_pitch = 0.0;
+float Kd_pitch = 3.3;
+
+float Kp_roll = 0.4; //.2
+float Ki_roll = 0.0;
+float Kd_roll = 4.8;
+
+float Kp_yaw = 0.15; //.5
+float Ki_yaw = 0.0;
+float Kd_yaw = 3.0;
+
 //-----------------------------------------------------------------------------
 // calculate PID
 //-----------------------------------------------------------------------------

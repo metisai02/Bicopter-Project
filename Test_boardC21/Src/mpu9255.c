@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
+#include "main.h"
 const uint16_t i2c_timeout = 100;
 
 // Set initial input parameters
@@ -89,7 +90,7 @@ uint8_t MPU9255_Init(I2C_HandleTypeDef *I2Cx){
 	//read MPU9255 WHOAMI
 	HAL_I2C_Mem_Read(I2Cx, MPU9250_ADDRESS, WHO_AM_I_MPU9250, 1, &readData, 1, i2c_timeout);
 
-#if DEBUG_F
+#if DEBUG_MPU
 		printf("MPU -WHO AM I- is: (Must return 113) %d\r\n", readData);
 #endif
 

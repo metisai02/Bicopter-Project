@@ -24,8 +24,7 @@
 #define __MAIN_H
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
@@ -38,27 +37,27 @@ extern "C"
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-#define DEBUG_MPU 0
+#define DEBUG_MPU 1
 #define DEBUG_PWM 0
 #define DEBUG_RX 0
 #define SERVO_RIGHT_OFFSET 0 // Servo offset for right servo
 #define SERVO_LEFT_OFFSET 0  // Servo offset for left servo
-  /* USER CODE END ET */
+/* USER CODE END ET */
 
-  /* Exported constants --------------------------------------------------------*/
-  /* USER CODE BEGIN EC */
+/* Exported constants --------------------------------------------------------*/
+/* USER CODE BEGIN EC */
 
-  /* USER CODE END EC */
+/* USER CODE END EC */
 
-  /* Exported macro ------------------------------------------------------------*/
-  /* USER CODE BEGIN EM */
+/* Exported macro ------------------------------------------------------------*/
+/* USER CODE BEGIN EM */
 
-  /* USER CODE END EM */
+/* USER CODE END EM */
 
-  void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
-  /* Exported functions prototypes ---------------------------------------------*/
-  void Error_Handler(void);
+/* Exported functions prototypes ---------------------------------------------*/
+void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 
@@ -87,9 +86,9 @@ extern "C"
 #define NRF_MOSI_GPIO_Port GPIOB
 #define NRF_CE_Pin GPIO_PIN_8
 #define NRF_CE_GPIO_Port GPIOA
-  /* USER CODE BEGIN Private defines */
+/* USER CODE BEGIN Private defines */
 
-  /* USER CODE END Private defines */
+/* USER CODE END Private defines */
 
 #ifdef __cplusplus
 }

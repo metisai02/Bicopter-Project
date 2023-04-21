@@ -62,6 +62,19 @@ MPU9255_t MPU9255;
 uint32_t value[5];
 extern NRF_Packet payload_packet;
 PID_t pid;
+uint32_t start_time = 0;
+extern float Kp_pitch ; //.5
+extern float Ki_pitch;
+extern float Kd_pitch;
+
+extern float Kp_roll; //.2
+extern float Ki_roll;
+extern float Kd_roll;
+
+extern float Kp_yaw; //.5
+extern float Ki_yaw;
+extern float Kd_yaw;
+
 // absolute angle
 float abs_yaw_angle = 0;
 
@@ -120,7 +133,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+   HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -141,13 +154,15 @@ int main(void)
   MX_USART1_UART_Init();
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
   while (MPU9255_Init(&hi2c1) == 1)
   {
     HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_2);
     HAL_Delay(100);
   }
   readAll(&hi2c1, &MPU9255);
-  HAL_Delay(6000);
+  HAL_Delay(3000);
   runRadio();
   while (payload_packet.throttle > 1050)
   {
@@ -155,11 +170,13 @@ int main(void)
     HAL_Delay(20);
   }
 
-  HAL_TIM_Base_Start_IT(&htim4);
-
+  start_time = HAL_GetTick();
   // int count;
-  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
-  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
+  while((HAL_GetTick() - start_time) < 4000)
+  {
+	  readAll(&hi2c1, &MPU9255);
+  }
+  HAL_TIM_Base_Start_IT(&htim4);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -473,6 +490,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     htim3.Instance->CCR3 = esc_right;
     htim3.Instance->CCR4 = esc_left;
   }
+}
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	if(huart->Instance == USART1)
+	{
+
+	}
 }
 /* USER CODE END 4 */
 
