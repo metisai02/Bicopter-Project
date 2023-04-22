@@ -80,7 +80,26 @@ float SERVO_RIGHT_OFFSET = 0; // Servo offset for right servo
 float SERVO_LEFT_OFFSET = 0;
 #else
 
+
+
 #endif
+
+typedef struct
+{
+  float Kp_r;
+  float Ki_r;
+  float Kd_r;
+
+  float Kp_p; //.2
+  float Ki_p;
+  float Kd_p;
+
+  float Kp_y; //.5
+  float Ki_y;
+  float Kd_y;
+} tune_pid;
+
+tune_pid pid_para;
 // absolute angle
 float abs_yaw_angle = 0;
 
@@ -93,7 +112,7 @@ uint16_t esc_right, esc_left;
 
 // value from rc
 uint16_t roll_rc, pitch_rc, yaw_rc, throttle_rc;
-
+uint8_t data;
 // float pitch;
 // float yaw;
 // float roll;
@@ -113,6 +132,15 @@ int _write(int file, char *ptr, int len)
   HAL_UART_Transmit(&huart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
   return len;
 }
+
+void receive_value(float *pid_para, uint8_t *data, uint8_t length)
+{
+  for (int i = 0; i < length; i++)
+  {
+    *(pid_para++) = (float)data[i];
+  }
+}
+
 int runRadio(void);
 void RX_data(void);
 int16_t map(int16_t x, int16_t in_min, int16_t in_max, int16_t out_min, int16_t out_max)
@@ -183,6 +211,7 @@ int main(void)
     readAll(&hi2c1, &MPU9255);
   }
   HAL_TIM_Base_Start_IT(&htim4);
+  HAL_UART_Receive_IT(&huart1, &data, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -499,10 +528,23 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 }
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
+  uint8_t databuff[100];
+  uint8_t size = 0;
   if (huart->Instance == USART1)
   {
+    if (data == '\n')
+    {
+      receive_value((float *)&pid_para, databuff, sizeof(databuff));
+    }
+    else
+    {
+      databuff[size] = data;
+      size++;
+    }
+    HAL_UART_Receive_IT(&huart1, &data, 1);
   }
 }
+
 /* USER CODE END 4 */
 
 /**
