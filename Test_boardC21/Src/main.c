@@ -80,8 +80,6 @@ float SERVO_RIGHT_OFFSET = 0; // Servo offset for right servo
 float SERVO_LEFT_OFFSET = 0;
 #else
 
-
-
 #endif
 
 typedef struct
@@ -135,9 +133,9 @@ int _write(int file, char *ptr, int len)
 
 void receive_value(float *pid_para, uint8_t *data, uint8_t length)
 {
-  for (int i = 0; i < length; i++)
+  for (int i = 0; i < length; i += 4)
   {
-    *(pid_para++) = (float)data[i];
+    *(pid_para++) = (data[i] << 24) | (data[i + 1] << 16) | (data[i + 2] << 8) | data[i + 3];
   }
 }
 
