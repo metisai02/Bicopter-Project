@@ -6,8 +6,7 @@
  */
 
 #include "pid.h"
-
-#include "pid.h"
+#include "main.h"
 
 // PID variables declaration
 float error;
@@ -16,24 +15,24 @@ float Pterm_roll, Iterm_roll, Dterm_roll, last_error_roll, PID_roll_out;
 float Pterm_yaw, Iterm_yaw, Dterm_yaw, last_error_yaw, PID_yaw_out;
 
 // setpoint declaration
-float setpoint_roll = 0;
-float setpoint_pitch = 0;
-float setpoint_yaw = 0;
+float setpoint_roll;
+float setpoint_pitch;
+float setpoint_yaw;
 
 extern float abs_yaw_angle;
+#if (TUNING)
+extern float Kp_pitch; //.5
+extern float Ki_pitch;
+extern float Kd_pitch;
 
-float Kp_pitch = 0.25; //.5
-float Ki_pitch = 0.0;
-float Kd_pitch = 3.3;
+extern float Kp_roll; //.2
+extern float Ki_roll;
+extern float Kd_roll;
 
-float Kp_roll = 0.4; //.2
-float Ki_roll = 0.0;
-float Kd_roll = 4.8;
-
-float Kp_yaw = 0.15; //.5
-float Ki_yaw = 0.0;
-float Kd_yaw = 3.0;
-
+extern float Kp_yaw; //.5
+extern float Ki_yaw;
+extern float Kd_yaw;
+#endif
 //-----------------------------------------------------------------------------
 // calculate PID
 //-----------------------------------------------------------------------------

@@ -8,7 +8,10 @@
 #include "main.h"
 #include "pid.h"
 #include "motor.h"
-
+#if (TUNING)
+extern float SERVO_RIGHT_OFFSET; // Servo offset for right servo
+extern float SERVO_LEFT_OFFSET;
+#endif
 void calculate_motor_output(uint16_t *esc_right, uint16_t *esc_left, uint16_t *servo_right, uint16_t *servo_left, uint16_t throttle_rc, PID_t *pid)
 {
 

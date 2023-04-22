@@ -63,18 +63,24 @@ uint32_t value[5];
 extern NRF_Packet payload_packet;
 PID_t pid;
 uint32_t start_time = 0;
-extern float Kp_pitch ; //.5
-extern float Ki_pitch;
-extern float Kd_pitch;
+#if (TUNING)
+float Kp_pitch = 0.25; //.5
+float Ki_pitch = 0.0;
+float Kd_pitch = 3.3;
 
-extern float Kp_roll; //.2
-extern float Ki_roll;
-extern float Kd_roll;
+float Kp_roll = 0.4; //.2
+float Ki_roll = 0.0;
+float Kd_roll = 4.8;
 
-extern float Kp_yaw; //.5
-extern float Ki_yaw;
-extern float Kd_yaw;
+float Kp_yaw = 0.15; //.5
+float Ki_yaw = 0.0;
+float Kd_yaw = 3.0;
 
+float SERVO_RIGHT_OFFSET = 0; // Servo offset for right servo
+float SERVO_LEFT_OFFSET = 0;
+#else
+
+#endif
 // absolute angle
 float abs_yaw_angle = 0;
 
@@ -133,7 +139,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-   HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -172,9 +178,9 @@ int main(void)
 
   start_time = HAL_GetTick();
   // int count;
-  while((HAL_GetTick() - start_time) < 4000)
+  while ((HAL_GetTick() - start_time) < 4000)
   {
-	  readAll(&hi2c1, &MPU9255);
+    readAll(&hi2c1, &MPU9255);
   }
   HAL_TIM_Base_Start_IT(&htim4);
   /* USER CODE END 2 */
@@ -493,10 +499,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 }
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	if(huart->Instance == USART1)
-	{
-
-	}
+  if (huart->Instance == USART1)
+  {
+  }
 }
 /* USER CODE END 4 */
 

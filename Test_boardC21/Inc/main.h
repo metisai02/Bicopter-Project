@@ -24,7 +24,8 @@
 #define __MAIN_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 /* Includes ------------------------------------------------------------------*/
@@ -40,24 +41,40 @@ extern "C" {
 #define DEBUG_MPU 1
 #define DEBUG_PWM 0
 #define DEBUG_RX 0
+#define TUNING 1
+
+#if (TUNING != 1)
 #define SERVO_RIGHT_OFFSET 0 // Servo offset for right servo
 #define SERVO_LEFT_OFFSET 0  // Servo offset for left servo
-/* USER CODE END ET */
+#define Kp_pitch 0.25        //.5
+#define Ki_pitch 0.0
+#define Kd_pitch 3.3
 
-/* Exported constants --------------------------------------------------------*/
-/* USER CODE BEGIN EC */
+#define Kp_roll 0.4 //.2
+#define Ki_roll 0.0
+#define Kd_roll 4.8
 
-/* USER CODE END EC */
+#define Kp_yaw 0.15 //.5
+#define Ki_yaw 0.0
+#define Kd_yaw 3.0
+#endif
 
-/* Exported macro ------------------------------------------------------------*/
-/* USER CODE BEGIN EM */
+    /* USER CODE END ET */
 
-/* USER CODE END EM */
+    /* Exported constants --------------------------------------------------------*/
+    /* USER CODE BEGIN EC */
 
-void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+    /* USER CODE END EC */
 
-/* Exported functions prototypes ---------------------------------------------*/
-void Error_Handler(void);
+    /* Exported macro ------------------------------------------------------------*/
+    /* USER CODE BEGIN EM */
+
+    /* USER CODE END EM */
+
+    void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
+    /* Exported functions prototypes ---------------------------------------------*/
+    void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 
@@ -86,9 +103,9 @@ void Error_Handler(void);
 #define NRF_MOSI_GPIO_Port GPIOB
 #define NRF_CE_Pin GPIO_PIN_8
 #define NRF_CE_GPIO_Port GPIOA
-/* USER CODE BEGIN Private defines */
+    /* USER CODE BEGIN Private defines */
 
-/* USER CODE END Private defines */
+    /* USER CODE END Private defines */
 
 #ifdef __cplusplus
 }
