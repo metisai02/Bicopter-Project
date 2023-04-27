@@ -4196,7 +4196,11 @@ OUTPUT(Test_ADC.elf elf32-littlearm)
  .debug_macro   0x0000000000019417      0x23b Src/sysmem.o
  .debug_macro   0x0000000000019652      0x1ac Src/system_stm32f1xx.o
 
+<<<<<<< HEAD
 .debug_line     0x0000000000000000     0xae2b
+=======
+.debug_line     0x0000000000000000     0x9fbf
+>>>>>>> parent of d4df473 (optimizing PID)
  .debug_line    0x0000000000000000      0x864 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
  .debug_line    0x0000000000000864      0xbb9 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.o
  .debug_line    0x000000000000141d      0x93b Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
@@ -4206,6 +4210,7 @@ OUTPUT(Test_ADC.elf elf32-littlearm)
  .debug_line    0x00000000000039a5      0x742 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.o
  .debug_line    0x00000000000040e7     0x1053 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.o
  .debug_line    0x000000000000513a     0x10d4 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o
+<<<<<<< HEAD
  .debug_line    0x000000000000620e      0x3b3 Src/crc.o
  .debug_line    0x00000000000065c1      0x8c5 Src/frame_uart.o
  .debug_line    0x0000000000006e86      0x97f Src/main.o
@@ -4217,6 +4222,17 @@ OUTPUT(Test_ADC.elf elf32-littlearm)
  .debug_line    0x000000000000a1a4      0x559 Src/sysmem.o
  .debug_line    0x000000000000a6fd      0x6ac Src/system_stm32f1xx.o
  .debug_line    0x000000000000ada9       0x82 Startup/startup_stm32f103c8tx.o
+=======
+ .debug_line    0x000000000000620e      0x792 Src/main.o
+ .debug_line    0x00000000000069a0      0xa62 Src/nrf24.o
+ .debug_line    0x0000000000007402      0x999 Src/radio_demo.o
+ .debug_line    0x0000000000007d9b      0x726 Src/stm32f1xx_hal_msp.o
+ .debug_line    0x00000000000084c1      0x73a Src/stm32f1xx_it.o
+ .debug_line    0x0000000000008bfb      0x73d Src/syscalls.o
+ .debug_line    0x0000000000009338      0x559 Src/sysmem.o
+ .debug_line    0x0000000000009891      0x6ac Src/system_stm32f1xx.o
+ .debug_line    0x0000000000009f3d       0x82 Startup/startup_stm32f103c8tx.o
+>>>>>>> parent of d4df473 (optimizing PID)
 
 .debug_str      0x0000000000000000    0x8b2cd
  .debug_str     0x0000000000000000    0x82803 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o

@@ -37,11 +37,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  16 .debug_macro  000197fe  00000000  00000000  00031868  2**0
                   CONTENTS, READONLY, DEBUGGING
+<<<<<<< HEAD
  17 .debug_line   0000ae2b  00000000  00000000  0004b066  2**0
                   CONTENTS, READONLY, DEBUGGING
  18 .debug_str    0008b2cd  00000000  00000000  00055e91  2**0
                   CONTENTS, READONLY, DEBUGGING
  19 .comment      0000007b  00000000  00000000  000e115e  2**0
+=======
+ 17 .debug_line   00009fbf  00000000  00000000  00048df9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 18 .debug_str    0008b12d  00000000  00000000  00052db8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 19 .comment      0000007b  00000000  00000000  000ddee5  2**0
+>>>>>>> parent of d4df473 (optimizing PID)
                   CONTENTS, READONLY
  20 .debug_frame  000039c4  00000000  00000000  000e11dc  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -6896,6 +6904,7 @@ void SendFrameData(uint8_t *pu8Src, uint16_t u16Src_len, uint8_t *pu8Dest, uint1
 /* USER CODE BEGIN 0 */
 int _write(int file, char *ptr, int len)
 {
+<<<<<<< HEAD
  80026b0:	b580      	push	{r7, lr}
  80026b2:	b084      	sub	sp, #16
  80026b4:	af00      	add	r7, sp, #0
@@ -6911,6 +6920,23 @@ int _write(int file, char *ptr, int len)
  80026c8:	f7ff fe03 	bl	80022d2 <HAL_UART_Transmit>
   return len;
  80026cc:	687b      	ldr	r3, [r7, #4]
+=======
+ 80025a8:	b580      	push	{r7, lr}
+ 80025aa:	b084      	sub	sp, #16
+ 80025ac:	af00      	add	r7, sp, #0
+ 80025ae:	60f8      	str	r0, [r7, #12]
+ 80025b0:	60b9      	str	r1, [r7, #8]
+ 80025b2:	607a      	str	r2, [r7, #4]
+	HAL_UART_Transmit(&huart1, (uint8_t*)ptr, len, HAL_MAX_DELAY);
+ 80025b4:	687b      	ldr	r3, [r7, #4]
+ 80025b6:	b29a      	uxth	r2, r3
+ 80025b8:	f04f 33ff 	mov.w	r3, #4294967295
+ 80025bc:	68b9      	ldr	r1, [r7, #8]
+ 80025be:	4804      	ldr	r0, [pc, #16]	; (80025d0 <_write+0x28>)
+ 80025c0:	f7ff fe87 	bl	80022d2 <HAL_UART_Transmit>
+	return len;
+ 80025c4:	687b      	ldr	r3, [r7, #4]
+>>>>>>> parent of d4df473 (optimizing PID)
 }
  80026ce:	4618      	mov	r0, r3
  80026d0:	3710      	adds	r7, #16
@@ -6921,14 +6947,20 @@ int _write(int file, char *ptr, int len)
 
 080026dc <main>:
 /**
- * @brief  The application entry point.
- * @retval int
- */
+  * @brief  The application entry point.
+  * @retval int
+  */
 int main(void)
 {
+<<<<<<< HEAD
  80026dc:	b580      	push	{r7, lr}
  80026de:	af00      	add	r7, sp, #0
   /* USER CODE END 1 */
+=======
+ 80025d4:	b580      	push	{r7, lr}
+ 80025d6:	af00      	add	r7, sp, #0
+  
+>>>>>>> parent of d4df473 (optimizing PID)
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -6991,9 +7023,9 @@ int main(void)
 
 08002734 <SystemClock_Config>:
 /**
- * @brief System Clock Configuration
- * @retval None
- */
+  * @brief System Clock Configuration
+  * @retval None
+  */
 void SystemClock_Config(void)
 {
  8002734:	b580      	push	{r7, lr}
@@ -7021,8 +7053,8 @@ void SystemClock_Config(void)
  8002760:	609a      	str	r2, [r3, #8]
  8002762:	60da      	str	r2, [r3, #12]
 
-  /** Initializes the CPU, AHB and APB busses clocks
-   */
+  /** Initializes the CPU, AHB and APB busses clocks 
+  */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
  8002764:	2301      	movs	r3, #1
  8002766:	62bb      	str	r3, [r7, #40]	; 0x28
@@ -7055,11 +7087,20 @@ void SystemClock_Config(void)
     Error_Handler();
  8002796:	f000 f9a7 	bl	8002ae8 <Error_Handler>
   }
+<<<<<<< HEAD
   /** Initializes the CPU, AHB and APB busses clocks
    */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
  800279a:	230f      	movs	r3, #15
  800279c:	617b      	str	r3, [r7, #20]
+=======
+  /** Initializes the CPU, AHB and APB busses clocks 
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 8002672:	230f      	movs	r3, #15
+ 8002674:	617b      	str	r3, [r7, #20]
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+>>>>>>> parent of d4df473 (optimizing PID)
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
  800279e:	2302      	movs	r3, #2
  80027a0:	61bb      	str	r3, [r7, #24]
@@ -7109,11 +7150,19 @@ void SystemClock_Config(void)
  80027e8:	bd80      	pop	{r7, pc}
 	...
 
+<<<<<<< HEAD
 080027ec <MX_ADC1_Init>:
  * @brief ADC1 Initialization Function
  * @param None
  * @retval None
  */
+=======
+080026c4 <MX_ADC1_Init>:
+  * @brief ADC1 Initialization Function
+  * @param None
+  * @retval None
+  */
+>>>>>>> parent of d4df473 (optimizing PID)
 static void MX_ADC1_Init(void)
 {
  80027ec:	b580      	push	{r7, lr}
@@ -7133,8 +7182,8 @@ static void MX_ADC1_Init(void)
   /* USER CODE BEGIN ADC1_Init 1 */
 
   /* USER CODE END ADC1_Init 1 */
-  /** Common config
-   */
+  /** Common config 
+  */
   hadc1.Instance = ADC1;
  80027fc:	4b36      	ldr	r3, [pc, #216]	; (80028d8 <MX_ADC1_Init+0xec>)
  80027fe:	4a37      	ldr	r2, [pc, #220]	; (80028dc <MX_ADC1_Init+0xf0>)
@@ -7173,8 +7222,8 @@ static void MX_ADC1_Init(void)
     Error_Handler();
  8002836:	f000 f957 	bl	8002ae8 <Error_Handler>
   }
-  /** Configure Regular Channel
-   */
+  /** Configure Regular Channel 
+  */
   sConfig.Channel = ADC_CHANNEL_0;
  800283a:	2300      	movs	r3, #0
  800283c:	607b      	str	r3, [r7, #4]
@@ -7196,8 +7245,8 @@ static void MX_ADC1_Init(void)
     Error_Handler();
  8002856:	f000 f947 	bl	8002ae8 <Error_Handler>
   }
-  /** Configure Regular Channel
-   */
+  /** Configure Regular Channel 
+  */
   sConfig.Channel = ADC_CHANNEL_1;
  800285a:	2301      	movs	r3, #1
  800285c:	607b      	str	r3, [r7, #4]
@@ -7219,8 +7268,8 @@ static void MX_ADC1_Init(void)
     Error_Handler();
  8002876:	f000 f937 	bl	8002ae8 <Error_Handler>
   }
-  /** Configure Regular Channel
-   */
+  /** Configure Regular Channel 
+  */
   sConfig.Channel = ADC_CHANNEL_5;
  800287a:	2305      	movs	r3, #5
  800287c:	607b      	str	r3, [r7, #4]
@@ -7239,8 +7288,8 @@ static void MX_ADC1_Init(void)
     Error_Handler();
  8002892:	f000 f929 	bl	8002ae8 <Error_Handler>
   }
-  /** Configure Regular Channel
-   */
+  /** Configure Regular Channel 
+  */
   sConfig.Channel = ADC_CHANNEL_6;
  8002896:	2306      	movs	r3, #6
  8002898:	607b      	str	r3, [r7, #4]
@@ -7259,8 +7308,8 @@ static void MX_ADC1_Init(void)
     Error_Handler();
  80028ae:	f000 f91b 	bl	8002ae8 <Error_Handler>
   }
-  /** Configure Regular Channel
-   */
+  /** Configure Regular Channel 
+  */
   sConfig.Channel = ADC_CHANNEL_9;
  80028b2:	2309      	movs	r3, #9
  80028b4:	607b      	str	r3, [r7, #4]
@@ -7282,6 +7331,7 @@ static void MX_ADC1_Init(void)
   /* USER CODE BEGIN ADC1_Init 2 */
 
   /* USER CODE END ADC1_Init 2 */
+
 }
  80028ce:	bf00      	nop
  80028d0:	3710      	adds	r7, #16
@@ -7291,11 +7341,19 @@ static void MX_ADC1_Init(void)
  80028d8:	200000f4 	.word	0x200000f4
  80028dc:	40012400 	.word	0x40012400
 
+<<<<<<< HEAD
 080028e0 <MX_SPI2_Init>:
  * @brief SPI2 Initialization Function
  * @param None
  * @retval None
  */
+=======
+080027b8 <MX_SPI2_Init>:
+  * @brief SPI2 Initialization Function
+  * @param None
+  * @retval None
+  */
+>>>>>>> parent of d4df473 (optimizing PID)
 static void MX_SPI2_Init(void)
 {
  80028e0:	b580      	push	{r7, lr}
@@ -7366,17 +7424,26 @@ static void MX_SPI2_Init(void)
   /* USER CODE BEGIN SPI2_Init 2 */
 
   /* USER CODE END SPI2_Init 2 */
+
 }
  8002940:	bf00      	nop
  8002942:	bd80      	pop	{r7, pc}
  8002944:	2000009c 	.word	0x2000009c
  8002948:	40003800 	.word	0x40003800
 
+<<<<<<< HEAD
 0800294c <MX_USART1_UART_Init>:
  * @brief USART1 Initialization Function
  * @param None
  * @retval None
  */
+=======
+08002824 <MX_USART1_UART_Init>:
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
+>>>>>>> parent of d4df473 (optimizing PID)
 static void MX_USART1_UART_Init(void)
 {
  800294c:	b580      	push	{r7, lr}
@@ -7431,6 +7498,7 @@ static void MX_USART1_UART_Init(void)
   /* USER CODE BEGIN USART1_Init 2 */
 
   /* USER CODE END USART1_Init 2 */
+
 }
  8002992:	bf00      	nop
  8002994:	bd80      	pop	{r7, pc}
@@ -7440,10 +7508,10 @@ static void MX_USART1_UART_Init(void)
 
 080029a0 <MX_DMA_Init>:
 
-/**
- * Enable DMA controller clock
- */
-static void MX_DMA_Init(void)
+/** 
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void) 
 {
  80029a0:	b580      	push	{r7, lr}
  80029a2:	b082      	sub	sp, #8
@@ -7470,8 +7538,14 @@ static void MX_DMA_Init(void)
  80029c2:	200b      	movs	r0, #11
  80029c4:	f7fe f8e9 	bl	8000b9a <HAL_NVIC_SetPriority>
   HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+<<<<<<< HEAD
  80029c8:	200b      	movs	r0, #11
  80029ca:	f7fe f902 	bl	8000bd2 <HAL_NVIC_EnableIRQ>
+=======
+ 80028a0:	200b      	movs	r0, #11
+ 80028a2:	f7fe f996 	bl	8000bd2 <HAL_NVIC_EnableIRQ>
+
+>>>>>>> parent of d4df473 (optimizing PID)
 }
  80029ce:	bf00      	nop
  80029d0:	3708      	adds	r7, #8
@@ -7480,11 +7554,19 @@ static void MX_DMA_Init(void)
  80029d6:	bf00      	nop
  80029d8:	40021000 	.word	0x40021000
 
+<<<<<<< HEAD
 080029dc <MX_GPIO_Init>:
  * @brief GPIO Initialization Function
  * @param None
  * @retval None
  */
+=======
+080028b4 <MX_GPIO_Init>:
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
+>>>>>>> parent of d4df473 (optimizing PID)
 static void MX_GPIO_Init(void)
 {
  80029dc:	b580      	push	{r7, lr}
@@ -7617,10 +7699,18 @@ static void MX_GPIO_Init(void)
  8002abe:	2302      	movs	r3, #2
  8002ac0:	61fb      	str	r3, [r7, #28]
   HAL_GPIO_Init(NRF_CE_GPIO_Port, &GPIO_InitStruct);
+<<<<<<< HEAD
  8002ac2:	f107 0310 	add.w	r3, r7, #16
  8002ac6:	4619      	mov	r1, r3
  8002ac8:	4806      	ldr	r0, [pc, #24]	; (8002ae4 <MX_GPIO_Init+0x108>)
  8002aca:	f7fe fa8b 	bl	8000fe4 <HAL_GPIO_Init>
+=======
+ 800299a:	f107 0310 	add.w	r3, r7, #16
+ 800299e:	4619      	mov	r1, r3
+ 80029a0:	4806      	ldr	r0, [pc, #24]	; (80029bc <MX_GPIO_Init+0x108>)
+ 80029a2:	f7fe fb1f 	bl	8000fe4 <HAL_GPIO_Init>
+
+>>>>>>> parent of d4df473 (optimizing PID)
 }
  8002ace:	bf00      	nop
  8002ad0:	3720      	adds	r7, #32
@@ -7634,9 +7724,9 @@ static void MX_GPIO_Init(void)
 
 08002ae8 <Error_Handler>:
 /**
- * @brief  This function is executed in case of error occurrence.
- * @retval None
- */
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
 void Error_Handler(void)
 {
  8002ae8:	b480      	push	{r7}
@@ -9056,8 +9146,37 @@ int runRadio(void)
  80032f4:	4b18      	ldr	r3, [pc, #96]	; (8003358 <runRadio+0x138>)
  80032f6:	605a      	str	r2, [r3, #4]
 #if (DEBUG_FC)
+<<<<<<< HEAD
         printf("value: %ld  %ld  %ld  %ld\n", payload_packet.throttle, payload_packet.roll, payload_packet.pitch, payload_packet.yaw);
         printf("value: %ld  %ld  %ld  %ld\n", value[0], value[1], value[2], value[3]);
+=======
+       printf("value: %ld  %ld  %ld  %ld\n", payload_packet.throttle, payload_packet.roll, payload_packet.pitch, payload_packet.yaw);
+ 80031e8:	4b1e      	ldr	r3, [pc, #120]	; (8003264 <runRadio+0x16c>)
+ 80031ea:	6819      	ldr	r1, [r3, #0]
+ 80031ec:	4b1d      	ldr	r3, [pc, #116]	; (8003264 <runRadio+0x16c>)
+ 80031ee:	68da      	ldr	r2, [r3, #12]
+ 80031f0:	4b1c      	ldr	r3, [pc, #112]	; (8003264 <runRadio+0x16c>)
+ 80031f2:	6898      	ldr	r0, [r3, #8]
+ 80031f4:	4b1b      	ldr	r3, [pc, #108]	; (8003264 <runRadio+0x16c>)
+ 80031f6:	685b      	ldr	r3, [r3, #4]
+ 80031f8:	9300      	str	r3, [sp, #0]
+ 80031fa:	4603      	mov	r3, r0
+ 80031fc:	481a      	ldr	r0, [pc, #104]	; (8003268 <runRadio+0x170>)
+ 80031fe:	f000 fa8d 	bl	800371c <iprintf>
+       printf("value: %ld  %ld  %ld  %ld\n", value[0], value[1], value[2], value[3]);
+ 8003202:	4b17      	ldr	r3, [pc, #92]	; (8003260 <runRadio+0x168>)
+ 8003204:	6819      	ldr	r1, [r3, #0]
+ 8003206:	4b16      	ldr	r3, [pc, #88]	; (8003260 <runRadio+0x168>)
+ 8003208:	685a      	ldr	r2, [r3, #4]
+ 800320a:	4b15      	ldr	r3, [pc, #84]	; (8003260 <runRadio+0x168>)
+ 800320c:	6898      	ldr	r0, [r3, #8]
+ 800320e:	4b14      	ldr	r3, [pc, #80]	; (8003260 <runRadio+0x168>)
+ 8003210:	68db      	ldr	r3, [r3, #12]
+ 8003212:	9300      	str	r3, [sp, #0]
+ 8003214:	4603      	mov	r3, r0
+ 8003216:	4814      	ldr	r0, [pc, #80]	; (8003268 <runRadio+0x170>)
+ 8003218:	f000 fa80 	bl	800371c <iprintf>
+>>>>>>> parent of d4df473 (optimizing PID)
 #endif // debug
 
         nRF24_TXResult result = nRF24_TransmitPacket((uint8_t *)&payload_packet, payload_length);
