@@ -28,6 +28,7 @@
 #include "nrf24.h"
 #include "pid.h"
 #include "motor.h"
+#include "frame_uart.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -64,6 +65,10 @@ extern NRF_Packet payload_packet;
 PID_t pid;
 uint32_t start_time = 0;
 #if (TUNING)
+// frame
+uint8_t pDest[FRAME_DATA_TX_HANDLE];
+uint16_t pLen_dest = 0;
+
 float Kp_pitch = 0.25; //.5
 float Ki_pitch = 0.0;
 float Kd_pitch = 3.3;
@@ -77,13 +82,10 @@ float Ki_yaw = 0.0;
 float Kd_yaw = 3.0;
 
 float SERVO_RIGHT_OFFSET = 0; // Servo offset for right servo
-float SERVO_LEFT_OFFSET = 0; //
-//qt_tune qt_data;
-uint8_t qt_tune[10];
-volatile float qt_current = 0;
-#else
-
-#endif
+float SERVO_LEFT_OFFSET = 0;  //
+// qt_tune qt_data;
+uint8_t qt_tune[FRAME_DATA_TX];
+volatile uint16_t qt_current = 0;
 
 typedef struct
 {
@@ -101,6 +103,10 @@ typedef struct
 } tune_pid;
 
 tune_pid pid_para;
+#else
+
+#endif
+
 // absolute angle
 float abs_yaw_angle = 0;
 
@@ -192,6 +198,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
+  runRadio();
   while (MPU9255_Init(&hi2c1) == 1)
   {
     HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_2);
@@ -199,8 +206,8 @@ int main(void)
   }
   readAll(&hi2c1, &MPU9255);
   HAL_Delay(3000);
-  runRadio();
-  while (payload_packet.throttle > 1050)
+
+  while (payload_packet.throttle > 2650)
   {
     // Read again
     HAL_Delay(20);
@@ -223,9 +230,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    readAll(&hi2c1, &MPU9255);
+
     RX_data();
-//    sprintf((char*)qt_tune,"%d %d\n",(uint16_t)payload_packet.pitch,(uint16_t)qt_current);
+
+//     sprintf((char*)qt_tune,"%d%d\n",(uint16_t)payload_packet.pitch,(uint16_t)qt_current);
   }
   /* USER CODE END 3 */
 }
@@ -357,9 +365,9 @@ static void MX_TIM3_Init(void)
 
   /* USER CODE END TIM3_Init 1 */
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 63;
+  htim3.Init.Prescaler = 23;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 20000;
+  htim3.Init.Period = 50000-1;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_PWM_Init(&htim3) != HAL_OK)
@@ -410,9 +418,9 @@ static void MX_TIM4_Init(void)
 
   /* USER CODE END TIM4_Init 1 */
   htim4.Instance = TIM4;
-  htim4.Init.Prescaler = 639;
+  htim4.Init.Prescaler = 640;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 2000-1;
+  htim4.Init.Period = 499;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
@@ -452,7 +460,7 @@ static void MX_USART1_UART_Init(void)
 
   /* USER CODE END USART1_Init 1 */
   huart1.Instance = USART1;
-  huart1.Init.BaudRate = 9600;
+  huart1.Init.BaudRate = 115200;
   huart1.Init.WordLength = UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_1;
   huart1.Init.Parity = UART_PARITY_NONE;
@@ -518,10 +526,13 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
+	  uint32_t time_while =  HAL_GetTick();
+	  readAll(&hi2c1, &MPU9255);
   if (htim->Instance == htim4.Instance)
   {
+
     // readAll(&hi2c1, &MPU9255);
-    abs_yaw_angle = abs_yaw_angle + MPU9255.GyroX * dt;
+    abs_yaw_angle = abs_yaw_angle + MPU9255.GyroZ * dt;
     // receive rc
 
     // calculate PID
@@ -534,12 +545,16 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     // htim3.Instance->CCR2 = servo_left;
     htim3.Instance->CCR3 = esc_right;
     htim3.Instance->CCR4 = esc_left;
-    qt_current = (MPU9255.roll* 12.5 + 1500);
-    //sprintf((char*)qt_tune,"%ld %ld\n",payload_packet.pitch,qt_current);
-    sprintf((char*)qt_tune,"%d %d",(uint16_t)payload_packet.pitch,(uint16_t)qt_current);
-    HAL_UART_Transmit(&huart1, qt_tune, sizeof(qt_tune), 10);
-    //printf("%ld %ld ",(uint32_t)qt_current,payload_packet.pitch);
+    qt_current = (uint16_t)(MPU9255.roll * 11.25 + 1500);
+
+//    sprintf((char *)qt_tune, "%d%d", (uint16_t)payload_packet.pitch, qt_current);
+    SendFrameData(qt_tune, FRAME_DATA_TX, pDest, &pLen_dest);
+    HAL_UART_Transmit(&huart1, pDest, pLen_dest, 1000);
   }
+  uint32_t time_end = HAL_GetTick() - time_while;
+  sprintf((char *)qt_tune, "\nend: %d\n", (uint16_t)time_end);
+
+  HAL_UART_Transmit(&huart1, qt_tune, sizeof(qt_tune), 1000);
 }
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {

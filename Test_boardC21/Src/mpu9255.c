@@ -215,7 +215,7 @@ void readAll(I2C_HandleTypeDef *I2Cx, MPU9255_t*DataStruct) {
 	DataStruct->pitch = pitch;
 	DataStruct->roll = roll;
 #if DEBUG_MPU
-	printf("Roll: %f		Pitch: %f		Yaz: %f\n",roll,pitch,yaw);
+//	printf("Roll: %f		Pitch: %f		Yaz: %f\n",roll,pitch,yaw);
 #endif
 	sum = 0;
 	}

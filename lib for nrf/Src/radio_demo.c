@@ -3,10 +3,12 @@
 #include "nrf24.h"
 #include "stdint.h"
 #include "stdio.h"
-
+#include "frame_uart.h"
 #define RX_SINGLE 0
 #define TX_SINGLE 1
-
+uint8_t data[FRAME_DATA_TX];
+uint8_t pdest[FRAME_DATA_TX_HANDLE];
+uint16_t len;
 extern uint32_t value[5];
 extern UART_HandleTypeDef huart1;
 
@@ -178,6 +180,7 @@ int runRadio(void)
         printf("value: %ld  %ld  %ld  %ld\n", payload_packet.throttle, payload_packet.roll, payload_packet.pitch, payload_packet.yaw);
         printf("value: %ld  %ld  %ld  %ld\n", value[0], value[1], value[2], value[3]);
 #endif // debug
+
         nRF24_TXResult result = nRF24_TransmitPacket((uint8_t *)&payload_packet, payload_length);
 
         switch (result)
@@ -193,8 +196,13 @@ int runRadio(void)
             // todo: Bị lỗi khi truyền đi
             break;
         }
-        Toggle_LED();
-        Delay_ms(100);
+
+        sprintf((char*)data,"%d%d", (uint16_t)payload_packet.throttle, (uint16_t)payload_packet.roll);
+        SendFrameData(data, FRAME_DATA_TX, pdest,&len );
+        HAL_UART_Transmit(&huart1, pdest, len, 1000);
+
+        //Toggle_LED();
+        ////Delay_ms(100);
     }
 
 #endif // TX_SINGLE

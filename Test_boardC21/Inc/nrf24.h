@@ -3,6 +3,7 @@
 
 // Low level functions (hardware depended)
 #include "support.h"
+uint8_t nga;
 typedef struct
 {
 	uint32_t throttle; // left hand

@@ -4,6 +4,8 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Src/crc.c \
+../Src/frame_uart.c \
 ../Src/main.c \
 ../Src/nrf24.c \
 ../Src/radio_demo.c \
@@ -14,6 +16,8 @@ C_SRCS += \
 ../Src/system_stm32f1xx.c 
 
 OBJS += \
+./Src/crc.o \
+./Src/frame_uart.o \
 ./Src/main.o \
 ./Src/nrf24.o \
 ./Src/radio_demo.o \
@@ -24,6 +28,8 @@ OBJS += \
 ./Src/system_stm32f1xx.o 
 
 C_DEPS += \
+./Src/crc.d \
+./Src/frame_uart.d \
 ./Src/main.d \
 ./Src/nrf24.d \
 ./Src/radio_demo.d \
@@ -35,6 +41,10 @@ C_DEPS += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
+Src/crc.o: ../Src/crc.c
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/crc.d" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
+Src/frame_uart.o: ../Src/frame_uart.c
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/frame_uart.d" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
 Src/main.o: ../Src/main.c
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
 Src/nrf24.o: ../Src/nrf24.c

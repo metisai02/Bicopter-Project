@@ -25,7 +25,7 @@ Src/radio_demo.o: ../Src/radio_demo.c ../Inc/support.h ../Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h ../Inc/nrf24.h \
- ../Inc/support.h
+ ../Inc/support.h ../Inc/frame_uart.h
 
 ../Inc/support.h:
 
@@ -86,3 +86,5 @@ Src/radio_demo.o: ../Src/radio_demo.c ../Inc/support.h ../Inc/main.h \
 ../Inc/nrf24.h:
 
 ../Inc/support.h:
+
+../Inc/frame_uart.h:

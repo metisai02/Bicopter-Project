@@ -3,6 +3,7 @@
 #include "nrf24.h"
 #include "stdint.h"
 #include "stdio.h"
+#include "main.h"
 
 #define RX_SINGLE 1
 #define TX_SINGLE 0
@@ -25,9 +26,9 @@ uint32_t convert_to_us(uint32_t val, uint32_t min, uint32_t middle, uint32_t max
     if (val < min)
         val = min;
     if (val < middle)
-        return (val - min) * (1500 - 1000) / (middle - min) + 1000;
+        return (val - min) * (3750 - 2500) / (middle - min) + 2500;
     else
-        return (val - middle) * (2000 - 1500) / (max - middle) + 1500;
+        return (val - middle) * (5000 - 3750) / (max - middle) + 3750;
 }
 
 // Kinda foolproof :)
@@ -101,11 +102,11 @@ void reset_controller(void)
 
 int runRadio(void)
 {
-#if (DEBUG_FC)
+#if (DEBUG_RX)
     printf("\r\nSTM32 is online.\r\n");
 #endif // debug
     nRF24_CE_L();
-#if (DEBUG_FC)
+#if (DEBUG_RX)
     printf("nRF24L01+ check: ");
 #endif
     if (!nRF24_Check())
@@ -114,13 +115,13 @@ int runRadio(void)
         {
             Toggle_LED();
             Delay_ms(50);
-#if (DEBUG_FC)
+#if (DEBUG_RX)
             printf("FAIL\r\n");
 #endif
         }
     }
     nRF24_Init();
-#if (DEBUG_FC)
+#if (DEBUG_RX)
     printf("OK\r\n");
 #endif
 
@@ -174,7 +175,7 @@ int runRadio(void)
         payload_packet.roll = convert_to_us(value[1], 450, 1585, 3620);
         payload_packet.pitch = convert_to_us(value[2], 450, 1585, 3620);
         payload_packet.yaw = convert_to_us(value[3], 450, 1585, 3620);
-#if (DEBUG_FC)
+#if (DEBUG_RX)
         printf("value: %ld  %ld  %ld  %ld\n", payload_packet.throttle, payload_packet.roll, payload_packet.pitch, payload_packet.yaw);
 #endif // debug
         nRF24_TXResult result = nRF24_TransmitPacket((uint8_t *)&payload_packet, payload_length);
@@ -208,7 +209,7 @@ void RX_data(void)
         // Clear all pending IRQ flags
         nRF24_ClearIRQFlags();
         Toggle_LED();
-#if DEBUG_FC
+#if DEBUG_RX
         printf("Pipe: %d\n", pipe);
         printf("value: %ld  %ld  %ld  %ld\n", payload_packet.throttle, payload_packet.roll, payload_packet.pitch, payload_packet.yaw);
 #endif // debug

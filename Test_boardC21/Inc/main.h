@@ -37,7 +37,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-#define DEBUG_MPU 0
+#define DEBUG_MPU	1
 #define DEBUG_PWM 0
 #define DEBUG_RX 0
 #define TUNING 1

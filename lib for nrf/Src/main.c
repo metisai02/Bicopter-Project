@@ -24,7 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "nrf24.h"
-
+#include "frame_uart.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -117,6 +117,7 @@ int main(void)
   {
 
     runRadio();
+    printf("%d%d", (uint16_t)payload_packet.throttle, (uint16_t)payload_packet.roll);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

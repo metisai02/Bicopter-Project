@@ -1,9 +1,9 @@
 support.h:14:20:nRF24_CE_L	8	static
 support.h:18:20:nRF24_CE_H	8	static
 support.h:41:20:Delay_ms	16	static
-radio_demo.c:13:6:Toggle_LED	8	static
-radio_demo.c:21:10:convert_to_us	24	static
-radio_demo.c:57:16:nRF24_TransmitPacket	24	static
-radio_demo.c:90:6:reset_controller	4	static
-radio_demo.c:102:5:runRadio	24	static
-radio_demo.c:203:6:RX_data	24	static
+radio_demo.c:15:6:Toggle_LED	8	static
+radio_demo.c:23:10:convert_to_us	24	static
+radio_demo.c:59:16:nRF24_TransmitPacket	24	static
+radio_demo.c:92:6:reset_controller	4	static
+radio_demo.c:104:5:runRadio	16	static
+radio_demo.c:211:6:RX_data	16	static
