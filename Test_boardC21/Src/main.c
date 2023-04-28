@@ -65,28 +65,39 @@ extern NRF_Packet payload_packet;
 PID_t pid;
 uint32_t start_time = 0;
 #if (TUNING)
-// frame
-uint8_t pDest[FRAME_DATA_TX_HANDLE];
-uint16_t pLen_dest = 0;
+float Kp_angle_pitch;
+float Ki_angle_pitch;
+float Kd_angle_pitch;
 
-float Kp_pitch = 0.25; //.5
-float Ki_pitch = 0.0;
-float Kd_pitch = 3.3;
+float Kp_angle_roll;
+float Ki_angle_roll;
+float Kd_angle_roll;
 
-float Kp_roll = 0.4; //.2
-float Ki_roll = 0.0;
-float Kd_roll = 4.8;
+float Kp_angle_yaw;
+float Ki_angle_yaw;
+float Kd_angle_yaw;
 
-float Kp_yaw = 0.15; //.5
-float Ki_yaw = 0.0;
-float Kd_yaw = 3.0;
+float Kp_rate_pitch;
+float Ki_rate_pitch;
+float Kd_rate_pitch;
+
+float Kp_rate_roll;
+float Ki_rate_roll;
+float Kd_rate_roll;
+
+float Kp_rate_yaw;
+float Ki_rate_yaw;
+float Kd_rate_yaw;
 
 float SERVO_RIGHT_OFFSET = 0; // Servo offset for right servo
 float SERVO_LEFT_OFFSET = 0;  //
 // qt_tune qt_data;
-uint8_t qt_tune[FRAME_DATA_TX];
-volatile uint16_t qt_current = 0;
+uint8_t qt_tune[10];
+volatile float qt_current = 0;
+#else
 
+#endif
+#if TUNING
 typedef struct
 {
   float Kp_r;
@@ -232,8 +243,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
     RX_data();
-
-//     sprintf((char*)qt_tune,"%d%d\n",(uint16_t)payload_packet.pitch,(uint16_t)qt_current);
+    //    sprintf((char*)qt_tune,"%d %d\n",(uint16_t)payload_packet.pitch,(uint16_t)qt_current);
   }
   /* USER CODE END 3 */
 }
@@ -254,7 +264,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI_DIV2;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL16;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL15;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -365,9 +375,9 @@ static void MX_TIM3_Init(void)
 
   /* USER CODE END TIM3_Init 1 */
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 23;
+  htim3.Init.Prescaler = 63;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 50000-1;
+  htim3.Init.Period = 50000;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_PWM_Init(&htim3) != HAL_OK)
@@ -536,7 +546,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     // receive rc
 
     // calculate PID
-    calculate_PID(payload_packet.roll, payload_packet.pitch, payload_packet.yaw, MPU9255.roll, MPU9255.pitch, MPU9255.yaw, &pid);
+    // calculate_PID(payload_packet.roll, payload_packet.pitch, payload_packet.yaw, MPU9255.roll, MPU9255.pitch, MPU9255.yaw, &pid);
+
+    pid_roll(payload_packet.roll, MPU9255.roll, MPU9255.GyroX, &pid);
+    pid_pitch(payload_packet.pitch, MPU9255.pitch, MPU9255.GyroY, &pid);
 
     // value PWM
     calculate_motor_output(&esc_right, &esc_left, &servo_right, &servo_left, payload_packet.throttle, &pid);
@@ -545,11 +558,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     // htim3.Instance->CCR2 = servo_left;
     htim3.Instance->CCR3 = esc_right;
     htim3.Instance->CCR4 = esc_left;
-    qt_current = (uint16_t)(MPU9255.roll * 11.25 + 1500);
 
-//    sprintf((char *)qt_tune, "%d%d", (uint16_t)payload_packet.pitch, qt_current);
-    SendFrameData(qt_tune, FRAME_DATA_TX, pDest, &pLen_dest);
-    HAL_UART_Transmit(&huart1, pDest, pLen_dest, 1000);
+    qt_current = (MPU9255.roll * 12.5 + 1500);
+    // sprintf((char*)qt_tune,"%ld %ld\n",payload_packet.pitch,qt_current);
+    sprintf((char *)qt_tune, "%d %d", (uint16_t)payload_packet.pitch, (uint16_t)qt_current);
+    HAL_UART_Transmit(&huart1, qt_tune, sizeof(qt_tune), 10);
+    // printf("%ld %ld ",(uint32_t)qt_current,payload_packet.pitch);
   }
   uint32_t time_end = HAL_GetTick() - time_while;
   sprintf((char *)qt_tune, "\nend: %d\n", (uint16_t)time_end);

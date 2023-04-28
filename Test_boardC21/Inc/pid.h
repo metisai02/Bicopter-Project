@@ -17,10 +17,10 @@ typedef struct
     float PID_yaw_out;
 } PID_t;
 
-//+40deg =  2070 us,, -40deg = 1160 us,, 910 us range,, 1615 us = 0deg
-#define MAX_pitch_output 454 // 454
-#define MAX_roll_output 454
-#define MAX_yaw_output 454
+
+#define MAX_pitch_output 400 // 454
+#define MAX_roll_output 400
+#define MAX_yaw_output 400
 
 // PID constant values for all three axis
 // #define Kp_pitch 0.25 //.5
@@ -37,6 +37,9 @@ typedef struct
 
 #define dt 0.01
 
-void calculate_PID(uint16_t roll_rc, uint16_t pitch_rc, uint16_t yaw_rc, float roll_angle, float pitch_angle, float yaw_angle, PID_t *PID_out);
+void pid_calculate(float Error, float P, float I, float D, float PrevError, float PrevIterm);
+void pid_roll(uint16_t roll_rc, float roll_angle, float roll_rate, PID_t *PID_out);
+void pid_pitch(uint16_t pitch_rc, float pitch_angle, float pitch_rate, PID_t *PID_out);
+
 
 #endif /* PID_H_ */
