@@ -64,21 +64,33 @@ extern NRF_Packet payload_packet;
 PID_t pid;
 uint32_t start_time = 0;
 #if (TUNING)
-float Kp_pitch = 0.25; //.5
-float Ki_pitch = 0.0;
-float Kd_pitch = 3.3;
+float Kp_angle_pitch;
+float Ki_angle_pitch;
+float Kd_angle_pitch;
 
-float Kp_roll = 0.4; //.2
-float Ki_roll = 0.0;
-float Kd_roll = 4.8;
+float Kp_angle_roll;
+float Ki_angle_roll;
+float Kd_angle_roll;
 
-float Kp_yaw = 0.15; //.5
-float Ki_yaw = 0.0;
-float Kd_yaw = 3.0;
+float Kp_angle_yaw;
+float Ki_angle_yaw;
+float Kd_angle_yaw;
+
+float Kp_rate_pitch;
+float Ki_rate_pitch;
+float Kd_rate_pitch;
+
+float Kp_rate_roll;
+float Ki_rate_roll;
+float Kd_rate_roll;
+
+float Kp_rate_yaw;
+float Ki_rate_yaw;
+float Kd_rate_yaw;
 
 float SERVO_RIGHT_OFFSET = 0; // Servo offset for right servo
-float SERVO_LEFT_OFFSET = 0; //
-//qt_tune qt_data;
+float SERVO_LEFT_OFFSET = 0;  //
+// qt_tune qt_data;
 uint8_t qt_tune[10];
 volatile float qt_current = 0;
 #else
@@ -156,15 +168,14 @@ int16_t map(int16_t x, int16_t in_min, int16_t in_max, int16_t out_min, int16_t 
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
-  * @retval int
-  */
+ * @brief  The application entry point.
+ * @retval int
+ */
 int main(void)
 {
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
-  
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -225,36 +236,35 @@ int main(void)
     /* USER CODE BEGIN 3 */
     readAll(&hi2c1, &MPU9255);
     RX_data();
-//    sprintf((char*)qt_tune,"%d %d\n",(uint16_t)payload_packet.pitch,(uint16_t)qt_current);
+    //    sprintf((char*)qt_tune,"%d %d\n",(uint16_t)payload_packet.pitch,(uint16_t)qt_current);
   }
   /* USER CODE END 3 */
 }
 
 /**
-  * @brief System Clock Configuration
-  * @retval None
-  */
+ * @brief System Clock Configuration
+ * @retval None
+ */
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-  /** Initializes the CPU, AHB and APB busses clocks 
-  */
+  /** Initializes the CPU, AHB and APB busses clocks
+   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI_DIV2;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL16;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL15;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
-  /** Initializes the CPU, AHB and APB busses clocks 
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  /** Initializes the CPU, AHB and APB busses clocks
+   */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
@@ -267,10 +277,10 @@ void SystemClock_Config(void)
 }
 
 /**
-  * @brief I2C1 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief I2C1 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_I2C1_Init(void)
 {
 
@@ -297,14 +307,13 @@ static void MX_I2C1_Init(void)
   /* USER CODE BEGIN I2C1_Init 2 */
 
   /* USER CODE END I2C1_Init 2 */
-
 }
 
 /**
-  * @brief SPI2 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief SPI2 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_SPI2_Init(void)
 {
 
@@ -335,14 +344,13 @@ static void MX_SPI2_Init(void)
   /* USER CODE BEGIN SPI2_Init 2 */
 
   /* USER CODE END SPI2_Init 2 */
-
 }
 
 /**
-  * @brief TIM3 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief TIM3 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_TIM3_Init(void)
 {
 
@@ -357,9 +365,9 @@ static void MX_TIM3_Init(void)
 
   /* USER CODE END TIM3_Init 1 */
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 63;
+  htim3.Init.Prescaler = 5;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 20000;
+  htim3.Init.Period = 50000;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_PWM_Init(&htim3) != HAL_OK)
@@ -388,14 +396,13 @@ static void MX_TIM3_Init(void)
 
   /* USER CODE END TIM3_Init 2 */
   HAL_TIM_MspPostInit(&htim3);
-
 }
 
 /**
-  * @brief TIM4 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief TIM4 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_TIM4_Init(void)
 {
 
@@ -412,7 +419,7 @@ static void MX_TIM4_Init(void)
   htim4.Instance = TIM4;
   htim4.Init.Prescaler = 639;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 2000-1;
+  htim4.Init.Period = 2000 - 1;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
@@ -433,14 +440,13 @@ static void MX_TIM4_Init(void)
   /* USER CODE BEGIN TIM4_Init 2 */
 
   /* USER CODE END TIM4_Init 2 */
-
 }
 
 /**
-  * @brief USART1 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief USART1 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_USART1_UART_Init(void)
 {
 
@@ -466,14 +472,13 @@ static void MX_USART1_UART_Init(void)
   /* USER CODE BEGIN USART1_Init 2 */
 
   /* USER CODE END USART1_Init 2 */
-
 }
 
 /**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief GPIO Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
@@ -484,23 +489,23 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, LED_Pin|BUTTON2_Pin|BUTTON3_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, LED_Pin | BUTTON2_Pin | BUTTON3_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, LED1_Pin|NRF_CSN_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, LED1_Pin | NRF_CSN_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(NRF_CE_GPIO_Port, NRF_CE_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : LED_Pin BUTTON2_Pin BUTTON3_Pin */
-  GPIO_InitStruct.Pin = LED_Pin|BUTTON2_Pin|BUTTON3_Pin;
+  GPIO_InitStruct.Pin = LED_Pin | BUTTON2_Pin | BUTTON3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LED1_Pin NRF_CSN_Pin */
-  GPIO_InitStruct.Pin = LED1_Pin|NRF_CSN_Pin;
+  GPIO_InitStruct.Pin = LED1_Pin | NRF_CSN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -512,7 +517,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(NRF_CE_GPIO_Port, &GPIO_InitStruct);
-
 }
 
 /* USER CODE BEGIN 4 */
@@ -525,7 +529,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     // receive rc
 
     // calculate PID
-    calculate_PID(payload_packet.roll, payload_packet.pitch, payload_packet.yaw, MPU9255.roll, MPU9255.pitch, MPU9255.yaw, &pid);
+    // calculate_PID(payload_packet.roll, payload_packet.pitch, payload_packet.yaw, MPU9255.roll, MPU9255.pitch, MPU9255.yaw, &pid);
+
+    pid_roll(payload_packet.roll, MPU9255.roll, MPU9255.GyroX, &pid);
+    pid_pitch(payload_packet.pitch, MPU9255.pitch, MPU9255.GyroY, &pid);
 
     // value PWM
     calculate_motor_output(&esc_right, &esc_left, &servo_right, &servo_left, payload_packet.throttle, &pid);
@@ -534,11 +541,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     // htim3.Instance->CCR2 = servo_left;
     htim3.Instance->CCR3 = esc_right;
     htim3.Instance->CCR4 = esc_left;
-    qt_current = (MPU9255.roll* 12.5 + 1500);
-    //sprintf((char*)qt_tune,"%ld %ld\n",payload_packet.pitch,qt_current);
-    sprintf((char*)qt_tune,"%d %d",(uint16_t)payload_packet.pitch,(uint16_t)qt_current);
+
+    qt_current = (MPU9255.roll * 12.5 + 1500);
+    // sprintf((char*)qt_tune,"%ld %ld\n",payload_packet.pitch,qt_current);
+    sprintf((char *)qt_tune, "%d %d", (uint16_t)payload_packet.pitch, (uint16_t)qt_current);
     HAL_UART_Transmit(&huart1, qt_tune, sizeof(qt_tune), 10);
-    //printf("%ld %ld ",(uint32_t)qt_current,payload_packet.pitch);
+    // printf("%ld %ld ",(uint32_t)qt_current,payload_packet.pitch);
   }
 }
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
@@ -563,9 +571,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 /* USER CODE END 4 */
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
+ * @brief  This function is executed in case of error occurrence.
+ * @retval None
+ */
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
@@ -574,16 +582,16 @@ void Error_Handler(void)
   /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
+ * @brief  Reports the name of the source file and the source line number
+ *         where the assert_param error has occurred.
+ * @param  file: pointer to the source file name
+ * @param  line: assert_param error line source number
+ * @retval None
+ */
 void assert_failed(uint8_t *file, uint32_t line)
-{ 
+{
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
