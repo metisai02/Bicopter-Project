@@ -1,0 +1,3 @@
+pid.c:137:6:pid_calculate	48	static
+pid.c:156:6:pid_roll	40	static
+pid.c:185:6:pid_pitch	40	static

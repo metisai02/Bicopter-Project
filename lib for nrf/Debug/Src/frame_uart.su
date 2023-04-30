@@ -1,0 +1,2 @@
+frame_uart.c:12:6:SendFrameData	40	static
+frame_uart.c:119:14:GetFrameData	40	static
