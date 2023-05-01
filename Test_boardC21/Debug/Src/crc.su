@@ -1,2 +1,2 @@
-crc.c:45:10:crc16_buff	24	static
-crc.c:54:10:crc16_floating	16	static
+../Src/crc.c:45:10:crc16_buff	24	static
+../Src/crc.c:54:10:crc16_floating	16	static

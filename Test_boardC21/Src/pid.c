@@ -58,6 +58,15 @@ extern float Kd_rate_yaw;
 
 #endif
 
+static float math_constrain(float value, float min, float max)
+{
+    if (value > max)
+        value = max;
+    else if (value < min)
+        value = min;
+    return value;
+}
+
 //-----------------------------------------------------------------------------
 // calculate PID
 //-----------------------------------------------------------------------------
@@ -137,7 +146,7 @@ extern float Kd_rate_yaw;
 void pid_calculate(float Error, float P, float I, float D, float PrevError, float PrevIterm)
 {
     float Pterm = P * Error;
-    float Iterm = PrevIterm + I * (Error + PrevError) * dt / 2;
+    float Iterm = PrevIterm + I * (Error + PrevError) / 2;
 
     if (Iterm > 400)
         Iterm = 400;
@@ -145,7 +154,7 @@ void pid_calculate(float Error, float P, float I, float D, float PrevError, floa
     else if (Iterm < -400)
         Iterm = -400;
 
-    float Dterm = D * (Error - PrevError) / dt;
+    float Dterm = D * (Error - PrevError);
     float PIDOutput = Pterm + Iterm + Dterm;
 
     PIDReturn[0] = PIDOutput;
@@ -170,7 +179,7 @@ void pid_roll(uint16_t roll_rc, float roll_angle, float roll_rate, PID_t *PID_ou
     last_error_angle[0] = PIDReturn[1];
     last_Iterm_angle[0] = PIDReturn[2];
 
-    //Gioi han rateroll
+    // Gioi han rateroll
 
     error = setpoint_rate_roll - roll_rate;
 
@@ -179,7 +188,7 @@ void pid_roll(uint16_t roll_rc, float roll_angle, float roll_rate, PID_t *PID_ou
     last_error_rate[0] = PIDReturn[1];
     last_Iterm_rate[0] = PIDReturn[2];
 
-    //Gioi han PWM
+    // Gioi han PWM
 }
 
 void pid_pitch(uint16_t pitch_rc, float pitch_angle, float pitch_rate, PID_t *PID_out)
@@ -199,7 +208,8 @@ void pid_pitch(uint16_t pitch_rc, float pitch_angle, float pitch_rate, PID_t *PI
     last_error_angle[1] = PIDReturn[1];
     last_Iterm_angle[1] = PIDReturn[2];
 
-    //Gioi han rateroll
+    // Gioi han ratepitch
+    setpoint_rate_pitch = math_constrain(setpoint_rate_pitch, -75, 75);
 
     error = setpoint_rate_pitch - pitch_rate;
 
@@ -208,5 +218,5 @@ void pid_pitch(uint16_t pitch_rc, float pitch_angle, float pitch_rate, PID_t *PI
     last_error_rate[1] = PIDReturn[1];
     last_Iterm_rate[1] = PIDReturn[2];
 
-     //Gioi han PWM
+    // Gioi han PWM
 }

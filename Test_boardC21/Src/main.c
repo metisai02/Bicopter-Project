@@ -66,25 +66,25 @@ extern NRF_Packet payload_packet;
 PID_t pid;
 uint32_t start_time = 0;
 #if (TUNING)
-float Kp_angle_pitch;
+float Kp_angle_pitch = 2.0;
 float Ki_angle_pitch;
-float Kd_angle_pitch;
+float Kd_angle_pitch = 1.0;
 
-float Kp_angle_roll;
+float Kp_angle_roll = 2.0;
 float Ki_angle_roll;
-float Kd_angle_roll;
+float Kd_angle_roll = 1.0;
 
 float Kp_angle_yaw;
 float Ki_angle_yaw;
 float Kd_angle_yaw;
 
-float Kp_rate_pitch;
+float Kp_rate_pitch = 2.0;
 float Ki_rate_pitch;
-float Kd_rate_pitch;
+float Kd_rate_pitch = 1.0;
 
-float Kp_rate_roll;
+float Kp_rate_roll = 2.0;
 float Ki_rate_roll;
-float Kd_rate_roll;
+float Kd_rate_roll = 1.0;
 
 float Kp_rate_yaw;
 float Ki_rate_yaw;
@@ -271,7 +271,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI_DIV2;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL15;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL16;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -381,7 +381,7 @@ static void MX_TIM3_Init(void)
   htim3.Instance = TIM3;
   htim3.Init.Prescaler = 63;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 50000;
+  htim3.Init.Period = 20000;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_PWM_Init(&htim3) != HAL_OK)
@@ -395,13 +395,14 @@ static void MX_TIM3_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 1000;
+  sConfigOC.Pulse = 900;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
   {
     Error_Handler();
   }
+  sConfigOC.Pulse = 850;
   if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
   {
     Error_Handler();
@@ -551,13 +552,13 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-  uint32_t time_while = HAL_GetTick();
-  readAll(&hi2c1, &MPU9255);
+  uint32_t start = HAL_GetTick();
+
   if (htim->Instance == htim4.Instance)
   {
-
     readAll(&hi2c1, &MPU9255);
     abs_yaw_angle = abs_yaw_angle + MPU9255.GyroZ * dt;
+
     pid_roll(payload_packet.roll, MPU9255.roll, MPU9255.GyroX, &pid);
     pid_pitch(payload_packet.pitch, MPU9255.pitch, MPU9255.GyroY, &pid);
 
@@ -569,20 +570,19 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     htim3.Instance->CCR3 = esc_right;
     htim3.Instance->CCR4 = esc_left;
 
-    //send to GUI
+    // send to GUI
     q_Roll_angle = (MPU9255.roll * 12.5 + 1500);
     sprintf((char *)f_trans, "%d%d", (uint16_t)payload_packet.pitch, (uint16_t)q_Roll_angle);
     SendFrameData(f_trans, FRAME_DATA_TX, f_dest_trans, &f_dest_len_t);
     HAL_UART_Transmit(&huart1, f_dest_trans, f_dest_len_t, 1000);
-
   }
-  uint32_t time_end = HAL_GetTick() - time_while;
+  uint32_t time = HAL_GetTick() - start;
 }
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
-	  HAL_UARTEx_ReceiveToIdle_DMA(&huart1, f_recei, FRAME_DATA_RX_HANDLE);
-	  __HAL_DMA_DISABLE_IT(&hdma_usart1_rx, DMA_IT_HT);
-	  f_dest_len_r = Size;
+  HAL_UARTEx_ReceiveToIdle_DMA(&huart1, f_recei, FRAME_DATA_RX_HANDLE);
+  __HAL_DMA_DISABLE_IT(&hdma_usart1_rx, DMA_IT_HT);
+  f_dest_len_r = Size;
 }
 
 /* USER CODE END 4 */
