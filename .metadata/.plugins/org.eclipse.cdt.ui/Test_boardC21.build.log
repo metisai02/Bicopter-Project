@@ -1,4 +1,4 @@
-17:11:46 **** Incremental Build of configuration Debug for project Test_boardC21 ****
+21:12:44 **** Incremental Build of configuration Debug for project Test_boardC21 ****
 make -j12 all 
 arm-none-eabi-size   Test_boardC21.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size   Test_boardC21.elf
 Finished building: default.size.stdout
  
 
-17:11:48 Build Finished. 0 errors, 0 warnings. (took 1s.152ms)
+21:12:46 Build Finished. 0 errors, 0 warnings. (took 1s.939ms)
 

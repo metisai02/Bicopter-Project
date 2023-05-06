@@ -117,7 +117,7 @@ int main(void)
   {
 
     runRadio();
-    printf("%d%d", (uint16_t)payload_packet.throttle, (uint16_t)payload_packet.roll);
+   // printf("%d%d", (uint16_t)payload_packet.throttle, (uint16_t)payload_packet.roll);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
