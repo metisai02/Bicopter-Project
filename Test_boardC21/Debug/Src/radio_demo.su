@@ -4,4 +4,4 @@
 ../Src/radio_demo.c:14:6:Toggle_LED	8	static
 ../Src/radio_demo.c:22:10:convert_to_us	24	static
 ../Src/radio_demo.c:103:5:runRadio	8	static
-../Src/radio_demo.c:203:6:RX_data	16	static
+../Src/radio_demo.c:197:6:RX_data	16	static

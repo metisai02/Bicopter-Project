@@ -1,4 +1,4 @@
 pid.c:61:14:math_constrain	3
-pid.c:146:6:pid_calculate	3
-pid.c:165:6:pid_roll	3
-pid.c:195:6:pid_pitch	3
+pid.c:70:6:pid_calculate	1
+pid.c:89:6:pid_roll	3
+pid.c:118:6:pid_pitch	3

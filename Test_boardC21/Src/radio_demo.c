@@ -109,16 +109,10 @@ int runRadio(void)
 #if (DEBUG_RX)
     printf("nRF24L01+ check: ");
 #endif
-    if (!nRF24_Check())
+    while (!nRF24_Check())
     {
-        while (1)
-        {
             Toggle_LED();
             Delay_ms(50);
-#if (DEBUG_RX)
-            printf("FAIL\r\n");
-#endif
-        }
     }
     nRF24_Init();
 #if (DEBUG_RX)
