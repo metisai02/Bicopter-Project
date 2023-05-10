@@ -1,0 +1,14 @@
+mpu9255.c:81:9:MPU9255_Init	2
+mpu9255.c:131:6:readAll	3
+mpu9255.c:227:6:getMres	3
+mpu9255.c:241:6:getGres	5
+mpu9255.c:262:6:getAres	5
+mpu9255.c:284:6:readAccelData	1
+mpu9255.c:300:6:readGyroData	1
+mpu9255.c:315:6:readMagData	3
+mpu9255.c:339:6:initAK8963	1
+mpu9255.c:388:6:calibrateMag	9
+mpu9255.c:439:6:initMPU9250	1
+mpu9255.c:495:6:calibrateMPU9250	14
+mpu9255.c:698:6:MPU9250SelfTest	7
+mpu9255.c:820:6:QuaternionUpdate	3

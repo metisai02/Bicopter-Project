@@ -1,4 +1,5 @@
 ../Src/pid.c:61:14:math_constrain	24	static
 ../Src/pid.c:70:6:pid_calculate	48	static
-../Src/pid.c:89:6:pid_roll	40	static
-../Src/pid.c:118:6:pid_pitch	40	static
+../Src/pid.c:84:6:pid_roll	40	static
+../Src/pid.c:121:6:pid_pitch	40	static
+../Src/pid.c:150:6:pid_yaw	40	static

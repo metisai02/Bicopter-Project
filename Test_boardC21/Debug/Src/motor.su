@@ -1,2 +1,2 @@
 ../Src/motor.c:18:16:map	16	static
-../Src/motor.c:23:6:calculate_motor_output	32	static
+../Src/motor.c:23:6:calculate_motor_output	40	static

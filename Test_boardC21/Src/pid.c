@@ -9,6 +9,7 @@
 #include "main.h"
 
 // PID variables declaration
+extern volatile float set_point;
 float error;
 float Pterm_pitch, Iterm_pitch, Dterm_pitch;
 float Pterm_roll, Iterm_roll, Dterm_roll;
@@ -29,7 +30,6 @@ float setpoint_roll, setpoint_rate_roll;
 float setpoint_pitch, setpoint_rate_pitch;
 float setpoint_yaw;
 
-extern float abs_yaw_angle;
 
 #if (TUNING)
 extern volatile float Kp_angle_pitch;
@@ -71,19 +71,14 @@ void pid_calculate(float Error, float P, float I, float D, float PrevError, floa
 {
     float Pterm = P * Error;
     float Iterm = PrevIterm + I * (Error + PrevError) * dt / 2;
-
-//    if (Iterm > 400)
-//        Iterm = 400;
-//
-//    else if (Iterm < -400)
-//        Iterm = -400;
-
+    math_constrain(Iterm, -200, 200);
     float Dterm = D * (Error - PrevError) / dt;
     float PIDOutput = Pterm + Iterm + Dterm;
 
+
     PIDReturn[0] = PIDOutput;
     PIDReturn[1] = Error;
-      PIDReturn[2] = Iterm;
+    PIDReturn[2] = Iterm;
 }
 
 void pid_roll(uint16_t roll_rc, float roll_angle, float roll_rate, PID_t *PID_out)
@@ -96,14 +91,22 @@ void pid_roll(uint16_t roll_rc, float roll_angle, float roll_rate, PID_t *PID_ou
     {
         roll_rc = 1500;
     }
+
+//    roll_rc = 1800;
+
     error = 0.08 * (roll_rc - 1500) - roll_angle;
+
+
 
     pid_calculate(error, Kp_angle_roll, Ki_angle_roll, Kd_angle_roll, last_error_angle[0], last_Iterm_angle[0]);
     setpoint_rate_roll = PIDReturn[0];
     last_error_angle[0] = PIDReturn[1];
     last_Iterm_angle[0] = PIDReturn[2];
 
-    // Gioi han rateroll
+//    math_constrain(setpoint_roll, -50, 50);
+
+     //Gioi han rateroll
+//	setpoint_rate_roll = 0;
 
     error = setpoint_rate_roll - roll_rate;
 
@@ -120,13 +123,12 @@ void pid_pitch(uint16_t pitch_rc, float pitch_angle, float pitch_rate, PID_t *PI
     if (pitch_rc > 1540 || pitch_rc < 1440)
     {
         pitch_rc = pitch_rc;
-
     }
     else
     {
         pitch_rc = 1500;
     }
-    pitch_rc = 1500;
+
     error = 0.08 * (pitch_rc - 1500) - pitch_angle;
 
     pid_calculate(error, Kp_angle_pitch, Ki_angle_pitch, Kd_angle_pitch, last_error_angle[1], last_Iterm_angle[1]);
@@ -134,17 +136,35 @@ void pid_pitch(uint16_t pitch_rc, float pitch_angle, float pitch_rate, PID_t *PI
     last_error_angle[1] = PIDReturn[1];
     last_Iterm_angle[1] = PIDReturn[2];
 
-   // setpoint_rate_pitch = math_constrain(setpoint_rate_pitch, -60, 60);
-
-    // Gioi han ratepitch
-	//setpoint_rate_pitch = 0;
+    math_constrain(setpoint_pitch, -50, 50);
+//	setpoint_rate_pitch = set_point;
 
     error = setpoint_rate_pitch - pitch_rate;
 
-    pid_calculate(error, Kp_rate_pitch, Ki_rate_pitch, Kd_rate_pitch, last_error_rate[0], last_Iterm_rate[0]);
+    pid_calculate(error, Kp_rate_pitch, Ki_rate_pitch, Kd_rate_pitch, last_error_rate[1], last_Iterm_rate[1]);
     PID_out->PID_pitch_out = PIDReturn[0];
     last_error_rate[1] = PIDReturn[1];
     last_Iterm_rate[1] = PIDReturn[2];
+}
 
-    // Gioi han PWM
+void pid_yaw(uint16_t yaw_rc, float yaw_rate, PID_t *PID_out)
+{
+    // check again
+    if (yaw_rc > 1540 || yaw_rc < 1440)
+    {
+        yaw_rc = yaw_rc;
+    }
+    else
+    {
+        yaw_rc = 1500;
+    }
+
+    yaw_rc = 1800;
+
+    error = 0.1 * (yaw_rc - 1500) - yaw_rate;
+
+    pid_calculate(error, Kp_angle_yaw, Ki_angle_yaw, Kd_angle_yaw, last_error_rate[2], last_Iterm_rate[2]);
+    PID_out->PID_yaw_out = PIDReturn[0];
+    last_error_rate[2] = PIDReturn[1];
+    last_Iterm_rate[2] = PIDReturn[2];
 }

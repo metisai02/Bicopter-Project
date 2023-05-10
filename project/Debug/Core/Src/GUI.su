@@ -1,0 +1,2 @@
+../Core/Src/GUI.c:9:6:floatToBytes	24	static
+../Core/Src/GUI.c:20:7:bytesToFloat	24	static
