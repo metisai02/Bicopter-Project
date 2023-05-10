@@ -6929,3 +6929,25 @@
 
 
 2023-05-02 23:27:57,967 [INFO] Activator:177 - !SESSION log4j initialized
+2023-05-06 18:32:11,783 [INFO] Activator:176 - 
+
+
+2023-05-06 18:32:11,789 [INFO] Activator:177 - !SESSION log4j initialized
+2023-05-06 18:32:13,959 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] [Fatal Error] :8:2: The content of elements must consist of well-formed character data or markup.
+2023-05-06 18:32:13,959 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 
+2023-05-06 18:32:14,309 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Managed Build system manifest file error: Option com.st.stm32cube.ide.mcu.debug.option.cpuclock.2125127734 uses a null category that is invalid in its context. The option was ignored.
+2023-05-06 18:32:14,916 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Managed Build system manifest file error: Option com.st.stm32cube.ide.mcu.debug.option.cpuclock.1369544448 uses a null category that is invalid in its context. The option was ignored.
+2023-05-06 18:32:19,036 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Managed Build system manifest file error: Option com.st.stm32cube.ide.mcu.debug.option.cpuclock.2125127734 uses a null category that is invalid in its context. The option was ignored.
+2023-05-06 18:32:19,063 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Managed Build system manifest file error: Option com.st.stm32cube.ide.mcu.debug.option.cpuclock.1369544448 uses a null category that is invalid in its context. The option was ignored.
+2023-05-07 10:38:14,163 [INFO] Activator:176 - 
+
+
+2023-05-07 10:38:14,163 [INFO] Activator:177 - !SESSION log4j initialized
+2023-05-07 10:38:16,056 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Managed Build system manifest file error: Option com.st.stm32cube.ide.mcu.debug.option.cpuclock.2125127734 uses a null category that is invalid in its context. The option was ignored.
+2023-05-07 10:38:16,588 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Managed Build system manifest file error: Option com.st.stm32cube.ide.mcu.debug.option.cpuclock.1369544448 uses a null category that is invalid in its context. The option was ignored.
+2023-05-08 11:47:26,146 [INFO] Activator:176 - 
+
+
+2023-05-08 11:47:26,146 [INFO] Activator:177 - !SESSION log4j initialized
+2023-05-08 11:47:28,740 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Managed Build system manifest file error: Option com.st.stm32cube.ide.mcu.debug.option.cpuclock.2125127734 uses a null category that is invalid in its context. The option was ignored.
+2023-05-08 11:47:29,705 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Managed Build system manifest file error: Option com.st.stm32cube.ide.mcu.debug.option.cpuclock.1369544448 uses a null category that is invalid in its context. The option was ignored.

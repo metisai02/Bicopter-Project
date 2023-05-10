@@ -26,9 +26,9 @@ uint32_t convert_to_us(uint32_t val, uint32_t min, uint32_t middle, uint32_t max
     if (val < min)
         val = min;
     if (val < middle)
-        return (val - min) * (3750 - 2500) / (middle - min) + 2500;
+        return (val - min) * (1500 - 1000) / (middle - min) + 1000;
     else
-        return (val - middle) * (5000 - 3750) / (max - middle) + 3750;
+        return (val - middle) * (2000 - 1500) / (max - middle) + 1500;
 }
 
 // Kinda foolproof :)
@@ -109,16 +109,10 @@ int runRadio(void)
 #if (DEBUG_RX)
     printf("nRF24L01+ check: ");
 #endif
-    if (!nRF24_Check())
+    while (!nRF24_Check())
     {
-        while (1)
-        {
             Toggle_LED();
             Delay_ms(50);
-#if (DEBUG_RX)
-            printf("FAIL\r\n");
-#endif
-        }
     }
     nRF24_Init();
 #if (DEBUG_RX)

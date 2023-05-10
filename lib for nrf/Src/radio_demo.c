@@ -197,9 +197,9 @@ int runRadio(void)
             break;
         }
 
-        sprintf((char*)data,"%d%d", (uint16_t)payload_packet.throttle, (uint16_t)payload_packet.roll);
-        SendFrameData(data, FRAME_DATA_TX, pdest,&len );
-        HAL_UART_Transmit(&huart1, pdest, len, 1000);
+//        sprintf((char*)data,"%d%d", (uint16_t)payload_packet.throttle, (uint16_t)payload_packet.roll);
+//        SendFrameData(data, FRAME_DATA_TX, pdest,&len );
+//        HAL_UART_Transmit(&huart1, pdest, len, 1000);
 
         //Toggle_LED();
         ////Delay_ms(100);

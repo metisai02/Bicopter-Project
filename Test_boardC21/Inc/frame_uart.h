@@ -22,7 +22,7 @@ typedef enum
 #define STOP_BYTE 196
 
 #define FRAME_DATA_TX 8
-#define FRAME_DATA_RX 36
+#define FRAME_DATA_RX 14
 #define FRAME_DATA_RX_HANDLE FRAME_DATA_RX * 2 + 4 // STOP + 2CRC + STOP
 #define FRAME_DATA_TX_HANDLE FRAME_DATA_TX * 2 + 4
 

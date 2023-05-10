@@ -66,25 +66,25 @@ extern NRF_Packet payload_packet;
 PID_t pid;
 uint32_t start_time = 0;
 #if (TUNING)
-float Kp_angle_pitch;
-float Ki_angle_pitch;
-float Kd_angle_pitch;
+volatile float Kp_angle_pitch = 0;
+volatile float Ki_angle_pitch = 0;
+volatile float Kd_angle_pitch = 0;
 
-float Kp_angle_roll;
-float Ki_angle_roll;
-float Kd_angle_roll;
+float Kp_angle_roll = 2.0;
+float Ki_angle_roll = 0.0;
+float Kd_angle_roll = 0.0;
 
 float Kp_angle_yaw;
 float Ki_angle_yaw;
 float Kd_angle_yaw;
 
-float Kp_rate_pitch;
-float Ki_rate_pitch;
-float Kd_rate_pitch;
+volatile float Kp_rate_pitch = 0; // 1.4;
+volatile float Ki_rate_pitch = 0; // 0.5;
+volatile float Kd_rate_pitch = 0; // 0.00;
 
-float Kp_rate_roll;
-float Ki_rate_roll;
-float Kd_rate_roll;
+float Kp_rate_roll = 0.5;
+float Ki_rate_roll = 0.0;
+float Kd_rate_roll = 0.02;
 
 float Kp_rate_yaw;
 float Ki_rate_yaw;
@@ -92,6 +92,9 @@ float Kd_rate_yaw;
 
 float SERVO_RIGHT_OFFSET = 0; // Servo offset for right servo
 float SERVO_LEFT_OFFSET = 0;  //
+volatile float MOTOR_RIGHT_OFFSET = 0; //
+volatile float MOTOR_LEFT_OFFSET = 0;  //
+
 // qt_tune qt_data;
 uint8_t f_trans[FRAME_DATA_TX];
 uint8_t f_dest_trans[FRAME_DATA_TX_HANDLE];
@@ -107,17 +110,21 @@ volatile float q_Roll_angle = 0;
 #if TUNING
 typedef struct
 {
-  float Kp_r;
-  float Ki_r;
-  float Kd_r;
+	volatile float Kp_r;
+	volatile  float Ki_r;
+	volatile float Kd_r;
 
-  float Kp_p; //.2
-  float Ki_p;
-  float Kd_p;
+ volatile float Kp_p; //.2
+ volatile float Ki_p;
+ volatile float Kd_p;
 
-  float Kp_y; //.5
-  float Ki_y;
-  float Kd_y;
+
+//
+//  float Kp_y; //.5
+//  float Ki_y;
+//  float Kd_y;
+ volatile float off_motor_l;
+ volatile float off_motor_r;
 } tune_pid;
 
 tune_pid pid_para;
@@ -159,20 +166,22 @@ int _write(int file, char *ptr, int len)
   return len;
 }
 
-void receive_value(float *pid_para, uint8_t *data, uint8_t length)
+//void receive_value( uint8_t *data, float *pid_para, uint8_t length)
+//{
+//  for (int i = 0; i < length; i += 4)
+//  {
+//    *(pid_para++) = (data[i] << 24) | (data[i + 1] << 16) | (data[i + 2] << 8) | data[i + 3];
+//  }
+//}
+void receive_value(uint8_t *data_dest, uint8_t *data, uint8_t length)
 {
-  for (int i = 0; i < length; i += 4)
-  {
-    *(pid_para++) = (data[i] << 24) | (data[i + 1] << 16) | (data[i + 2] << 8) | data[i + 3];
-  }
+    for(int i=0; i<length; i++)
+        *data++ = *data_dest++;
 }
 
 int runRadio(void);
 void RX_data(void);
-int16_t map(int16_t x, int16_t in_min, int16_t in_max, int16_t out_min, int16_t out_max)
-{
-  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -181,9 +190,9 @@ int16_t map(int16_t x, int16_t in_min, int16_t in_max, int16_t out_min, int16_t 
 /* USER CODE END 0 */
 
 /**
- * @brief  The application entry point.
- * @retval int
- */
+  * @brief  The application entry point.
+  * @retval int
+  */
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -193,7 +202,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+    HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -217,6 +226,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
+  HAL_UARTEx_ReceiveToIdle_DMA(&huart1, f_recei, FRAME_DATA_RX_HANDLE);
+  __HAL_DMA_DISABLE_IT(&hdma_usart1_rx, DMA_IT_HT);
   runRadio();
   while (MPU9255_Init(&hi2c1) == 1)
   {
@@ -236,9 +247,10 @@ int main(void)
   {
     readAll(&hi2c1, &MPU9255);
   }
-  HAL_UARTEx_ReceiveToIdle_DMA(&huart1, f_recei, FRAME_DATA_RX_HANDLE);
-  __HAL_DMA_DISABLE_IT(&hdma_usart1_rx, DMA_IT_HT);
+//  HAL_UARTEx_ReceiveToIdle_DMA(&huart1, f_recei, FRAME_DATA_RX_HANDLE);
+//  __HAL_DMA_DISABLE_IT(&hdma_usart1_rx, DMA_IT_HT);
   HAL_TIM_Base_Start_IT(&htim4);
+
 
   /* USER CODE END 2 */
 
@@ -250,35 +262,36 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-    RX_data();
+//    RX_data();
   }
   /* USER CODE END 3 */
 }
 
 /**
- * @brief System Clock Configuration
- * @retval None
- */
+  * @brief System Clock Configuration
+  * @retval None
+  */
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
   /** Initializes the CPU, AHB and APB busses clocks
-   */
+  */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI_DIV2;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL15;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL16;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
   /** Initializes the CPU, AHB and APB busses clocks
-   */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
@@ -291,10 +304,10 @@ void SystemClock_Config(void)
 }
 
 /**
- * @brief I2C1 Initialization Function
- * @param None
- * @retval None
- */
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
 static void MX_I2C1_Init(void)
 {
 
@@ -321,13 +334,14 @@ static void MX_I2C1_Init(void)
   /* USER CODE BEGIN I2C1_Init 2 */
 
   /* USER CODE END I2C1_Init 2 */
+
 }
 
 /**
- * @brief SPI2 Initialization Function
- * @param None
- * @retval None
- */
+  * @brief SPI2 Initialization Function
+  * @param None
+  * @retval None
+  */
 static void MX_SPI2_Init(void)
 {
 
@@ -358,13 +372,14 @@ static void MX_SPI2_Init(void)
   /* USER CODE BEGIN SPI2_Init 2 */
 
   /* USER CODE END SPI2_Init 2 */
+
 }
 
 /**
- * @brief TIM3 Initialization Function
- * @param None
- * @retval None
- */
+  * @brief TIM3 Initialization Function
+  * @param None
+  * @retval None
+  */
 static void MX_TIM3_Init(void)
 {
 
@@ -381,7 +396,7 @@ static void MX_TIM3_Init(void)
   htim3.Instance = TIM3;
   htim3.Init.Prescaler = 63;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 50000;
+  htim3.Init.Period = 20000;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_PWM_Init(&htim3) != HAL_OK)
@@ -402,6 +417,7 @@ static void MX_TIM3_Init(void)
   {
     Error_Handler();
   }
+  sConfigOC.Pulse = 910;
   if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
   {
     Error_Handler();
@@ -410,13 +426,14 @@ static void MX_TIM3_Init(void)
 
   /* USER CODE END TIM3_Init 2 */
   HAL_TIM_MspPostInit(&htim3);
+
 }
 
 /**
- * @brief TIM4 Initialization Function
- * @param None
- * @retval None
- */
+  * @brief TIM4 Initialization Function
+  * @param None
+  * @retval None
+  */
 static void MX_TIM4_Init(void)
 {
 
@@ -454,13 +471,14 @@ static void MX_TIM4_Init(void)
   /* USER CODE BEGIN TIM4_Init 2 */
 
   /* USER CODE END TIM4_Init 2 */
+
 }
 
 /**
- * @brief USART1 Initialization Function
- * @param None
- * @retval None
- */
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
 static void MX_USART1_UART_Init(void)
 {
 
@@ -486,11 +504,12 @@ static void MX_USART1_UART_Init(void)
   /* USER CODE BEGIN USART1_Init 2 */
 
   /* USER CODE END USART1_Init 2 */
+
 }
 
 /**
- * Enable DMA controller clock
- */
+  * Enable DMA controller clock
+  */
 static void MX_DMA_Init(void)
 {
 
@@ -501,13 +520,14 @@ static void MX_DMA_Init(void)
   /* DMA1_Channel5_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Channel5_IRQn);
+
 }
 
 /**
- * @brief GPIO Initialization Function
- * @param None
- * @retval None
- */
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
@@ -518,23 +538,23 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, LED_Pin | BUTTON2_Pin | BUTTON3_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, LED_Pin|BUTTON2_Pin|BUTTON3_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, LED1_Pin | NRF_CSN_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, LED1_Pin|NRF_CSN_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(NRF_CE_GPIO_Port, NRF_CE_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : LED_Pin BUTTON2_Pin BUTTON3_Pin */
-  GPIO_InitStruct.Pin = LED_Pin | BUTTON2_Pin | BUTTON3_Pin;
+  GPIO_InitStruct.Pin = LED_Pin|BUTTON2_Pin|BUTTON3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LED1_Pin NRF_CSN_Pin */
-  GPIO_InitStruct.Pin = LED1_Pin | NRF_CSN_Pin;
+  GPIO_InitStruct.Pin = LED1_Pin|NRF_CSN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -546,19 +566,21 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(NRF_CE_GPIO_Port, &GPIO_InitStruct);
+
 }
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-  uint32_t time_while = HAL_GetTick();
-  readAll(&hi2c1, &MPU9255);
+  uint32_t start = HAL_GetTick();
+
   if (htim->Instance == htim4.Instance)
   {
-
+	  RX_data();
     readAll(&hi2c1, &MPU9255);
     abs_yaw_angle = abs_yaw_angle + MPU9255.GyroZ * dt;
-    pid_roll(payload_packet.roll, MPU9255.roll, MPU9255.GyroX, &pid);
+
+ //   pid_roll(payload_packet.roll, MPU9255.roll, MPU9255.GyroX, &pid);
     pid_pitch(payload_packet.pitch, MPU9255.pitch, MPU9255.GyroY, &pid);
 
     // value PWM
@@ -566,31 +588,43 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
     // htim3.Instance->CCR1 = servo_right;
     // htim3.Instance->CCR2 = servo_left;
-    htim3.Instance->CCR3 = esc_right;
-    htim3.Instance->CCR4 = esc_left;
+    htim3.Instance->CCR3 = esc_right; // trang
+    htim3.Instance->CCR4 = esc_left;  // vang
 
-    //send to GUI
-    q_Roll_angle = (MPU9255.roll * 12.5 + 1500);
-    sprintf((char *)f_trans, "%d%d", (uint16_t)payload_packet.pitch, (uint16_t)q_Roll_angle);
+    // send to GUI
+       q_Roll_angle = MPU9255.pitch + 2000 ;
+    //q_Roll_angle = MPU9255.GyroY+ 2000 ;
+
+    sprintf((char *)f_trans, "%d%d", (uint16_t)2000 , (uint16_t)q_Roll_angle);
     SendFrameData(f_trans, FRAME_DATA_TX, f_dest_trans, &f_dest_len_t);
     HAL_UART_Transmit(&huart1, f_dest_trans, f_dest_len_t, 1000);
-
   }
-  uint32_t time_end = HAL_GetTick() - time_while;
+  uint32_t time = HAL_GetTick() - start;
 }
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
-	  HAL_UARTEx_ReceiveToIdle_DMA(&huart1, f_recei, FRAME_DATA_RX_HANDLE);
-	  __HAL_DMA_DISABLE_IT(&hdma_usart1_rx, DMA_IT_HT);
-	  f_dest_len_r = Size;
+  HAL_UARTEx_ReceiveToIdle_DMA(&huart1, f_recei, FRAME_DATA_RX_HANDLE);
+  __HAL_DMA_DISABLE_IT(&hdma_usart1_rx, DMA_IT_HT);
+  receive_value(f_recei,(uint8_t*)&pid_para, Size);
+  Kp_rate_pitch = pid_para.Kp_p;
+  Ki_rate_pitch = pid_para.Ki_p;
+  Kd_rate_pitch = pid_para.Kd_p;
+
+  Kp_angle_pitch = pid_para.Kp_r;
+  Ki_angle_pitch = pid_para.Ki_r;
+  Kd_angle_pitch = pid_para.Kd_r;
+
+  MOTOR_LEFT_OFFSET = pid_para.off_motor_l;
+  MOTOR_RIGHT_OFFSET = pid_para.off_motor_r;
+//  f_dest_len_r = Size;
 }
 
 /* USER CODE END 4 */
 
 /**
- * @brief  This function is executed in case of error occurrence.
- * @retval None
- */
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
@@ -599,14 +633,14 @@ void Error_Handler(void)
   /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef USE_FULL_ASSERT
+#ifdef  USE_FULL_ASSERT
 /**
- * @brief  Reports the name of the source file and the source line number
- *         where the assert_param error has occurred.
- * @param  file: pointer to the source file name
- * @param  line: assert_param error line source number
- * @retval None
- */
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */

@@ -1,3 +1,4 @@
-pid.c:137:6:pid_calculate	48	static
-pid.c:156:6:pid_roll	40	static
-pid.c:185:6:pid_pitch	40	static
+pid.c:61:14:math_constrain	24	static
+pid.c:70:6:pid_calculate	48	static
+pid.c:89:6:pid_roll	40	static
+pid.c:118:6:pid_pitch	40	static

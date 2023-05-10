@@ -52,7 +52,7 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 uint32_t value[5];
-NRF_Packet payload_packet;
+extern NRF_Packet payload_packet;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

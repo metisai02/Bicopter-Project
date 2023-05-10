@@ -9,6 +9,6 @@ mpu9255.c:315:6:readMagData	48	static
 mpu9255.c:339:6:initAK8963	48	static
 mpu9255.c:388:6:calibrateMag	96	static
 mpu9255.c:439:6:initMPU9250	40	static
-mpu9255.c:495:6:calibrateMPU9250	160	static
-mpu9255.c:698:6:MPU9250SelfTest	208	static
+mpu9255.c:495:6:calibrateMPU9250	136	static
+mpu9255.c:698:6:MPU9250SelfTest	176	static
 mpu9255.c:820:6:QuaternionUpdate	200	static
