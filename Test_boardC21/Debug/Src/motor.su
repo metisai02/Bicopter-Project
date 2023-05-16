@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 motor.c:18:16:map	16	static
 motor.c:23:6:calculate_motor_output	32	static
+=======
+../Src/motor.c:18:16:map	16	static
+../Src/motor.c:23:6:calculate_motor_output	40	static
+>>>>>>> 64c536a1d26ade16b5b699fd73d47838b1e9e8f5

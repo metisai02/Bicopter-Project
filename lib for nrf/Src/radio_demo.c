@@ -14,7 +14,8 @@ extern UART_HandleTypeDef huart1;
 
 void Toggle_LED()
 {
-    HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+    //HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+	HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_4);
 }
 
 NRF_Packet payload_packet;
@@ -110,9 +111,7 @@ int runRadio(void)
 #if (DEBUG_FC)
     printf("nRF24L01+ check: ");
 #endif
-    if (!nRF24_Check())
-    {
-        while (1)
+        while (!nRF24_Check())
         {
             Toggle_LED();
             Delay_ms(50);
@@ -120,7 +119,6 @@ int runRadio(void)
             printf("FAIL\r\n");
 #endif
         }
-    }
     nRF24_Init();
 #if (DEBUG_FC)
     printf("OK\r\n");
