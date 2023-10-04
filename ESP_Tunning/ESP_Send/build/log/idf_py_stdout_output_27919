@@ -1,0 +1,835 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7132
+ho 0 tail 12 room 4
+load:0x40078000,len:15672
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3884
+entry 0x40080650
+[0;32mI (33) boot: ESP-IDF v5.2-dev-1128-g03d4fa2869-dirty 2nd stage bootloader[0m
+[0;32mI (33) boot: compile time Oct  3 2023 15:15:39[0m
+[0;32mI (35) boot: Multicore bootloader[0m
+[0;32mI (39) boot: chip revision: v3.1[0m
+[0;32mI (43) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (48) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (52) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (57) boot: Enabling RNG early entropy source...[0m
+[0;32mI (62) boot: Partition Table:[0m
+[0;32mI (66) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (73) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (81) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (88) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (96) boot: End of partition table[0m
+[0;32mI (100) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=209b0h (133552) map[0m
+[0;32mI (157) esp_image: segment 1: paddr=000309d8 vaddr=3ffb0000 size=03700h ( 14080) load[0m
+[0;32mI (162) esp_image: segment 2: paddr=000340e0 vaddr=40080000 size=0bf38h ( 48952) load[0m
+[0;32mI (183) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7dfe4h (516068) map[0m
+[0;32mI (370) esp_image: segment 4: paddr=000be00c vaddr=4008bf38 size=0a258h ( 41560) load[0m
+[0;32mI (398) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (398) boot: Disabling RNG early entropy source...[0m
+[0;32mI (410) cpu_start: Multicore app[0m
+[0;32mI (410) cpu_start: Pro cpu up.[0m
+[0;32mI (410) cpu_start: Starting app cpu, entry point is 0x400812a0[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (428) cpu_start: Pro cpu start user code[0m
+[0;32mI (428) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (428) cpu_start: Application information:[0m
+[0;32mI (433) cpu_start: Project name:     ESP_Send[0m
+[0;32mI (438) cpu_start: App version:      610de77[0m
+[0;32mI (443) cpu_start: Compile time:     Oct  3 2023 15:18:04[0m
+[0;32mI (449) cpu_start: ELF file SHA256:  f027e6961...[0m
+[0;32mI (454) cpu_start: ESP-IDF:          v5.2-dev-1128-g03d4fa2869-dirty[0m
+[0;32mI (461) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (466) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (471) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (476) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (483) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (489) heap_init: At 3FFB77B0 len 00028850 (162 KiB): DRAM[0m
+[0;32mI (495) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (501) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (508) heap_init: At 40096190 len 00009E70 (39 KiB): IRAM[0m
+[0;32mI (515) spi_flash: detected chip: generic[0m
+[0;32mI (519) spi_flash: flash io: dio[0m
+[0;32mI (523) app_start: Starting scheduler on CPU0[0m
+[0;32mI (528) app_start: Starting scheduler on CPU1[0m
+[0;32mI (528) main_task: Started on CPU0[0m
+[0;32mI (538) main_task: Calling app_main()[0m
+[0;32mI (5UART
+I (588) wifi:wifi driver task: 3ffc198c, prio:23, stack:6656, core=0
+I (598) wifi:wifi firmware version: 6a2a12b
+I (598) wifi:wifi certification version: v7.0
+I (598) wifi:config NVS flash: enabled
+I (598) wifi:config nano formating: disabled
+I (608) wifi:Init data frame dynamic rx buffer num: 32
+I (608) wifi:Init management frame dynamic rx buffer num: 32
+I (618) wifi:Init management short buffer num: 32
+I (618) wifi:Init dynamic tx buffer num: 32
+I (628) wifi:Init static rx buffer size: 1600
+I (628) wifi:Init static rx buffer num: 10
+I (628) wifi:Init dynamic rx buffer num: 32
+[0;32mI (638) wifi_init: rx ba win: 6[0m
+[0;32mI (638) wifi_init: tcpip mbox: 32[0m
+[0;32mI (648) wifi_init: udp mbox: 6[0m
+[0;32mI (648) wifi_init: tcp mbox: 6[0m
+[0;32mI (648) wifi_init: tcp tx win: 5744[0m
+[0;32mI (658) wifi_init: tcp rx win: 5744[0m
+[0;32mI (658) wifi_init: tcp mss: 1440[0m
+[0;32mI (668) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (668) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (678) phy_init: phy_version 4670,719f9f6,Feb 18 2021,17:07:07[0m
+I (778) wifi:mode : sta (b0:b2:1c:a8:84:44)
+I (778) wifi:enable tsf
+I (778) ESPNOW: espnow [version: 1.0] init
+[0;32mI (778) main_task: Returned from app_main()[0m
+[0;32mI (3968) espnow_example: uart[0] event:[0m
+[0;32mI (3968) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (3968) espnow_example: read data: [0m
+[0;32mI (3978) espnow_example: read pat : c[0m
+[0;32mI (4838) espnow_example: uart[0] event:[0m
+[0;32mI (4838) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (4838) espnow_example: read data: [0m
+[0;32mI (4848) espnow_example: read pat : c[0m
+[0;32mI (5368) espnow_example: uart[0] event:[0m
+[0;32mI (5368) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (5368) espnow_example: read data: [0m
+[0;32mI (5378) espnow_example: read pat : c[0m
+[0;32mI (6898) espnow_example: uart[0] event:[0m
+[0;32mI (6898) espnow_example: [UART DATA]: 1[0m
+[0;32mI (6898) espnow_example: [DATA EVT]:[0m
+a[0;32mI (7428) espnow_example: uart[0] event:[0m
+[0;32mI (7428) espnow_example: [UART DATA]: 1[0m
+[0;32mI (7428) espnow_example: [DATA EVT]:[0m
+a[0;32mI (8368) espnow_example: uart[0] event:[0m
+[0;32mI (8368) espnow_example: [UART DATA]: 1[0m
+[0;32mI (8368) espnow_example: [DATA EVT]:[0m
+[0;32mI (9018) espnow_example: uart[0] event:[0m
+[0;32mI (9018) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (9018) espnow_example: read data: [0m
+[0;32mI (9018) espnow_example: read pat : c[0m
+[0;32mI (9468) espnow_example: uart[0] event:[0m
+[0;32mI (9468) espnow_example: [UART DATA]: 1[0m
+[0;32mI (9468) espnow_example: [DATA EVT]:[0m
+[0;32mI (11058) espnow_example: uart[0] event:[0m
+[0;32mI (11058) espnow_example: [UART DATA]: 1[0m
+[0;32mI (11058) espnow_example: [DATA EVT]:[0m
+a[0;32mI (11128) espnow_example: uart[0] event:[0m
+[0;32mI (11128) espnow_example: [UART DATA]: 1[0m
+[0;32mI (11128) espnow_example: [DATA EVT]:[0m
+s[0;32mI (11308) espnow_example: uart[0] event:[0m
+[0;32mI (11318) espnow_example: [UART DATA]: 1[0m
+[0;32mI (11318) espnow_example: [DATA EVT]:[0m
+d[0;32mI (12408) espnow_example: uart[0] event:[0m
+[0;32mI (12408) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (12408) espnow_example: read data: [0m
+[0;32mI (12418) espnow_example: read pat : c[0m
+[0;32mI (12868) espnow_example: uart[0] event:[0m
+[0;32mI (12868) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (12878) espnow_example: read data: [0m
+[0;32mI (12878) espnow_example: read pat : c[0m
+[0;32mI (13468) espnow_example: uart[0] event:[0m
+[0;32mI (13468) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (13478) espnow_example: read data: [0m
+[0;32mI (13478) espnow_example: read pat : c[0m
+[0;32mI (13908) espnow_example: uart[0] event:[0m
+[0;32mI (13908) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (13908) espnow_example: read data: [0m
+[0;32mI (13908) espnow_example: read pat : c[0m
+[0;32mI (14348) espnow_example: uart[0] event:[0m
+[0;32mI (14348) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (14348) espnow_example: read data: [0m
+[0;32mI (14348) espnow_example: read pat : c[0m
+[0;32mI (14658) espnow_example: uart[0] event:[0m
+[0;32mI (14658) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (14658) espnow_example: read data: [0m
+[0;32mI (14658) espnow_example: read pat : c[0m
+[0;32mI (14948) espnow_example: uart[0] event:[0m
+[0;32mI (14948) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (14948) espnow_example: read data: [0m
+[0;32mI (14948) espnow_example: read pat : c[0m
+[0;32mI (15168) espnow_example: uart[0] event:[0m
+[0;32mI (15168) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (15168) espnow_example: read data: [0m
+[0;32mI (15178) espnow_example: read pat : c[0m
+[0;32mI (15668) espnow_example: uart[0] event:[0m
+[0;32mI (15668) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (15668) espnow_example: read data: [0m
+[0;32mI (15678) espnow_example: read pat : c[0m
+[0;32mI (15698) espnow_example: uart[0] event:[0m
+[0;32mI (15698) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (15698) espnow_example: read data: [0m
+[0;32mI (15708) espnow_example: read pat : c[0m
+[0;32mI (15728) espnow_example: uart[0] event:[0m
+[0;32mI (15728) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (15728) espnow_example: read data: [0m
+[0;32mI (15738) espnow_example: read pat : c[0m
+[0;32mI (15758) espnow_example: uart[0] event:[0m
+[0;32mI (15758) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (15758) espnow_example: read data: [0m
+[0;32mI (15768) espnow_example: read pat : c[0m
+[0;32mI (15788) espnow_example: uart[0] event:[0m
+[0;32mI (15788) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (15788) espnow_example: read data: [0m
+[0;32mI (15798) espnow_example: read pat : c[0m
+[0;32mI (15818) espnow_example: uart[0] event:[0m
+[0;32mI (15818) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (15818) espnow_example: read data: [0m
+[0;32mI (15828) espnow_example: read pat : c[0m
+[0;32mI (15848) espnow_example: uart[0] event:[0m
+[0;32mI (15848) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (15848) espnow_example: read data: [0m
+[0;32mI (15858) espnow_example: read pat : c[0m
+[0;32mI (15878) espnow_example: uart[0] event:[0m
+[0;32mI (15878) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (15878) espnow_example: read data: [0m
+[0;32mI (15888) espnow_example: read pat : c[0m
+[0;32mI (15908) espnow_example: uart[0] event:[0m
+[0;32mI (15908) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (15908) espnow_example: read data: [0m
+[0;32mI (15918) espnow_example: read pat : c[0m
+[0;32mI (15938) espnow_example: uart[0] event:[0m
+[0;32mI (15938) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (15938) espnow_example: read data: [0m
+[0;32mI (15948) espnow_example: read pat : c[0m
+[0;32mI (15968) espnow_example: uart[0] event:[0m
+[0;32mI (15968) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (15968) espnow_example: read data: [0m
+[0;32mI (15978) espnow_example: read pat : c[0m
+[0;32mI (15998) espnow_example: uart[0] event:[0m
+[0;32mI (15998) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (15998) espnow_example: read data: [0m
+[0;32mI (16008) espnow_example: read pat : c[0m
+[0;32mI (16028) espnow_example: uart[0] event:[0m
+[0;32mI (16028) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16028) espnow_example: read data: [0m
+[0;32mI (16038) espnow_example: read pat : c[0m
+[0;32mI (16058) espnow_example: uart[0] event:[0m
+[0;32mI (16058) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16058) espnow_example: read data: [0m
+[0;32mI (16068) espnow_example: read pat : c[0m
+[0;32mI (16088) espnow_example: uart[0] event:[0m
+[0;32mI (16088) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16088) espnow_example: read data: [0m
+[0;32mI (16098) espnow_example: read pat : c[0m
+[0;32mI (16118) espnow_example: uart[0] event:[0m
+[0;32mI (16118) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16118) espnow_example: read data: [0m
+[0;32mI (16128) espnow_example: read pat : c[0m
+[0;32mI (16148) espnow_example: uart[0] event:[0m
+[0;32mI (16148) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16148) espnow_example: read data: [0m
+[0;32mI (16158) espnow_example: read pat : c[0m
+[0;32mI (16178) espnow_example: uart[0] event:[0m
+[0;32mI (16178) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16178) espnow_example: read data: [0m
+[0;32mI (16188) espnow_example: read pat : c[0m
+[0;32mI (16208) espnow_example: uart[0] event:[0m
+[0;32mI (16208) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16208) espnow_example: read data: [0m
+[0;32mI (16218) espnow_example: read pat : c[0m
+[0;32mI (16238) espnow_example: uart[0] event:[0m
+[0;32mI (16238) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16238) espnow_example: read data: [0m
+[0;32mI (16248) espnow_example: read pat : c[0m
+[0;32mI (16268) espnow_example: uart[0] event:[0m
+[0;32mI (16268) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16268) espnow_example: read data: [0m
+[0;32mI (16278) espnow_example: read pat : c[0m
+[0;32mI (16298) espnow_example: uart[0] event:[0m
+[0;32mI (16298) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16298) espnow_example: read data: [0m
+[0;32mI (16308) espnow_example: read pat : c[0m
+[0;32mI (16328) espnow_example: uart[0] event:[0m
+[0;32mI (16328) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16328) espnow_example: read data: [0m
+[0;32mI (16338) espnow_example: read pat : c[0m
+[0;32mI (16358) espnow_example: uart[0] event:[0m
+[0;32mI (16358) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16358) espnow_example: read data: [0m
+[0;32mI (16368) espnow_example: read pat : c[0m
+[0;32mI (16388) espnow_example: uart[0] event:[0m
+[0;32mI (16388) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16388) espnow_example: read data: [0m
+[0;32mI (16398) espnow_example: read pat : c[0m
+[0;32mI (16418) espnow_example: uart[0] event:[0m
+[0;32mI (16418) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16418) espnow_example: read data: [0m
+[0;32mI (16428) espnow_example: read pat : c[0m
+[0;32mI (16448) espnow_example: uart[0] event:[0m
+[0;32mI (16448) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16448) espnow_example: read data: [0m
+[0;32mI (16458) espnow_example: read pat : c[0m
+[0;32mI (16478) espnow_example: uart[0] event:[0m
+[0;32mI (16478) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16478) espnow_example: read data: [0m
+[0;32mI (16488) espnow_example: read pat : c[0m
+[0;32mI (16508) espnow_example: uart[0] event:[0m
+[0;32mI (16508) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16508) espnow_example: read data: [0m
+[0;32mI (16518) espnow_example: read pat : c[0m
+[0;32mI (16538) espnow_example: uart[0] event:[0m
+[0;32mI (16538) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16538) espnow_example: read data: [0m
+[0;32mI (16548) espnow_example: read pat : c[0m
+[0;32mI (16568) espnow_example: uart[0] event:[0m
+[0;32mI (16568) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16568) espnow_example: read data: [0m
+[0;32mI (16578) espnow_example: read pat : c[0m
+[0;32mI (16598) espnow_example: uart[0] event:[0m
+[0;32mI (16598) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16598) espnow_example: read data: [0m
+[0;32mI (16608) espnow_example: read pat : c[0m
+[0;32mI (16628) espnow_example: uart[0] event:[0m
+[0;32mI (16628) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16628) espnow_example: read data: [0m
+[0;32mI (16638) espnow_example: read pat : c[0m
+[0;32mI (16658) espnow_example: uart[0] event:[0m
+[0;32mI (16658) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16658) espnow_example: read data: [0m
+[0;32mI (16668) espnow_example: read pat : c[0m
+[0;32mI (16688) espnow_example: uart[0] event:[0m
+[0;32mI (16688) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16688) espnow_example: read data: [0m
+[0;32mI (16698) espnow_example: read pat : c[0m
+[0;32mI (16718) espnow_example: uart[0] event:[0m
+[0;32mI (16718) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16718) espnow_example: read data: [0m
+[0;32mI (16728) espnow_example: read pat : c[0m
+[0;32mI (16748) espnow_example: uart[0] event:[0m
+[0;32mI (16748) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16748) espnow_example: read data: [0m
+[0;32mI (16758) espnow_example: read pat : c[0m
+[0;32mI (16778) espnow_example: uart[0] event:[0m
+[0;32mI (16778) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16778) espnow_example: read data: [0m
+[0;32mI (16788) espnow_example: read pat : c[0m
+[0;32mI (16808) espnow_example: uart[0] event:[0m
+[0;32mI (16808) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16808) espnow_example: read data: [0m
+[0;32mI (16818) espnow_example: read pat : c[0m
+[0;32mI (16838) espnow_example: uart[0] event:[0m
+[0;32mI (16838) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16838) espnow_example: read data: [0m
+[0;32mI (16848) espnow_example: read pat : c[0m
+[0;32mI (16868) espnow_example: uart[0] event:[0m
+[0;32mI (16868) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16868) espnow_example: read data: [0m
+[0;32mI (16878) espnow_example: read pat : c[0m
+[0;32mI (16898) espnow_example: uart[0] event:[0m
+[0;32mI (16898) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16898) espnow_example: read data: [0m
+[0;32mI (16898) espnow_example: read pat : c[0m
+[0;32mI (16928) espnow_example: uart[0] event:[0m
+[0;32mI (16928) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16928) espnow_example: read data: [0m
+[0;32mI (16938) espnow_example: read pat : c[0m
+[0;32mI (16958) espnow_example: uart[0] event:[0m
+[0;32mI (16958) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16958) espnow_example: read data: [0m
+[0;32mI (16968) espnow_example: read pat : c[0m
+[0;32mI (16988) espnow_example: uart[0] event:[0m
+[0;32mI (16988) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (16988) espnow_example: read data: [0m
+[0;32mI (16998) espnow_example: read pat : c[0m
+[0;32mI (17018) espnow_example: uart[0] event:[0m
+[0;32mI (17018) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17018) espnow_example: read data: [0m
+[0;32mI (17028) espnow_example: read pat : c[0m
+[0;32mI (17048) espnow_example: uart[0] event:[0m
+[0;32mI (17048) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17048) espnow_example: read data: [0m
+[0;32mI (17058) espnow_example: read pat : c[0m
+[0;32mI (17078) espnow_example: uart[0] event:[0m
+[0;32mI (17078) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17078) espnow_example: read data: [0m
+[0;32mI (17088) espnow_example: read pat : c[0m
+[0;32mI (17108) espnow_example: uart[0] event:[0m
+[0;32mI (17108) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17108) espnow_example: read data: [0m
+[0;32mI (17118) espnow_example: read pat : c[0m
+[0;32mI (17138) espnow_example: uart[0] event:[0m
+[0;32mI (17138) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17138) espnow_example: read data: [0m
+[0;32mI (17148) espnow_example: read pat : c[0m
+[0;32mI (17168) espnow_example: uart[0] event:[0m
+[0;32mI (17168) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17168) espnow_example: read data: [0m
+[0;32mI (17178) espnow_example: read pat : c[0m
+[0;32mI (17198) espnow_example: uart[0] event:[0m
+[0;32mI (17198) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17198) espnow_example: read data: [0m
+[0;32mI (17208) espnow_example: read pat : c[0m
+[0;32mI (17228) espnow_example: uart[0] event:[0m
+[0;32mI (17228) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17228) espnow_example: read data: [0m
+[0;32mI (17238) espnow_example: read pat : c[0m
+[0;32mI (17258) espnow_example: uart[0] event:[0m
+[0;32mI (17258) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17258) espnow_example: read data: [0m
+[0;32mI (17268) espnow_example: read pat : c[0m
+[0;32mI (17288) espnow_example: uart[0] event:[0m
+[0;32mI (17288) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17288) espnow_example: read data: [0m
+[0;32mI (17298) espnow_example: read pat : c[0m
+[0;32mI (17318) espnow_example: uart[0] event:[0m
+[0;32mI (17318) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17318) espnow_example: read data: [0m
+[0;32mI (17328) espnow_example: read pat : c[0m
+[0;32mI (17348) espnow_example: uart[0] event:[0m
+[0;32mI (17348) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17348) espnow_example: read data: [0m
+[0;32mI (17358) espnow_example: read pat : c[0m
+[0;32mI (17378) espnow_example: uart[0] event:[0m
+[0;32mI (17378) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17378) espnow_example: read data: [0m
+[0;32mI (17388) espnow_example: read pat : c[0m
+[0;32mI (17408) espnow_example: uart[0] event:[0m
+[0;32mI (17408) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17408) espnow_example: read data: [0m
+[0;32mI (17418) espnow_example: read pat : c[0m
+[0;32mI (17438) espnow_example: uart[0] event:[0m
+[0;32mI (17438) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17438) espnow_example: read data: [0m
+[0;32mI (17448) espnow_example: read pat : c[0m
+[0;32mI (17468) espnow_example: uart[0] event:[0m
+[0;32mI (17468) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17468) espnow_example: read data: [0m
+[0;32mI (17478) espnow_example: read pat : c[0m
+[0;32mI (17498) espnow_example: uart[0] event:[0m
+[0;32mI (17498) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17498) espnow_example: read data: [0m
+[0;32mI (17508) espnow_example: read pat : c[0m
+[0;32mI (17528) espnow_example: uart[0] event:[0m
+[0;32mI (17528) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17528) espnow_example: read data: [0m
+[0;32mI (17538) espnow_example: read pat : c[0m
+[0;32mI (17558) espnow_example: uart[0] event:[0m
+[0;32mI (17558) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17558) espnow_example: read data: [0m
+[0;32mI (17568) espnow_example: read pat : c[0m
+[0;32mI (17588) espnow_example: uart[0] event:[0m
+[0;32mI (17588) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17588) espnow_example: read data: [0m
+[0;32mI (17598) espnow_example: read pat : c[0m
+[0;32mI (17618) espnow_example: uart[0] event:[0m
+[0;32mI (17618) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17618) espnow_example: read data: [0m
+[0;32mI (17628) espnow_example: read pat : c[0m
+[0;32mI (17648) espnow_example: uart[0] event:[0m
+[0;32mI (17648) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17648) espnow_example: read data: [0m
+[0;32mI (17658) espnow_example: read pat : c[0m
+[0;32mI (17678) espnow_example: uart[0] event:[0m
+[0;32mI (17678) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17678) espnow_example: read data: [0m
+[0;32mI (17688) espnow_example: read pat : c[0m
+[0;32mI (17708) espnow_example: uart[0] event:[0m
+[0;32mI (17708) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17708) espnow_example: read data: [0m
+[0;32mI (17718) espnow_example: read pat : c[0m
+[0;32mI (17738) espnow_example: uart[0] event:[0m
+[0;32mI (17738) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17738) espnow_example: read data: [0m
+[0;32mI (17748) espnow_example: read pat : c[0m
+[0;32mI (17768) espnow_example: uart[0] event:[0m
+[0;32mI (17768) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17768) espnow_example: read data: [0m
+[0;32mI (17778) espnow_example: read pat : c[0m
+[0;32mI (17798) espnow_example: uart[0] event:[0m
+[0;32mI (17798) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17798) espnow_example: read data: [0m
+[0;32mI (17808) espnow_example: read pat : c[0m
+[0;32mI (17828) espnow_example: uart[0] event:[0m
+[0;32mI (17828) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17828) espnow_example: read data: [0m
+[0;32mI (17838) espnow_example: read pat : c[0m
+[0;32mI (17858) espnow_example: uart[0] event:[0m
+[0;32mI (17858) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17858) espnow_example: read data: [0m
+[0;32mI (17868) espnow_example: read pat : c[0m
+[0;32mI (17888) espnow_example: uart[0] event:[0m
+[0;32mI (17888) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17888) espnow_example: read data: [0m
+[0;32mI (17898) espnow_example: read pat : c[0m
+[0;32mI (17918) espnow_example: uart[0] event:[0m
+[0;32mI (17918) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17918) espnow_example: read data: [0m
+[0;32mI (17928) espnow_example: read pat : c[0m
+[0;32mI (17948) espnow_example: uart[0] event:[0m
+[0;32mI (17948) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17948) espnow_example: read data: [0m
+[0;32mI (17958) espnow_example: read pat : c[0m
+[0;32mI (17978) espnow_example: uart[0] event:[0m
+[0;32mI (17978) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (17978) espnow_example: read data: [0m
+[0;32mI (17988) espnow_example: read pat : c[0m
+[0;32mI (18008) espnow_example: uart[0] event:[0m
+[0;32mI (18008) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18008) espnow_example: read data: [0m
+[0;32mI (18018) espnow_example: read pat : c[0m
+[0;32mI (18038) espnow_example: uart[0] event:[0m
+[0;32mI (18038) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18038) espnow_example: read data: [0m
+[0;32mI (18048) espnow_example: read pat : c[0m
+[0;32mI (18068) espnow_example: uart[0] event:[0m
+[0;32mI (18068) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18068) espnow_example: read data: [0m
+[0;32mI (18078) espnow_example: read pat : c[0m
+[0;32mI (18098) espnow_example: uart[0] event:[0m
+[0;32mI (18098) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18098) espnow_example: read data: [0m
+[0;32mI (18108) espnow_example: read pat : c[0m
+[0;32mI (18128) espnow_example: uart[0] event:[0m
+[0;32mI (18128) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18128) espnow_example: read data: [0m
+[0;32mI (18138) espnow_example: read pat : c[0m
+[0;32mI (18158) espnow_example: uart[0] event:[0m
+[0;32mI (18158) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18158) espnow_example: read data: [0m
+[0;32mI (18168) espnow_example: read pat : c[0m
+[0;32mI (18188) espnow_example: uart[0] event:[0m
+[0;32mI (18188) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18188) espnow_example: read data: [0m
+[0;32mI (18198) espnow_example: read pat : c[0m
+[0;32mI (18218) espnow_example: uart[0] event:[0m
+[0;32mI (18218) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18218) espnow_example: read data: [0m
+[0;32mI (18228) espnow_example: read pat : c[0m
+[0;32mI (18248) espnow_example: uart[0] event:[0m
+[0;32mI (18248) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18248) espnow_example: read data: [0m
+[0;32mI (18258) espnow_example: read pat : c[0m
+[0;32mI (18278) espnow_example: uart[0] event:[0m
+[0;32mI (18278) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18278) espnow_example: read data: [0m
+[0;32mI (18288) espnow_example: read pat : c[0m
+[0;32mI (18308) espnow_example: uart[0] event:[0m
+[0;32mI (18308) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18308) espnow_example: read data: [0m
+[0;32mI (18318) espnow_example: read pat : c[0m
+[0;32mI (18338) espnow_example: uart[0] event:[0m
+[0;32mI (18338) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18338) espnow_example: read data: [0m
+[0;32mI (18348) espnow_example: read pat : c[0m
+[0;32mI (18368) espnow_example: uart[0] event:[0m
+[0;32mI (18368) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18368) espnow_example: read data: [0m
+[0;32mI (18378) espnow_example: read pat : c[0m
+[0;32mI (18398) espnow_example: uart[0] event:[0m
+[0;32mI (18398) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18398) espnow_example: read data: [0m
+[0;32mI (18408) espnow_example: read pat : c[0m
+[0;32mI (18428) espnow_example: uart[0] event:[0m
+[0;32mI (18428) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18428) espnow_example: read data: [0m
+[0;32mI (18438) espnow_example: read pat : c[0m
+[0;32mI (18458) espnow_example: uart[0] event:[0m
+[0;32mI (18458) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18458) espnow_example: read data: [0m
+[0;32mI (18468) espnow_example: read pat : c[0m
+[0;32mI (18488) espnow_example: uart[0] event:[0m
+[0;32mI (18488) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18488) espnow_example: read data: [0m
+[0;32mI (18498) espnow_example: read pat : c[0m
+[0;32mI (18518) espnow_example: uart[0] event:[0m
+[0;32mI (18518) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18518) espnow_example: read data: [0m
+[0;32mI (18528) espnow_example: read pat : c[0m
+[0;32mI (18548) espnow_example: uart[0] event:[0m
+[0;32mI (18548) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18548) espnow_example: read data: [0m
+[0;32mI (18558) espnow_example: read pat : c[0m
+[0;32mI (18578) espnow_example: uart[0] event:[0m
+[0;32mI (18578) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18578) espnow_example: read data: [0m
+[0;32mI (18588) espnow_example: read pat : c[0m
+[0;32mI (18608) espnow_example: uart[0] event:[0m
+[0;32mI (18608) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18608) espnow_example: read data: [0m
+[0;32mI (18618) espnow_example: read pat : c[0m
+[0;32mI (18638) espnow_example: uart[0] event:[0m
+[0;32mI (18638) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18638) espnow_example: read data: [0m
+[0;32mI (18648) espnow_example: read pat : c[0m
+[0;32mI (18668) espnow_example: uart[0] event:[0m
+[0;32mI (18668) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18668) espnow_example: read data: [0m
+[0;32mI (18678) espnow_example: read pat : c[0m
+[0;32mI (18698) espnow_example: uart[0] event:[0m
+[0;32mI (18698) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18698) espnow_example: read data: [0m
+[0;32mI (18708) espnow_example: read pat : c[0m
+[0;32mI (18728) espnow_example: uart[0] event:[0m
+[0;32mI (18728) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18728) espnow_example: read data: [0m
+[0;32mI (18738) espnow_example: read pat : c[0m
+[0;32mI (18758) espnow_example: uart[0] event:[0m
+[0;32mI (18758) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18758) espnow_example: read data: [0m
+[0;32mI (18768) espnow_example: read pat : c[0m
+[0;32mI (18788) espnow_example: uart[0] event:[0m
+[0;32mI (18788) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18788) espnow_example: read data: [0m
+[0;32mI (18798) espnow_example: read pat : c[0m
+[0;32mI (18818) espnow_example: uart[0] event:[0m
+[0;32mI (18818) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18818) espnow_example: read data: [0m
+[0;32mI (18828) espnow_example: read pat : c[0m
+[0;32mI (18848) espnow_example: uart[0] event:[0m
+[0;32mI (18848) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18848) espnow_example: read data: [0m
+[0;32mI (18858) espnow_example: read pat : c[0m
+[0;32mI (18878) espnow_example: uart[0] event:[0m
+[0;32mI (18878) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18878) espnow_example: read data: [0m
+[0;32mI (18888) espnow_example: read pat : c[0m
+[0;32mI (18908) espnow_example: uart[0] event:[0m
+[0;32mI (18908) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18908) espnow_example: read data: [0m
+[0;32mI (18918) espnow_example: read pat : c[0m
+[0;32mI (18938) espnow_example: uart[0] event:[0m
+[0;32mI (18938) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18938) espnow_example: read data: [0m
+[0;32mI (18948) espnow_example: read pat : c[0m
+[0;32mI (18968) espnow_example: uart[0] event:[0m
+[0;32mI (18968) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18968) espnow_example: read data: [0m
+[0;32mI (18978) espnow_example: read pat : c[0m
+[0;32mI (18998) espnow_example: uart[0] event:[0m
+[0;32mI (18998) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (18998) espnow_example: read data: [0m
+[0;32mI (19008) espnow_example: read pat : c[0m
+[0;32mI (19028) espnow_example: uart[0] event:[0m
+[0;32mI (19028) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19028) espnow_example: read data: [0m
+[0;32mI (19038) espnow_example: read pat : c[0m
+[0;32mI (19058) espnow_example: uart[0] event:[0m
+[0;32mI (19058) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19058) espnow_example: read data: [0m
+[0;32mI (19068) espnow_example: read pat : c[0m
+[0;32mI (19088) espnow_example: uart[0] event:[0m
+[0;32mI (19088) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19088) espnow_example: read data: [0m
+[0;32mI (19098) espnow_example: read pat : c[0m
+[0;32mI (19118) espnow_example: uart[0] event:[0m
+[0;32mI (19118) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19118) espnow_example: read data: [0m
+[0;32mI (19128) espnow_example: read pat : c[0m
+[0;32mI (19148) espnow_example: uart[0] event:[0m
+[0;32mI (19148) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19148) espnow_example: read data: [0m
+[0;32mI (19158) espnow_example: read pat : c[0m
+[0;32mI (19178) espnow_example: uart[0] event:[0m
+[0;32mI (19178) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19178) espnow_example: read data: [0m
+[0;32mI (19188) espnow_example: read pat : c[0m
+[0;32mI (19208) espnow_example: uart[0] event:[0m
+[0;32mI (19208) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19208) espnow_example: read data: [0m
+[0;32mI (19218) espnow_example: read pat : c[0m
+[0;32mI (19238) espnow_example: uart[0] event:[0m
+[0;32mI (19238) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19238) espnow_example: read data: [0m
+[0;32mI (19248) espnow_example: read pat : c[0m
+[0;32mI (19268) espnow_example: uart[0] event:[0m
+[0;32mI (19268) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19268) espnow_example: read data: [0m
+[0;32mI (19278) espnow_example: read pat : c[0m
+[0;32mI (19298) espnow_example: uart[0] event:[0m
+[0;32mI (19298) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19298) espnow_example: read data: [0m
+[0;32mI (19308) espnow_example: read pat : c[0m
+[0;32mI (19328) espnow_example: uart[0] event:[0m
+[0;32mI (19328) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19328) espnow_example: read data: [0m
+[0;32mI (19338) espnow_example: read pat : c[0m
+[0;32mI (19358) espnow_example: uart[0] event:[0m
+[0;32mI (19358) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19358) espnow_example: read data: [0m
+[0;32mI (19368) espnow_example: read pat : c[0m
+[0;32mI (19388) espnow_example: uart[0] event:[0m
+[0;32mI (19388) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19388) espnow_example: read data: [0m
+[0;32mI (19398) espnow_example: read pat : c[0m
+[0;32mI (19418) espnow_example: uart[0] event:[0m
+[0;32mI (19418) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19418) espnow_example: read data: [0m
+[0;32mI (19428) espnow_example: read pat : c[0m
+[0;32mI (19448) espnow_example: uart[0] event:[0m
+[0;32mI (19448) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19448) espnow_example: read data: [0m
+[0;32mI (19458) espnow_example: read pat : c[0m
+[0;32mI (19478) espnow_example: uart[0] event:[0m
+[0;32mI (19478) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19478) espnow_example: read data: [0m
+[0;32mI (19488) espnow_example: read pat : c[0m
+[0;32mI (19508) espnow_example: uart[0] event:[0m
+[0;32mI (19508) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19508) espnow_example: read data: [0m
+[0;32mI (19518) espnow_example: read pat : c[0m
+[0;32mI (19538) espnow_example: uart[0] event:[0m
+[0;32mI (19538) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19538) espnow_example: read data: [0m
+[0;32mI (19548) espnow_example: read pat : c[0m
+[0;32mI (19568) espnow_example: uart[0] event:[0m
+[0;32mI (19568) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19568) espnow_example: read data: [0m
+[0;32mI (19578) espnow_example: read pat : c[0m
+[0;32mI (19598) espnow_example: uart[0] event:[0m
+[0;32mI (19598) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19598) espnow_example: read data: [0m
+[0;32mI (19608) espnow_example: read pat : c[0m
+[0;32mI (19628) espnow_example: uart[0] event:[0m
+[0;32mI (19628) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19628) espnow_example: read data: [0m
+[0;32mI (19638) espnow_example: read pat : c[0m
+[0;32mI (19658) espnow_example: uart[0] event:[0m
+[0;32mI (19658) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19658) espnow_example: read data: [0m
+[0;32mI (19668) espnow_example: read pat : c[0m
+[0;32mI (19688) espnow_example: uart[0] event:[0m
+[0;32mI (19688) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19688) espnow_example: read data: [0m
+[0;32mI (19688) espnow_example: read pat : c[0m
+[0;32mI (19718) espnow_example: uart[0] event:[0m
+[0;32mI (19718) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19718) espnow_example: read data: [0m
+[0;32mI (19728) espnow_example: read pat : c[0m
+[0;32mI (19748) espnow_example: uart[0] event:[0m
+[0;32mI (19748) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19748) espnow_example: read data: [0m
+[0;32mI (19758) espnow_example: read pat : c[0m
+[0;32mI (19778) espnow_example: uart[0] event:[0m
+[0;32mI (19778) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19778) espnow_example: read data: [0m
+[0;32mI (19788) espnow_example: read pat : c[0m
+[0;32mI (19808) espnow_example: uart[0] event:[0m
+[0;32mI (19808) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19808) espnow_example: read data: [0m
+[0;32mI (19818) espnow_example: read pat : c[0m
+[0;32mI (19838) espnow_example: uart[0] event:[0m
+[0;32mI (19838) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19838) espnow_example: read data: [0m
+[0;32mI (19848) espnow_example: read pat : c[0m
+[0;32mI (19868) espnow_example: uart[0] event:[0m
+[0;32mI (19868) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19868) espnow_example: read data: [0m
+[0;32mI (19878) espnow_example: read pat : c[0m
+[0;32mI (19898) espnow_example: uart[0] event:[0m
+[0;32mI (19898) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19898) espnow_example: read data: [0m
+[0;32mI (19908) espnow_example: read pat : c[0m
+[0;32mI (19928) espnow_example: uart[0] event:[0m
+[0;32mI (19928) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19928) espnow_example: read data: [0m
+[0;32mI (19938) espnow_example: read pat : c[0m
+[0;32mI (19958) espnow_example: uart[0] event:[0m
+[0;32mI (19958) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19958) espnow_example: read data: [0m
+[0;32mI (19968) espnow_example: read pat : c[0m
+[0;32mI (19988) espnow_example: uart[0] event:[0m
+[0;32mI (19988) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (19988) espnow_example: read data: [0m
+[0;32mI (19998) espnow_example: read pat : c[0m
+[0;32mI (20018) espnow_example: uart[0] event:[0m
+[0;32mI (20018) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (20018) espnow_example: read data: [0m
+[0;32mI (20028) espnow_example: read pat : c[0m
+[0;32mI (20048) espnow_example: uart[0] event:[0m
+[0;32mI (20048) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (20048) espnow_example: read data: [0m
+[0;32mI (20058) espnow_example: read pat : c[0m
+[0;32mI (20918) espnow_example: uart[0] event:[0m
+[0;32mI (20918) espnow_example: [UART DATA]: 1[0m
+[0;32mI (20918) espnow_example: [DATA EVT]:[0m
+[0;32mI (21418) espnow_example: uart[0] event:[0m
+[0;32mI (21418) espnow_example: [UART DATA]: 1[0m
+[0;32mI (21418) espnow_example: [DATA EVT]:[0m
+[0;32mI (21758) espnow_example: uart[0] event:[0m
+[0;32mI (21758) espnow_example: [UART DATA]: 1[0m
+[0;32mI (21758) espnow_example: [DATA EVT]:[0m
+[0;32mI (22068) espnow_example: uart[0] event:[0m
+[0;32mI (22068) espnow_example: [UART DATA]: 1[0m
+[0;32mI (22068) espnow_example: [DATA EVT]:[0m
+[0;32mI (22358) espnow_example: uart[0] event:[0m
+[0;32mI (22358) espnow_example: [UART DATA]: 1[0m
+[0;32mI (22358) espnow_example: [DATA EVT]:[0m
+[0;32mI (22688) espnow_example: uart[0] event:[0m
+[0;32mI (22688) espnow_example: [UART DATA]: 1[0m
+[0;32mI (22688) espnow_example: [DATA EVT]:[0m
+[0;32mI (23108) espnow_example: uart[0] event:[0m
+[0;32mI (23108) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (23118) espnow_example: read data: [0m
+[0;32mI (23118) espnow_example: read pat : c[0m
+[0;32mI (23518) espnow_example: uart[0] event:[0m
+[0;32mI (23518) espnow_example: [UART DATA]: 1[0m
+[0;32mI (23518) espnow_example: [DATA EVT]:[0m
+[0;32mI (23868) espnow_example: uart[0] event:[0m
+[0;32mI (23868) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (23868) espnow_example: read data: [0m
+[0;32mI (23868) espnow_example: read pat : c[0m
+[0;32mI (24108) espnow_example: uart[0] event:[0m
+[0;32mI (24108) espnow_example: [UART DATA]: 1[0m
+[0;32mI (24108) espnow_example: [DATA EVT]:[0m
+[0;32mI (24298) espnow_example: uart[0] event:[0m
+[0;32mI (24298) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (24298) espnow_example: read data: [0m
+[0;32mI (24298) espnow_example: read pat : c[0m
+[0;32mI (24478) espnow_example: uart[0] event:[0m
+[0;32mI (24478) espnow_example: [UART DATA]: 1[0m
+[0;32mI (24478) espnow_example: [DATA EVT]:[0m
+[0;32mI (25518) espnow_example: uart[0] event:[0m
+[0;32mI (25518) espnow_example: [UART DATA]: 3[0m
+[0;32mI (25518) espnow_example: [DATA EVT]:[0m
+asd[0;32mI (26438) espnow_example: uart[0] event:[0m
+[0;32mI (26438) espnow_example: [UART DATA]: 3[0m
+[0;32mI (26438) espnow_example: [DATA EVT]:[0m
+asd[0;32mI (27208) espnow_example: uart[0] event:[0m
+[0;32mI (27208) espnow_example: [UART DATA]: 2[0m
+[0;32mI (27208) espnow_example: [DATA EVT]:[0m
+sd[0;32mI (27858) espnow_example: uart[0] event:[0m
+[0;32mI (27858) espnow_example: [UART DATA]: 1[0m
+[0;32mI (27858) espnow_example: [DATA EVT]:[0m
+a[0;32mI (28308) espnow_example: uart[0] event:[0m
+[0;32mI (28308) espnow_example: [UART DATA]: 1[0m
+[0;32mI (28308) espnow_example: [DATA EVT]:[0m
+a[0;32mI (28868) espnow_example: uart[0] event:[0m
+[0;32mI (28868) espnow_example: [UART DATA]: 1[0m
+[0;32mI (28868) espnow_example: [DATA EVT]:[0m
+a[0;32mI (29498) espnow_example: uart[0] event:[0m
+[0;32mI (29498) espnow_example: [UART DATA]: 1[0m
+[0;32mI (29498) espnow_example: [DATA EVT]:[0m
+d[0;32mI (29948) espnow_example: uart[0] event:[0m
+[0;32mI (29948) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (29948) espnow_example: read data: [0m
+[0;32mI (29948) espnow_example: read pat : c[0m
+[0;32mI (30458) espnow_example: uart[0] event:[0m
+[0;32mI (30458) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (30458) espnow_example: read data: [0m
+[0;32mI (30458) espnow_example: read pat : c[0m
+[0;32mI (30698) espnow_example: uart[0] event:[0m
+[0;32mI (30698) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (30698) espnow_example: read data: [0m
+[0;32mI (30698) espnow_example: read pat : c[0m
+[0;32mI (30918) espnow_example: uart[0] event:[0m
+[0;32mI (30918) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (30918) espnow_example: read data: [0m
+[0;32mI (30928) espnow_example: read pat : c[0m
+[0;32mI (31338) espnow_example: uart[0] event:[0m
+[0;32mI (31338) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (31338) espnow_example: read data: [0m
+[0;32mI (31338) espnow_example: read pat : c[0m
+[0;32mI (31668) espnow_example: uart[0] event:[0m
+[0;32mI (31668) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (31678) espnow_example: read data: [0m
+[0;32mI (31678) espnow_example: read pat : c[0m
+[0;32mI (31908) espnow_example: uart[0] event:[0m
+[0;32mI (31908) espnow_example: [UART PATTERN DETECTED] pos: 0, buffered size: 1[0m
+[0;32mI (31918) espnow_example: read data: [0m
+[0;32mI (31918) espnow_example: read pat : c[0m
+[0;32mI (32138) espnow_example: uart[0] event:[0m
+[

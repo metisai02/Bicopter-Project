@@ -1,0 +1,67 @@
+[1/5] cd /home/metisa/Documents/ESP32/ESP_WorkSpace/Bicopter-Project/ESP_Tunning/ESP_Send/build/esp-idf/esptool_py && /home/metisa/.espressif/python_env/idf5.2_py3.10_env/bin/python /home/metisa/Documents/ESP32/ESP_WorkSpace/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/metisa/Documents/ESP32/ESP_WorkSpace/Bicopter-Project/ESP_Tunning/ESP_Send/build/partition_table/partition-table.bin /home/metisa/Documents/ESP32/ESP_WorkSpace/Bicopter-Project/ESP_Tunning/ESP_Send/build/ESP_Send.bin
+ESP_Send.bin binary size 0xb3330 bytes. Smallest app partition is 0x100000 bytes. 0x4ccd0 bytes (30%) free.
+[2/5] Performing build step for 'bootloader'
+[1/1] cd /home/metisa/Documents/ESP32/ESP_WorkSpace/Bicopter-Project/ESP_Tunning/ESP_Send/build/bootloader/esp-idf/esptool_py && /home/metisa/.espressif/python_env/idf5.2_py3.10_env/bin/python /home/metisa/Documents/ESP32/ESP_WorkSpace/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/metisa/Documents/ESP32/ESP_WorkSpace/Bicopter-Project/ESP_Tunning/ESP_Send/build/bootloader/bootloader.bin
+Bootloader binary size 0x68a0 bytes. 0x760 bytes (7%) free.
+[2/3] cd /home/metisa/Documents/ESP32/ESP_WorkSpace/esp-idf/components/esptool_py && /usr/bin/cmake -D IDF_PATH=/home/metisa/Documents/ESP32/ESP_WorkSpace/esp-idf -D "SERIAL_TOOL=/home/metisa/.espressif/python_env/idf5.2_py3.10_env/bin/python;;/home/metisa/Documents/ESP32/ESP_WorkSpace/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32" -D "SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args" -D WORKING_DIRECTORY=/home/metisa/Documents/ESP32/ESP_WorkSpace/Bicopter-Project/ESP_Tunning/ESP_Send/build -P /home/metisa/Documents/ESP32/ESP_WorkSpace/esp-idf/components/esptool_py/run_serial_tool.cmake
+esptool esp32 -p /dev/ttyUSB0 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 4MB 0x1000 bootloader/bootloader.bin 0x10000 ESP_Send.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.6.2
+Serial port /dev/ttyUSB0
+Connecting......
+Chip is ESP32-D0WD-V3 (revision v3.1)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: b0:b2:1c:a8:84:44
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00007fff...
+Flash will be erased from 0x00010000 to 0x000c3fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+Compressed 26784 bytes to 16826...
+Writing at 0x00001000... (50 %)
+Writing at 0x00007679... (100 %)
+Wrote 26784 bytes (16826 compressed) at 0x00001000 in 0.5 seconds (effective 403.7 kbit/s)...
+Hash of data verified.
+Compressed 734000 bytes to 474621...
+Writing at 0x00010000... (3 %)
+Writing at 0x0001ace8... (6 %)
+Writing at 0x000242ad... (10 %)
+Writing at 0x000295d9... (13 %)
+Writing at 0x00031a0e... (17 %)
+Writing at 0x0003704e... (20 %)
+Writing at 0x0003cb6e... (24 %)
+Writing at 0x0004298e... (27 %)
+Writing at 0x000481cd... (31 %)
+Writing at 0x0004d3c8... (34 %)
+Writing at 0x000528fe... (37 %)
+Writing at 0x00057a7d... (41 %)
+Writing at 0x0005d1a5... (44 %)
+Writing at 0x000628d0... (48 %)
+Writing at 0x000682a3... (51 %)
+Writing at 0x0006dd3e... (55 %)
+Writing at 0x0007328d... (58 %)
+Writing at 0x00078b4e... (62 %)
+Writing at 0x0007e320... (65 %)
+Writing at 0x00083bf5... (68 %)
+Writing at 0x0008965f... (72 %)
+Writing at 0x0008f27a... (75 %)
+Writing at 0x00094ba6... (79 %)
+Writing at 0x0009ae76... (82 %)
+Writing at 0x000a558a... (86 %)
+Writing at 0x000ab632... (89 %)
+Writing at 0x000b2cd6... (93 %)
+Writing at 0x000b8691... (96 %)
+Writing at 0x000bde79... (100 %)
+Wrote 734000 bytes (474621 compressed) at 0x00010000 in 10.8 seconds (effective 545.2 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 103...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.0 seconds (effective 1315.8 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...

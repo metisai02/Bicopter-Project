@@ -1,0 +1,559 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7132
+ho 0 tail 12 room 4
+load:0x40078000,len:15672
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3884
+entry 0x40080650
+[0;32mI (33) boot: ESP-IDF v5.2-dev-1128-g03d4fa2869-dirty 2nd stage bootloader[0m
+[0;32mI (33) boot: compile time Oct  3 2023 15:15:39[0m
+[0;32mI (35) boot: Multicore bootloader[0m
+[0;32mI (39) boot: chip revision: v3.1[0m
+[0;32mI (43) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (48) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (52) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (57) boot: Enabling RNG early entropy source...[0m
+[0;32mI (62) boot: Partition Table:[0m
+[0;32mI (66) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (73) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (81) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (88) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (96) boot: End of partition table[0m
+[0;32mI (100) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=209a0h (133536) map[0m
+[0;32mI (157) esp_image: segment 1: paddr=000309c8 vaddr=3ffb0000 size=03700h ( 14080) load[0m
+[0;32mI (162) esp_image: segment 2: paddr=000340d0 vaddr=40080000 size=0bf48h ( 48968) load[0m
+[0;32mI (183) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=7dfdch (516060) map[0m
+[0;32mI (370) esp_image: segment 4: paddr=000be004 vaddr=4008bf48 size=0a248h ( 41544) load[0m
+[0;32mI (398) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (398) boot: Disabling RNG early entropy source...[0m
+[0;32mI (410) cpu_start: Multicore app[0m
+[0;32mI (410) cpu_start: Pro cpu up.[0m
+[0;32mI (410) cpu_start: Starting app cpu, entry point is 0x400812a0[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (428) cpu_start: Pro cpu start user code[0m
+[0;32mI (428) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (428) cpu_start: Application information:[0m
+[0;32mI (433) cpu_start: Project name:     ESP_Send[0m
+[0;32mI (438) cpu_start: App version:      610de77[0m
+[0;32mI (443) cpu_start: Compile time:     Oct  3 2023 15:18:04[0m
+[0;32mI (449) cpu_start: ELF file SHA256:  c0d42feaa...[0m
+[0;32mI (454) cpu_start: ESP-IDF:          v5.2-dev-1128-g03d4fa2869-dirty[0m
+[0;32mI (461) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (466) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (471) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (476) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (483) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (489) heap_init: At 3FFB77B0 len 00028850 (162 KiB): DRAM[0m
+[0;32mI (495) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (501) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (508) heap_init: At 40096190 len 00009E70 (39 KiB): IRAM[0m
+[0;32mI (515) spi_flash: detected chip: generic[0m
+[0;32mI (519) spi_flash: flash io: dio[0m
+[0;32mI (523) app_start: Starting scheduler on CPU0[0m
+[0;32mI (528) app_start: Starting scheduler on CPU1[0m
+[0;32mI (528) main_task: Started on CPU0[0m
+[0;32mI (538) main_task: Calling app_main()[0m
+[0;32mI (5I (588) wifi:wifi driver task: 3ffc198c, prio:23, stack:6656, core=0
+I (598) wifi:wifi firmware version: 6a2a12b
+I (598) wifi:wifi certification version: v7.0
+I (598) wifi:config NVS flash: enabled
+I (598) wifi:config nano formating: disabled
+I (608) wifi:Init data frame dynamic rx buffer num: 32
+I (608) wifi:Init management frame dynamic rx buffer num: 32
+I (618) wifi:Init management short buffer num: 32
+I (618) wifi:Init dynamic tx buffer num: 32
+I (628) wifi:Init static rx buffer size: 1600
+I (628) wifi:Init static rx buffer num: 10
+I (628) wifi:Init dynamic rx buffer num: 32
+[0;32mI (638) wifi_init: rx ba win: 6[0m
+[0;32mI (638) wifi_init: tcpip mbox: 32[0m
+[0;32mI (648) wifi_init: udp mbox: 6[0m
+[0;32mI (648) wifi_init: tcp mbox: 6[0m
+[0;32mI (648) wifi_init: tcp tx win: 5744[0m
+[0;32mI (658) wifi_init: tcp rx win: 5744[0m
+[0;32mI (658) wifi_init: tcp mss: 1440[0m
+[0;32mI (668) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (668) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (678) phy_init: phy_version 4670,719f9f6,Feb 18 2021,17:07:07[0m
+I (778) wifi:mode : sta (b0:b2:1c:a8:84:44)
+I (778) wifi:enable tsf
+I (778) ESPNOW: espnow [version: 1.0] init
+[0;32mI (778) main_task: Returned from app_main()[0m
+[0;32mI (85618) espnow_example: uart[0] event:[0m
+[0;32mI (85618) espnow_example: [UART DATA]: 3[0m
+[0;32mI (85618) espnow_example: [DATA EVT]:[0m
+[A[0;32mI (86368) espnow_example: uart[0] event:[0m
+[0;32mI (86368) espnow_example: [UART DATA]: 3[0m
+[0;32mI (86368) espnow_example: [DATA EVT]:[0m
+[A[0;32mI (86818) espnow_example: uart[0] event:[0m
+[0;32mI (86818) espnow_example: [UART DATA]: 3[0m
+[0;32mI (86818) espnow_example: [DATA EVT]:[0m
+[A[0;32mI (86988) espnow_example: uart[0] event:[0m
+[0;32mI (86988) espnow_example: [UART DATA]: 3[0m
+[0;32mI (86988) espnow_example: [DATA EVT]:[0m
+[A[0;32mI (87168) espnow_example: uart[0] event:[0m
+[0;32mI (87168) espnow_example: [UART DATA]: 3[0m
+[0;32mI (87168) espnow_example: [DATA EVT]:[0m
+[A[0;32mI (87608) espnow_example: uart[0] event:[0m
+[0;32mI (87608) espnow_example: [UART DATA]: 3[0m
+[0;32mI (87608) espnow_example: [DATA EVT]:[0m
+[A[0;32mI (88428) espnow_example: uart[0] event:[0m
+[0;32mI (88428) espnow_example: [UART DATA]: 3[0m
+[0;32mI (88428) espnow_example: [DATA EVT]:[0m
+[B[0;32mI (88698) espnow_example: uart[0] event:[0m
+[0;32mI (88698) espnow_example: [UART DATA]: 3[0m
+[0;32mI (88698) espnow_example: [DATA EVT]:[0m
+[A[0;32mI (89238) espnow_example: uart[0] event:[0m
+[0;32mI (89238) espnow_example: [UART DATA]: 3[0m
+[0;32mI (89238) espnow_example: [DATA EVT]:[0m
+[A[0;32mI (90208) espnow_example: uart[0] event:[0m
+[0;32mI (90208) espnow_example: [UART DATA]: 1[0m
+[0;32mI (90208) espnow_example: [DATA EVT]:[0m
+i[0;32mI (90258) espnow_example: uart[0] event:[0m
+[0;32mI (90258) espnow_example: [UART DATA]: 1[0m
+[0;32mI (90258) espnow_example: [DATA EVT]:[0m
+k[0;32mI (90378) espnow_example: uart[0] event:[0m
+[0;32mI (90378) espnow_example: [UART DATA]: 1[0m
+[0;32mI (90378) espnow_example: [DATA EVT]:[0m
+d[0;32mI (90448) espnow_example: uart[0] event:[0m
+[0;32mI (90448) espnow_example: [UART DATA]: 1[0m
+[0;32mI (90448) espnow_example: [DATA EVT]:[0m
+[0;32mI (90448) espnow_example: uart[0] event:[0m
+[0;32mI (90448) espnow_example: [UART DATA]: 1[0m
+[0;32mI (90458) espnow_example: [DATA EVT]:[0m
+wq[0;32mI (90478) espnow_example: uart[0] event:[0m
+[0;32mI (90488) espnow_example: [UART DATA]: 2[0m
+[0;32mI (90488) espnow_example: [DATA EVT]:[0m
+io[0;32mI (90588) espnow_example: uart[0] event:[0m
+[0;32mI (90588) espnow_example: [UART DATA]: 2[0m
+[0;32mI (90588) espnow_example: [DATA EVT]:[0m
+dj[0;32mI (90738) espnow_example: uart[0] event:[0m
+[0;32mI (90738) espnow_example: [UART DATA]: 2[0m
+[0;32mI (90738) espnow_example: [DATA EVT]:[0m
+iq[0;32mI (90758) espnow_example: uart[0] event:[0m
+[0;32mI (90758) espnow_example: [UART DATA]: 1[0m
+[0;32mI (90758) espnow_example: [DATA EVT]:[0m
+w[0;32mI (90788) espnow_example: uart[0] event:[0m
+[0;32mI (90788) espnow_example: [UART DATA]: 1[0m
+[0;32mI (90788) espnow_example: [DATA EVT]:[0m
+o[0;32mI (90878) espnow_example: uart[0] event:[0m
+[0;32mI (90878) espnow_example: [UART DATA]: 2[0m
+[0;32mI (90878) espnow_example: [DATA EVT]:[0m
+dj[0;32mI (91048) espnow_example: uart[0] event:[0m
+[0;32mI (91048) espnow_example: [UART DATA]: 3[0m
+[0;32mI (91048) espnow_example: [DATA EVT]:[0m
+iqw[0;32mI (91058) espnow_example: uart[0] event:[0m
+[0;32mI (91058) espnow_example: [UART DATA]: 1[0m
+[0;32mI (91058) espnow_example: [DATA EVT]:[0m
+o[0;32mI (91208) espnow_example: uart[0] event:[0m
+[0;32mI (91208) espnow_example: [UART DATA]: 1[0m
+[0;32mI (91208) espnow_example: [DATA EVT]:[0m
+d[0;32mI (91218) espnow_example: uart[0] event:[0m
+[0;32mI (91218) espnow_example: [UART DATA]: 1[0m
+[0;32mI (91218) espnow_example: [DATA EVT]:[0m
+j[0;32mI (91338) espnow_example: uart[0] event:[0m
+[0;32mI (91338) espnow_example: [UART DATA]: 3[0m
+[0;32mI (91338) espnow_example: [DATA EVT]:[0m
+iqw[0;32mI (91358) espnow_example: uart[0] event:[0m
+[0;32mI (91358) espnow_example: [UART DATA]: 1[0m
+[0;32mI (91358) espnow_example: [DATA EVT]:[0m
+o[0;32mI (91478) espnow_example: uart[0] event:[0m
+[0;32mI (91478) espnow_example: [UART DATA]: 1[0m
+[0;32mI (91478) espnow_example: [DATA EVT]:[0m
+j[0;32mI (91528) espnow_example: uart[0] event:[0m
+[0;32mI (91528) espnow_example: [UART DATA]: 1[0m
+[0;32mI (91528) espnow_example: [DATA EVT]:[0m
+d[0;32mI (91628) espnow_example: uart[0] event:[0m
+[0;32mI (91628) espnow_example: [UART DATA]: 1[0m
+[0;32mI (91628) espnow_example: [DATA EVT]:[0m
+o[0;32mI (91638) espnow_example: uart[0] event:[0m
+[0;32mI (91638) espnow_example: [UART DATA]: 3[0m
+[0;32mI (91638) espnow_example: [DATA EVT]:[0m
+iqw[0;32mI (91768) espnow_example: uart[0] event:[0m
+[0;32mI (91768) espnow_example: [UART DATA]: 1[0m
+[0;32mI (91768) espnow_example: [DATA EVT]:[0m
+j[0;32mI (91798) espnow_example: uart[0] event:[0m
+[0;32mI (91798) espnow_example: [UART DATA]: 1[0m
+[0;32mI (91798) espnow_example: [DATA EVT]:[0m
+d[0;32mI (91898) espnow_example: uart[0] event:[0m
+[0;32mI (91898) espnow_example: [UART DATA]: 1[0m
+[0;32mI (91898) espnow_example: [DATA EVT]:[0m
+o[0;32mI (91918) espnow_example: uart[0] event:[0m
+[0;32mI (91918) espnow_example: [UART DATA]: 2[0m
+[0;32mI (91918) espnow_example: [DATA EVT]:[0m
+[0;32mI (91918) espnow_example: uart[0] event:[0m
+[0;32mI (91918) espnow_example: [UART DATA]: 1[0m
+[0;32mI (91928) espnow_example: [DATA EVT]:[0m
+qwi[0;32mI (92018) espnow_example: uart[0] event:[0m
+[0;32mI (92018) espnow_example: [UART DATA]: 1[0m
+[0;32mI (92018) espnow_example: [DATA EVT]:[0m
+j[0;32mI (92078) espnow_example: uart[0] event:[0m
+[0;32mI (92078) espnow_example: [UART DATA]: 1[0m
+[0;32mI (92078) espnow_example: [DATA EVT]:[0m
+d[0;32mI (92178) espnow_example: uart[0] event:[0m
+[0;32mI (92178) espnow_example: [UART DATA]: 2[0m
+[0;32mI (92178) espnow_example: [DATA EVT]:[0m
+io[0;32mI (92208) espnow_example: uart[0] event:[0m
+[0;32mI (92208) espnow_example: [UART DATA]: 2[0m
+[0;32mI (92208) espnow_example: [DATA EVT]:[0m
+qw[0;32mI (92318) espnow_example: uart[0] event:[0m
+[0;32mI (92318) espnow_example: [UART DATA]: 1[0m
+[0;32mI (92318) espnow_example: [DATA EVT]:[0m
+j[0;32mI (92358) espnow_example: uart[0] event:[0m
+[0;32mI (92358) espnow_example: [UART DATA]: 1[0m
+[0;32mI (92358) espnow_example: [DATA EVT]:[0m
+d[0;32mI (92468) espnow_example: uart[0] event:[0m
+[0;32mI (92468) espnow_example: [UART DATA]: 1[0m
+[0;32mI (92468) espnow_example: [DATA EVT]:[0m
+i[0;32mI (92478) espnow_example: uart[0] event:[0m
+[0;32mI (92478) espnow_example: [UART DATA]: 3[0m
+[0;32mI (92478) espnow_example: [DATA EVT]:[0m
+oqw[0;32mI (92598) espnow_example: uart[0] event:[0m
+[0;32mI (92608) espnow_example: [UART DATA]: 1[0m
+[0;32mI (92608) espnow_example: [DATA EVT]:[0m
+j[0;32mI (92648) espnow_example: uart[0] event:[0m
+[0;32mI (92648) espnow_example: [UART DATA]: 1[0m
+[0;32mI (92648) espnow_example: [DATA EVT]:[0m
+d[0;32mI (92738) espnow_example: uart[0] event:[0m
+[0;32mI (92738) espnow_example: [UART DATA]: 1[0m
+[0;32mI (92738) espnow_example: [DATA EVT]:[0m
+i[0;32mI (92758) espnow_example: uart[0] event:[0m
+[0;32mI (92758) espnow_example: [UART DATA]: 3[0m
+[0;32mI (92758) espnow_example: [DATA EVT]:[0m
+oqw[0;32mI (92878) espnow_example: uart[0] event:[0m
+[0;32mI (92878) espnow_example: [UART DATA]: 1[0m
+[0;32mI (92878) espnow_example: [DATA EVT]:[0m
+j[0;32mI (92918) espnow_example: uart[0] event:[0m
+[0;32mI (92918) espnow_example: [UART DATA]: 1[0m
+[0;32mI (92918) espnow_example: [DATA EVT]:[0m
+d[0;32mI (93018) espnow_example: uart[0] event:[0m
+[0;32mI (93018) espnow_example: [UART DATA]: 3[0m
+[0;32mI (93018) espnow_example: [DATA EVT]:[0m
+iow[0;32mI (93038) espnow_example: uart[0] event:[0m
+[0;32mI (93038) espnow_example: [UART DATA]: 1[0m
+[0;32mI (93038) espnow_example: [DATA EVT]:[0m
+q[0;32mI (93138) espnow_example: uart[0] event:[0m
+[0;32mI (93138) espnow_example: [UART DATA]: 1[0m
+[0;32mI (93138) espnow_example: [DATA EVT]:[0m
+j[0;32mI (93188) espnow_example: uart[0] event:[0m
+[0;32mI (93188) espnow_example: [UART DATA]: 1[0m
+[0;32mI (93188) espnow_example: [DATA EVT]:[0m
+d[0;32mI (93288) espnow_example: uart[0] event:[0m
+[0;32mI (93288) espnow_example: [UART DATA]: 4[0m
+[0;32mI (93288) espnow_example: [DATA EVT]:[0m
+ioqw[0;32mI (93408) espnow_example: uart[0] event:[0m
+[0;32mI (93408) espnow_example: [UART DATA]: 1[0m
+[0;32mI (93408) espnow_example: [DATA EVT]:[0m
+j[0;32mI (93438) espnow_example: uart[0] event:[0m
+[0;32mI (93438) espnow_example: [UART DATA]: 1[0m
+[0;32mI (93438) espnow_example: [DATA EVT]:[0m
+d[0;32mI (93548) espnow_example: uart[0] event:[0m
+[0;32mI (93548) espnow_example: [UART DATA]: 2[0m
+[0;32mI (93548) espnow_example: [DATA EVT]:[0m
+qw[0;32mI (93578) espnow_example: uart[0] event:[0m
+[0;32mI (93578) espnow_example: [UART DATA]: 2[0m
+[0;32mI (93578) espnow_example: [DATA EVT]:[0m
+io[0;32mI (93648) espnow_example: uart[0] event:[0m
+[0;32mI (93648) espnow_example: [UART DATA]: 1[0m
+[0;32mI (93648) espnow_example: [DATA EVT]:[0m
+j[0;32mI (93718) espnow_example: uart[0] event:[0m
+[0;32mI (93718) espnow_example: [UART DATA]: 1[0m
+[0;32mI (93718) espnow_example: [DATA EVT]:[0m
+d[0;32mI (93808) espnow_example: uart[0] event:[0m
+[0;32mI (93808) espnow_example: [UART DATA]: 1[0m
+[0;32mI (93808) espnow_example: [DATA EVT]:[0m
+o[0;32mI (93818) espnow_example: uart[0] event:[0m
+[0;32mI (93818) espnow_example: [UART DATA]: 3[0m
+[0;32mI (93818) espnow_example: [DATA EVT]:[0m
+iqw[0;32mI (93928) espnow_example: uart[0] event:[0m
+[0;32mI (93928) espnow_example: [UART DATA]: 1[0m
+[0;32mI (93928) espnow_example: [DATA EVT]:[0m
+j[0;32mI (94798) espnow_example: uart[0] event:[0m
+[0;32mI (94798) espnow_example: [UART DATA]: 1[0m
+[0;32mI (94798) espnow_example: [DATA EVT]:[0m
+[0;32mI (95348) espnow_example: uart[0] event:[0m
+[0;32mI (95348) espnow_example: [UART DATA]: 1[0m
+[0;32mI (95348) espnow_example: [DATA EVT]:[0m
+[0;32mI (95568) espnow_example: uart[0] event:[0m
+[0;32mI (95568) espnow_example: [UART DATA]: 1[0m
+[0;32mI (95568) espnow_example: [DATA EVT]:[0m
+[0;32mI (95788) espnow_example: uart[0] event:[0m
+[0;32mI (95788) espnow_example: [UART DATA]: 1[0m
+[0;32mI (95788) espnow_example: [DATA EVT]:[0m
+[0;32mI (95998) espnow_example: uart[0] event:[0m
+[0;32mI (95998) espnow_example: [UART DATA]: 1[0m
+[0;32mI (95998) espnow_example: [DATA EVT]:[0m
+[0;32mI (96238) espnow_example: uart[0] event:[0m
+[0;32mI (96238) espnow_example: [UART DATA]: 1[0m
+[0;32mI (96238) espnow_example: [DATA EVT]:[0m
+[0;32mI (96458) espnow_example: uart[0] event:[0m
+[0;32mI (96458) espnow_example: [UART DATA]: 1[0m
+[0;32mI (96458) espnow_example: [DATA EVT]:[0m
+[0;32mI (96958) espnow_example: uart[0] event:[0m
+[0;32mI (96958) espnow_example: [UART DATA]: 1[0m
+[0;32mI (96958) espnow_example: [DATA EVT]:[0m
+[0;32mI (96988) espnow_example: uart[0] event:[0m
+[0;32mI (96988) espnow_example: [UART DATA]: 1[0m
+[0;32mI (96988) espnow_example: [DATA EVT]:[0m
+[0;32mI (97018) espnow_example: uart[0] event:[0m
+[0;32mI (97018) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97018) espnow_example: [DATA EVT]:[0m
+[0;32mI (97048) espnow_example: uart[0] event:[0m
+[0;32mI (97048) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97048) espnow_example: [DATA EVT]:[0m
+[0;32mI (97078) espnow_example: uart[0] event:[0m
+[0;32mI (97078) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97078) espnow_example: [DATA EVT]:[0m
+[0;32mI (97108) espnow_example: uart[0] event:[0m
+[0;32mI (97108) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97108) espnow_example: [DATA EVT]:[0m
+[0;32mI (97138) espnow_example: uart[0] event:[0m
+[0;32mI (97138) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97138) espnow_example: [DATA EVT]:[0m
+[0;32mI (97168) espnow_example: uart[0] event:[0m
+[0;32mI (97168) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97168) espnow_example: [DATA EVT]:[0m
+[0;32mI (97198) espnow_example: uart[0] event:[0m
+[0;32mI (97198) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97198) espnow_example: [DATA EVT]:[0m
+[0;32mI (97228) espnow_example: uart[0] event:[0m
+[0;32mI (97228) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97228) espnow_example: [DATA EVT]:[0m
+[0;32mI (97258) espnow_example: uart[0] event:[0m
+[0;32mI (97258) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97258) espnow_example: [DATA EVT]:[0m
+[0;32mI (97288) espnow_example: uart[0] event:[0m
+[0;32mI (97288) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97288) espnow_example: [DATA EVT]:[0m
+[0;32mI (97318) espnow_example: uart[0] event:[0m
+[0;32mI (97318) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97318) espnow_example: [DATA EVT]:[0m
+[0;32mI (97348) espnow_example: uart[0] event:[0m
+[0;32mI (97348) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97348) espnow_example: [DATA EVT]:[0m
+[0;32mI (97378) espnow_example: uart[0] event:[0m
+[0;32mI (97378) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97378) espnow_example: [DATA EVT]:[0m
+[0;32mI (97408) espnow_example: uart[0] event:[0m
+[0;32mI (97408) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97408) espnow_example: [DATA EVT]:[0m
+[0;32mI (97438) espnow_example: uart[0] event:[0m
+[0;32mI (97438) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97438) espnow_example: [DATA EVT]:[0m
+[0;32mI (97468) espnow_example: uart[0] event:[0m
+[0;32mI (97468) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97468) espnow_example: [DATA EVT]:[0m
+[0;32mI (97498) espnow_example: uart[0] event:[0m
+[0;32mI (97498) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97498) espnow_example: [DATA EVT]:[0m
+[0;32mI (97528) espnow_example: uart[0] event:[0m
+[0;32mI (97528) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97528) espnow_example: [DATA EVT]:[0m
+[0;32mI (97558) espnow_example: uart[0] event:[0m
+[0;32mI (97558) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97558) espnow_example: [DATA EVT]:[0m
+[0;32mI (97588) espnow_example: uart[0] event:[0m
+[0;32mI (97588) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97588) espnow_example: [DATA EVT]:[0m
+[0;32mI (97618) espnow_example: uart[0] event:[0m
+[0;32mI (97618) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97618) espnow_example: [DATA EVT]:[0m
+[0;32mI (97648) espnow_example: uart[0] event:[0m
+[0;32mI (97648) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97648) espnow_example: [DATA EVT]:[0m
+[0;32mI (97678) espnow_example: uart[0] event:[0m
+[0;32mI (97678) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97678) espnow_example: [DATA EVT]:[0m
+[0;32mI (97708) espnow_example: uart[0] event:[0m
+[0;32mI (97708) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97708) espnow_example: [DATA EVT]:[0m
+[0;32mI (97738) espnow_example: uart[0] event:[0m
+[0;32mI (97738) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97738) espnow_example: [DATA EVT]:[0m
+[0;32mI (97768) espnow_example: uart[0] event:[0m
+[0;32mI (97768) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97768) espnow_example: [DATA EVT]:[0m
+[0;32mI (97798) espnow_example: uart[0] event:[0m
+[0;32mI (97798) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97798) espnow_example: [DATA EVT]:[0m
+[0;32mI (97828) espnow_example: uart[0] event:[0m
+[0;32mI (97828) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97828) espnow_example: [DATA EVT]:[0m
+[0;32mI (97858) espnow_example: uart[0] event:[0m
+[0;32mI (97858) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97858) espnow_example: [DATA EVT]:[0m
+[0;32mI (97888) espnow_example: uart[0] event:[0m
+[0;32mI (97888) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97888) espnow_example: [DATA EVT]:[0m
+[0;32mI (97918) espnow_example: uart[0] event:[0m
+[0;32mI (97918) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97918) espnow_example: [DATA EVT]:[0m
+[0;32mI (97948) espnow_example: uart[0] event:[0m
+[0;32mI (97948) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97948) espnow_example: [DATA EVT]:[0m
+[0;32mI (97978) espnow_example: uart[0] event:[0m
+[0;32mI (97978) espnow_example: [UART DATA]: 1[0m
+[0;32mI (97978) espnow_example: [DATA EVT]:[0m
+[0;32mI (98008) espnow_example: uart[0] event:[0m
+[0;32mI (98008) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98008) espnow_example: [DATA EVT]:[0m
+[0;32mI (98038) espnow_example: uart[0] event:[0m
+[0;32mI (98038) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98038) espnow_example: [DATA EVT]:[0m
+[0;32mI (98068) espnow_example: uart[0] event:[0m
+[0;32mI (98068) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98068) espnow_example: [DATA EVT]:[0m
+[0;32mI (98098) espnow_example: uart[0] event:[0m
+[0;32mI (98098) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98098) espnow_example: [DATA EVT]:[0m
+[0;32mI (98128) espnow_example: uart[0] event:[0m
+[0;32mI (98128) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98128) espnow_example: [DATA EVT]:[0m
+[0;32mI (98158) espnow_example: uart[0] event:[0m
+[0;32mI (98158) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98158) espnow_example: [DATA EVT]:[0m
+[0;32mI (98188) espnow_example: uart[0] event:[0m
+[0;32mI (98188) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98188) espnow_example: [DATA EVT]:[0m
+[0;32mI (98218) espnow_example: uart[0] event:[0m
+[0;32mI (98218) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98218) espnow_example: [DATA EVT]:[0m
+[0;32mI (98248) espnow_example: uart[0] event:[0m
+[0;32mI (98248) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98248) espnow_example: [DATA EVT]:[0m
+[0;32mI (98278) espnow_example: uart[0] event:[0m
+[0;32mI (98278) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98278) espnow_example: [DATA EVT]:[0m
+[0;32mI (98308) espnow_example: uart[0] event:[0m
+[0;32mI (98308) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98308) espnow_example: [DATA EVT]:[0m
+[0;32mI (98338) espnow_example: uart[0] event:[0m
+[0;32mI (98338) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98338) espnow_example: [DATA EVT]:[0m
+[0;32mI (98368) espnow_example: uart[0] event:[0m
+[0;32mI (98368) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98368) espnow_example: [DATA EVT]:[0m
+[0;32mI (98398) espnow_example: uart[0] event:[0m
+[0;32mI (98398) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98398) espnow_example: [DATA EVT]:[0m
+[0;32mI (98428) espnow_example: uart[0] event:[0m
+[0;32mI (98428) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98428) espnow_example: [DATA EVT]:[0m
+[0;32mI (98458) espnow_example: uart[0] event:[0m
+[0;32mI (98458) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98458) espnow_example: [DATA EVT]:[0m
+[0;32mI (98488) espnow_example: uart[0] event:[0m
+[0;32mI (98488) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98488) espnow_example: [DATA EVT]:[0m
+[0;32mI (98518) espnow_example: uart[0] event:[0m
+[0;32mI (98518) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98518) espnow_example: [DATA EVT]:[0m
+[0;32mI (98548) espnow_example: uart[0] event:[0m
+[0;32mI (98548) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98548) espnow_example: [DATA EVT]:[0m
+[0;32mI (98578) espnow_example: uart[0] event:[0m
+[0;32mI (98578) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98578) espnow_example: [DATA EVT]:[0m
+[0;32mI (98608) espnow_example: uart[0] event:[0m
+[0;32mI (98608) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98608) espnow_example: [DATA EVT]:[0m
+[0;32mI (98638) espnow_example: uart[0] event:[0m
+[0;32mI (98638) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98638) espnow_example: [DATA EVT]:[0m
+[0;32mI (98668) espnow_example: uart[0] event:[0m
+[0;32mI (98668) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98668) espnow_example: [DATA EVT]:[0m
+[0;32mI (98698) espnow_example: uart[0] event:[0m
+[0;32mI (98698) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98698) espnow_example: [DATA EVT]:[0m
+[0;32mI (98728) espnow_example: uart[0] event:[0m
+[0;32mI (98728) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98728) espnow_example: [DATA EVT]:[0m
+[0;32mI (98758) espnow_example: uart[0] event:[0m
+[0;32mI (98758) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98758) espnow_example: [DATA EVT]:[0m
+[0;32mI (98788) espnow_example: uart[0] event:[0m
+[0;32mI (98788) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98788) espnow_example: [DATA EVT]:[0m
+[0;32mI (98818) espnow_example: uart[0] event:[0m
+[0;32mI (98818) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98818) espnow_example: [DATA EVT]:[0m
+[0;32mI (98848) espnow_example: uart[0] event:[0m
+[0;32mI (98848) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98848) espnow_example: [DATA EVT]:[0m
+[0;32mI (98878) espnow_example: uart[0] event:[0m
+[0;32mI (98878) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98878) espnow_example: [DATA EVT]:[0m
+[0;32mI (98908) espnow_example: uart[0] event:[0m
+[0;32mI (98908) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98908) espnow_example: [DATA EVT]:[0m
+[0;32mI (98938) espnow_example: uart[0] event:[0m
+[0;32mI (98938) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98938) espnow_example: [DATA EVT]:[0m
+[0;32mI (98968) espnow_example: uart[0] event:[0m
+[0;32mI (98968) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98968) espnow_example: [DATA EVT]:[0m
+[0;32mI (98998) espnow_example: uart[0] event:[0m
+[0;32mI (98998) espnow_example: [UART DATA]: 1[0m
+[0;32mI (98998) espnow_example: [DATA EVT]:[0m
+[0;32mI (99028) espnow_example: uart[0] event:[0m
+[0;32mI (99028) espnow_example: [UART DATA]: 1[0m
+[0;32mI (99028) espnow_example: [DATA EVT]:[0m
+[0;32mI (99058) espnow_example: uart[0] event:[0m
+[0;32mI (99058) espnow_example: [UART DATA]: 1[0m
+[0;32mI (99058) espnow_example: [DATA EVT]:[0m
+[0;32mI (99088) espnow_example: uart[0] event:[0m
+[0;32mI (99088) espnow_example: [UART DATA]: 1[0m
+[0;32mI (99088) espnow_example: [DATA EVT]:[0m
+[0;32mI (99118) espnow_example: uart[0] event:[0m
+[0;32mI (99118) espnow_example: [UART DATA]: 1[0m
+[0;32mI (99118) espnow_example: [DATA EVT]:[0m
+[0;32mI (99148) espnow_example: uart[0] event:[0m
+[0;32mI (99148) espnow_example: [UART DATA]: 1[0m
+[0;32mI (99148) espnow_example: [DATA EVT]:[0m
+[0;32mI (99178) espnow_example: uart[0] event:[0m
+[0;32mI (99178) espnow_example: [UART DATA]: 1[0m
+[0;32mI (99178) espnow_example: [DATA EVT]:[0m
+[0;32mI (99208) espnow_example: uart[0] event:[0m
+[0;32mI (99208) espnow_example: [UART DATA]: 1[0m
+[0;32mI (99208) espnow_example: [DATA EVT]:[0m
+[0;32mI (99238) espnow_example: uart[0] event:[0m
+[0;32mI (99238) espnow_example: [UART DATA]: 1[0m
+[0;32mI (99238) espnow_example: [DATA EVT]:[0m
+[0;32mI (99268) espnow_example: uart[0] event:[0m
+[0;32mI (99268) espnow_example: [UART DATA]: 1[0m
+[0;32mI (99268) espnow_example: [DATA EVT]:[0m
+[0;32mI (99298) espnow_example: uart[0] event:[0m
+[0;32mI (99298) espnow_example: [UART DATA]: 1[0m
+[0;32mI (99298) espnow_example: [DATA EVT]:[0m
+[0;32mI (100048) espnow_example: uart[0] event:[0m
+[0;32mI (100048) espnow_example: [UART DATA]: 1[0m
+[0;32mI (100048) espnow_example: [DATA EVT]:[0m
+[0;32mI (100468) espnow_example: uart[0] event:[0m
+[0;32mI (100468) espnow_example: [UART DATA]: 1[0m
+[0;32mI (100468) espnow_example: [DATA EVT]:[0m
+[0;32mI (100708) espnow_example: uart[0] event:[0m
+[0;32mI (100708) espnow_example: [UART DATA]: 1[0m
+[0;32mI (100708) espnow_example: [DATA EVT]:[0m
+[0;32mI (100998) espnow_example: uart[0] event:[0m
+[0;32mI (100998) espnow_example: [UART DATA]: 1[0m
+[0;32mI (100998) espnow_example: [DATA EVT]:[0m
+[0;32mI (101188) espnow_example: uart[0] event:[0m
+[0;32mI (101188) espnow_example: [UART DATA]: 1[0m
+[0;32mI (101188) espnow_example: [DATA EVT]:[0m
+[0;32mI (101388) espnow_example: uart[0] event:[0m
+[0;32mI (101388) espnow_example: [UART DATA]: 1[0m
+[0;32mI (101388) espnow_example: [DATA EVT]:[0m
+[0;32mI (101568) espnow_example: uart[0] event:[0m
+[0;32mI (101568) espnow_example: [UART DATA]: 1[0m
+[0;32mI (101568) espnow_example: [DATA EVT]:[0m
+[0;32mI (101728) espnow_example: uart[0] event:[0m
+[0;32mI (101728) espnow_example: [UART DATA]: 1[0m
+[0;32mI (101728) espnow_example: [DATA EVT]:[0m
+

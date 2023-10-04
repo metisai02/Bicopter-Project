@@ -1,0 +1,941 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7132
+ho 0 tail 12 room 4
+load:0x40078000,len:15672
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3884
+entry 0x40080650
+[0;32mI (33) boot: ESP-IDF v5.2-dev-1128-g03d4fa2869-dirty 2nd stage bootloader[0m
+[0;32mI (33) boot: compile time Oct  3 2023 15:15:39[0m
+[0;32mI (35) boot: Multicore bootloader[0m
+[0;32mI (39) boot: chip revision: v3.1[0m
+[0;32mI (43) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (48) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (52) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (57) boot: Enabling RNG early entropy source...[0m
+[0;32mI (62) boot: Partition Table:[0m
+[0;32mI (66) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (73) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (81) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (88) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (96) boot: End of partition table[0m
+[0;32mI (100) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1f1c0h (127424) map[0m
+[0;32mI (154) esp_image: segment 1: paddr=0002f1e8 vaddr=3ffb0000 size=00e30h (  3632) load[0m
+[0;32mI (156) esp_image: segment 2: paddr=00030020 vaddr=400d0020 size=7b64ch (505420) map[0m
+[0;32mI (343) esp_image: segment 3: paddr=000ab674 vaddr=3ffb0e30 size=02888h ( 10376) load[0m
+[0;32mI (347) esp_image: segment 4: paddr=000adf04 vaddr=40080000 size=15428h ( 87080) load[0m
+[0;32mI (395) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (395) boot: Disabling RNG early entropy source...[0m
+[0;32mI (407) cpu_start: Multicore app[0m
+[0;32mI (407) cpu_start: Pro cpu up.[0m
+[0;32mI (407) cpu_start: Starting app cpu, entry point is 0x400811c4[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (425) cpu_start: Pro cpu start user code[0m
+[0;32mI (425) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (425) cpu_start: Application information:[0m
+[0;32mI (430) cpu_start: Project name:     ESP_Send[0m
+[0;32mI (435) cpu_start: App version:      610de77[0m
+[0;32mI (440) cpu_start: Compile time:     Oct  3 2023 15:18:04[0m
+[0;32mI (446) cpu_start: ELF file SHA256:  296bf386b...[0m
+[0;32mI (451) cpu_start: ESP-IDF:          v5.2-dev-1128-g03d4fa2869-dirty[0m
+[0;32mI (458) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (463) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (468) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (473) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (480) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (486) heap_init: At 3FFB7778 len 00028888 (162 KiB): DRAM[0m
+[0;32mI (492) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (498) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (505) heap_init: At 40095428 len 0000ABD8 (42 KiB): IRAM[0m
+[0;32mI (512) spi_flash: detected chip: generic[0m
+[0;32mI (516) spi_flash: flash io: dio[0m
+[0;32mI (520) app_start: Starting scheduler on CPU0[0m
+[0;32mI (525) app_start: Starting scheduler on CPU1[0m
+[0;32mI (525) main_task: Started on CPU0[0m
+[0;32mI (535) main_task: Calling app_main()[0m
+I (575) wifi:wifi driver task: 3ffbf4e8, prio:23, stack:6656, core=0
+I (585) wifi:wifi firmware version: 6a2a12b
+I (585) wifi:wifi certification version: v7.0
+I (585) wifi:config NVS flash: enabled
+I (585) wifi:config nano formating: disabled
+I (595) wifi:Init data frame dynamic rx buffer num: 32
+I (595) wifi:Init management frame dynamic rx buffer num: 32
+I (605) wifi:Init management short buffer num: 32
+I (605) wifi:Init dynamic tx buffer num: 32
+I (615) wifi:Init static rx buffer size: 1600
+I (615) wifi:Init static rx buffer num: 10
+I (625) wifi:Init dynamic rx buffer num: 32
+[0;32mI (625) wifi_init: rx ba win: 6[0m
+[0;32mI (625) wifi_init: tcpip mbox: 32[0m
+[0;32mI (635) wifi_init: udp mbox: 6[0m
+[0;32mI (635) wifi_init: tcp mbox: 6[0m
+[0;32mI (635) wifi_init: tcp tx win: 5744[0m
+[0;32mI (645) wifi_init: tcp rx win: 5744[0m
+[0;32mI (645) wifi_init: tcp mss: 1440[0m
+[0;32mI (655) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (655) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (665) phy_init: phy_version 4670,719f9f6,Feb 18 2021,17:07:07[0m
+I (765) wifi:mode : sta (b0:b2:1c:a8:84:44)
+I (765) wifi:enable tsf
+I (765) ESPNOW: espnow [version: 1.0] init
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+[0;32mI (775) main_task: Returned from app_main()[0m
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x3 (DOWNLOAD_BOOT(UART0/UART1/SDIO_REI_REO_V2))
+waiting for download
+�ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7132
+ho 0 tail 12 room 4
+load:0x40078000,len:15672
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3884
+entry 0x40080650
+[0;32mI (33) boot: ESP-IDF v5.2-dev-1128-g03d4fa2869-dirty 2nd stage bootloader[0m
+[0;32mI (33) boot: compile time Oct  3 2023 15:15:39[0m
+[0;32mI (35) boot: Multicore bootloader[0m
+[0;32mI (39) boot: chip revision: v3.1[0m
+[0;32mI (43) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (48) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (52) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (57) boot: Enabling RNG early entropy source...[0m
+[0;32mI (62) boot: Partition Table:[0m
+[0;32mI (66) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (73) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (81) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (88) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (96) boot: End of partition table[0m
+[0;32mI (100) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1f1c0h (127424) map[0m
+[0;32mI (154) esp_image: segment 1: paddr=0002f1e8 vaddr=3ffb0000 size=00e30h (  3632) load[0m
+[0;32mI (156) esp_image: segment 2: paddr=00030020 vaddr=400d0020 size=7b64ch (505420) map[0m
+[0;32mI (343) esp_image: segment 3: paddr=000ab674 vaddr=3ffb0e30 size=02888h ( 10376) load[0m
+[0;32mI (347) esp_image: segment 4: paddr=000adf04 vaddr=40080000 size=15428h ( 87080) load[0m
+[0;32mI (395) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (395) boot: Disabling RNG early entropy source...[0m
+[0;32mI (407) cpu_start: Multicore app[0m
+[0;32mI (407) cpu_start: Pro cpu up.[0m
+[0;32mI (407) cpu_start: Starting app cpu, entry point is 0x400811c4[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (425) cpu_start: Pro cpu start user code[0m
+[0;32mI (425) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (425) cpu_start: Application information:[0m
+[0;32mI (430) cpu_start: Project name:     ESP_Send[0m
+[0;32mI (435) cpu_start: App version:      610de77[0m
+[0;32mI (440) cpu_start: Compile time:     Oct  3 2023 15:18:04[0m
+[0;32mI (446) cpu_start: ELF file SHA256:  296bf386b...[0m
+[0;32mI (451) cpu_start: ESP-IDF:          v5.2-dev-1128-g03d4fa2869-dirty[0m
+[0;32mI (458) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (463) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (468) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (473) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (480) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (486) heap_init: At 3FFB7778 len 00028888 (162 KiB): DRAM[0m
+[0;32mI (492) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (498) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (505) heap_init: At 40095428 len 0000ABD8 (42 KiB): IRAM[0m
+[0;32mI (512) spi_flash: detected chip: generic[0m
+[0;32mI (516) spi_flash: flash io: dio[0m
+[0;32mI (520) app_start: Starting scheduler on CPU0[0m
+[0;32mI (525) app_start: Starting scheduler on CPU1[0m
+[0;32mI (525) main_task: Started on CPU0[0m
+[0;32mI (535) main_task: Calling app_main()[0m
+I (575) wifi:wifi driver task: 3ffbf4e8, prio:23, stack:6656, core=0
+I (585) wifi:wifi firmware version: 6a2a12b
+I (585) wifi:wifi certification version: v7.0
+I (585) wifi:config NVS flash: enabled
+I (585) wifi:config nano formating: disabled
+I (595) wifi:Init data frame dynamic rx buffer num: 32
+I (595) wifi:Init management frame dynamic rx buffer num: 32
+I (605) wifi:Init management short buffer num: 32
+I (605) wifi:Init dynamic tx buffer num: 32
+I (615) wifi:Init static rx buffer size: 1600
+I (615) wifi:Init static rx buffer num: 10
+I (625) wifi:Init dynamic rx buffer num: 32
+[0;32mI (625) wifi_init: rx ba win: 6[0m
+[0;32mI (625) wifi_init: tcpip mbox: 32[0m
+[0;32mI (635) wifi_init: udp mbox: 6[0m
+[0;32mI (635) wifi_init: tcp mbox: 6[0m
+[0;32mI (635) wifi_init: tcp tx win: 5744[0m
+[0;32mI (645) wifi_init: tcp rx win: 5744[0m
+[0;32mI (645) wifi_init: tcp mss: 1440[0m
+[0;32mI (655) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (655) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (665) phy_init: phy_version 4670,719f9f6,Feb 18 2021,17:07:07[0m
+I (765) wifi:mode : sta (b0:b2:1c:a8:84:44)
+I (765) wifi:enable tsf
+I (765) ESPNOW: espnow [version: 1.0] init
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+[0;32mI (775) main_task: Returned from app_main()[0m
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+data : Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+len: 88
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x3 (DOWNLOAD_BOOT(UART0/UART1/SDIO_REI_REO_V2))
+waiting for download
+es29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7132
+ho 0 tail 12 room 4
+load:0x40078000,len:15672
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3884
+entry 0x40080650
+[0;32mI (33) boot: ESP-IDF v5.2-dev-1128-g03d4fa2869-dirty 2nd stage bootloader[0m
+[0;32mI (33) boot: compile time Oct  3 2023 15:15:39[0m
+[0;32mI (35) boot: Multicore bootloader[0m
+[0;32mI (39) bot: chip revision: v3.1[0m
+[0;32mI (43) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (48) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (52) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (57) boot: Enabling RNG early entropy source...[0m
+[0;32mI (62) boot: Partition Table:[0m
+[0;32mI (66) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (73) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (81) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (88) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (96) boot: End of partition table[0m
+[0;32mI (100) esp_image: segment 0: paddr=00010020 vadd�ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x3 (DOWNLOAD_BOOT(UART0/UART1/SDIO_REI_REO_V2))
+waiting for download
+x� �x� ��xxx �� �x� � ���������� ���� �����x � x � ��x� �x�� � x � � x x��xxx x�x��x�xx��xx x�xx  xx�x x� x�x� �x�� � x ���� � x��x xx�xx� x x�x xxx�  �x x�x �xx� x�x� xx�xx � � x�x�x�x��x�x�x�� x�� � � x ���x xx�xx x��� � xxxxx� � �  �xxxx �x�x�x�� �  � � x xx �x�x�x�� �  � � x �xx �x�x�x�� �  � � x� x� ��x �x�x�x�� �  � � x � �xx �x�x�x�� �  � � x�� xx �x�x�x�� �  � �x � x�x� �xxx��  x��x� x ��  �x�x xx � �x��x�x�����x �  �x�x  �x�� � x����x�x� � ���� � x �xxx�x����� �������x �  �x� � � � �x x�� � � ���� ���x�x�x�� � ��x �  �x�x  �x�� �  �� � ���� � � � � x �xxx�x�� �x�����������x �  �x� � � � �x x�� � � ���� ���x�x�x�� � ��x �  �x�x  �x�� �  �� � � � � �� � � x �xxx�x�� ��x �  �x�x  �x�� �  �� � � � � �� � �� x �xxx�x����� � � ��x � x�x� �x�x� � �  �� � � � ����x�� �x � �� ��x ����������x�x�� � x������xx �� x�x� �x�� �x x�x xxxx�  x  ���xx��x���xx �xxx�x�x � ���� �xx�� ���� � ����x x�� ����x�xx �x��x� �x� ������ � ��� �x x�xx �� x�x� � �x�x  �xxx�x� ��x �x�x� � �� ��x ����������x�x�� � x������xx �� x�x� �x�� �� x�x�� x�� �xx � �x��x��xx ���x  � � ���� ���� ������� � �x����� �x��������x��� ��x �x�x� � �� ��x ����������x�x�� � x���x��xx �� x�x� �x�� �x�xx � �x��x x�x�xx �� x�x� � �x�x  �xxx�x� ��x �x�x� � �� ��x ����������x�x�� � x���x�xx �� x�x� �x�� ��  �x��  ���xxx�x��x�x��x�x�x�� ���x���x ��� ��x �x�x� � �� ��x ����������x�x�� � x �����xx �� x�x� �xxx�x� x�������� ���x xx� ���x xxxx � � � � � � ���� � �� �x� �x�x� ��x �x�x� � �� ��x ����������x�x�� � x �� �xx �� x�x� �xxx�x� x�������� ���x xx� �x�x� �xx � � � � � � ���� �  x��x�x� ��x �x�x� � �� ��x ����������x�x�� � xx�����xx �� x�x� �xxx�x� x�������� ���x xx� ��  �x x� � ���xx�x�xx ���� � ��x�x x� ��x �x�x� � �� ��x ����������x�x�� � xx�����xx �� x�x� �x�� �x x�x x  �x��x�x� ���x��x  �x�x x� �x� �x�x� �x�x� x� ���x�xxx�x xxxx�x�x�� ��x �x�x� � �� ��x ����������x�x�� � x������xx �� x�x� �x�� � x x� �x�� �x��x�x� � xx x  �xxx���� ��x �x�x� � �� ��x ����������x�x�� � x������xx �� x�x� �x�� �� �� � � �x x xx � � � � � � � � � � � � �xxx�x x�xx � � � � � � � � � � xx� xx ���x x ���x�x�x�xx � � � � �xxx�x� � �x� ��x �x�x� � �� ��x ����������x�x�� � x������xx �� x�x� �x�� � � � ���x�x� � � � � � � � � � � � � � ��xx��x x�� � �x  �x  � � � � � � � � � � � ���� � � � � �x� � � � � � � � ���� � � ��� ��x �x�x� � �� ��x ����������x�x�� � x � �xx �� x�x� �x�� � � � �  �x�xxx�x�x�� � � � � � � � � � ���x�  � �x  �x  � � � � � � � � � � � � � � � � � � � ��� � � � � � � � � � � � ��� ��x �x�x� � �� ��x ����������x�x�� � x � �xx �� x�x� �x�� � ���� ���x x  �x�x�x� � � � � � � � � � ���x x  �x�x�x� �    � � � � � � � � � � � � � � � � � � � � � � � � � � � � ��� ��x �x�x� � �� ��x ����������x�x�� � xx����xx �� x�x� �x�� �x x� � ���x� � x x� �x�� �x��x�x� � �x x  �xxx� ��x �x�x� � �� ��x ����������x�x�� � x � � �xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � � ���� � x  � �x�x�� � � � � � ���� � ���x  � �x�x������� �� � � ���� � ���x��x�xxx�� ���x ��  � � � x ������� ����� ��xx �x�x  x� ��x �x�x� � �� ��x ����������x�x�� � x �x�� ��xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � � ���� � x  � �x�x�� � � ������x �x� � ���x  � �x�x�������x�x  � � � � ���x��x�xxx�� � �x�x�� � � � x � �������������xx � �x�x  �x� ��x �x�x� � �� ��x ����������x�x�� � x �x�����xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � ������� � x  � �x�x�� � � ���� � ���� � ���x  � �x�x�� �� � � � � ���� � ���x��x�xxx������ x�� ���  � � xx�� �x�� ����� �xx �x�x  x� ��x �x�x� � �� ��x ����������x�x�� � x��� �����xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � ������� � x  � �x�x�� � � � x x����� �� ���x  � �x�x�������x�x  �x�x�� � ���x��x�xxx�� ���� � � � � � x � � ����������xx � �x�x  �x� ��x �x�x� � �� ��x ����������x�x�� � x��� �����xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � � ����� � x  � �x�x�� � � �  �x� � �� ���x  � �x�x�� �� � � � � � � � ���x��x�xxx�� �x�� ����� � � � x � ���� � � �xx � �x�x  �x� ��x �x�x� � �� ��x ����������x�x�� � x���x�x��xx �� x�x� �x�� � �x�x  �xx � �    ���x�x�x�� � x x� �x�� �x��x�x� �  � ���x�x�x�xx � � � x � � � � ��� ��x �x�x� � �� ��x ����������x�x�� � x���x�x��xx �� x�x� �x�� �  x��x�x x  �x��x�x� ���x��x  �x�x x� �x� �x�x� �x�x� x� ���x�xxx�x xxxx�x�x�� ��x �x�x� � �� ��x ����������x�x�� � x �� ����xx ��  xxxx�� �x x� �x�� �x�xx � �x��x x�x�xx �   x� ��x �x�x� � �� ��x ����������x�x�� � x �� ����xx ��  xxxx�� �x x� �x�� � x��x� ��  xx �x� xx�� ��x �x�x� � �� ��x ����������x�x�� � x �� ����xx ��  xxxx�� �x x� �x�� ���x �x x� �x��x�x� �    ��  xx x �x�x� �x�x� � x�x��x� � �x�x� � �  �� � � � � ��  ���� ��x �x�x� � �� ��x ����������x�x�� � x �xx ��  xxxx�� �x x� �x�� �    ��  xx �x� xx�� ��x �x�x� � �� ��x ����������x�x�� � x �����x��xx ��  xxxx�� �x x� �x�� � x��x� ��  xx ��� �x x� � �x�x�xxx� �� x� �xxx� ��x �x�x� � �� ��x ����������x�x�� � x �����x��xx ��  xxxx�� �x x� �x�� ��  xx ���x�xxx x�� ���� �� � � � � � � � � �x�x� ��x �x�x� � �� ��x ����������x�x�� � x �����x��xx ��  xxxx�� �x x� �x�� �    �x��x x  �x��x�x� �x�x�x�x�x�x��x  �x��x�x�x���� ��x �x�x� � �� ��x ����������x�x�� � x ����� �xx ��  xxxx�� �x x� �x�� � x��x�xxxxx  � ���x x��xxx�� � � � � �x x�x x�x��xx�x� �x� ��x �x�x� � �� ��x ����������x�x�� � x �����x��xx ��  xxxx�� �x x� �x�� �    ���xxx�x�x��x�x�x�� � � � � � ���� � � �xxx������� ��x �x�x� � �� ��x ����������x�x�� � x �� �� �xx ��  xxxx�� �x x� �x�� �� x�x�� x�� �xx � �x��x��xxx�� � � � � ���x  � � ���� ���� ������� � �x����� � ���� � ���� ��x �x�x� � �� ��x ����������x�x�� � x �� �����xx ��  xxxx�� �x x� �x�� �x  �x  ���x�� �xx ���x �x x��x�������� � ����x����� x�x�� ����� xx�x�x�� ��x �x�x� � �� ��x ����������x�x�� � x ��x�� �xx ��  xxxx�� �x x� �x�� �x x�x xxxx�  x x�� � � � � � � � � � ���xx��x���xx �xxx�x�x � ���� �xx�� ���� � ����x x�� ����x�xx �x��x� �x�x� ��x �x�x� � �� ��x ����������x�x�� � x ��x�� �xx ��  xxxx�� �x x� �x�� �x�x��x� ��  �x��  ���xxx�x�� � � � � ��� ��x ��� ��x �x�x� � �� ��x ����������x�x�� � x ��������xx ��  xxxx�� �x x� �x�� �x�x   ��  �x��  ���xxx�x�� � � � � ���x���xx�x� ��� ��x �x�x� � �� ��x ����������x�x�� � x ����� �xx ��  xxxx�� �x x� �x�� ��  �x��  ���xxx�x�� � � � � � � � � ���x���x ��� ��x �x�x� � �� ��x ����������x�x�� � x ��������xx � �xxx  xxx�x�x�� �x�� �x�x�x�� �x��x  �x��x�x��x�x�xx ���x x�� � x�x x�� �x x  �xx ���x�x� � �x�x�x x��x��x  �  � �x�x x  �x��x�x�x���� ��x �x�x� � �� ��x ����������x�x�� � x �� � �xx � �xxx  xxx�x�x�� �x�� �  � ����� x x x x��x  � � �xxx� � � � � � �x���� � � x��� ��xx��x x�x��� �  x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � x �� ����xx � �xxx  xxx�x�x�� �x�� �  � ����� x x x�������� � � �xxx� � � � ���� � � � � � x ������� ��xx��x x�x��� �  x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � x ��x����xx � �xxx  xxx�x�x�� �x�� �  � ����� x x  � �� �� � � �xxx� � � � � ���� x  � � x � �� ��xx��x x�x��� �  xxx�x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � x ��x� �xx � �xxx  xxx�x�x�� �x�� �  � ����� x x  �����x�� � � �xxx� � � � � �� x x  � � x � � � ��xx��x x�x��� �  xxx�x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � xx�� �x��xx � �xxx  xxx�x�x�� �x�� �  � � �� � �x�x�� ����� � � �xxx� � � � � � x    � � x ����� ��xx��x x�x��� �x�x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � xx�� ����xx ��� x��xx�� �x x� �x�� � �xx �xxx  �xx � ��  �x�� x�� ���xxx�xxx�x��x x� ��x �x�x� � �� ��x ����������x�x�� � xx�� ����xx ��� x��xx�� �x x� �x�� ��� �x x� � �x�x�x�� � �x��x�x� ��x �x�x� � �� ��x ����������x�x�� � xx����� �xx �   xx�� �x x� �x�� ���x �x x� �x��x�x� ���x  �xx �xx �xxx� ���x� ��  xxx ��� ��x �x�x� � �� ��x ����������x�x�� � xx�����x��xx �   xx�� �x x� �x�� ���x �x x� �x��x�x� ���x  �xx �xx �xxx� ���x� ��  xxxx ��� ��x �x�x� � �� ��x ����������x�x�� � xx�����x��xx �x�x x��x�xx �x x�xxx�� ���x �x x� �xx � ���x� ��  xxx ��� ��x �x�x� � �� ��x ����������x�x�� � xx�����x��xx �x�x x��x�xx �x x�xxx�� �� x  � �x��x�x� �   xxx�x x��x� xxx�� ��x �x�x� � x� � xx�����x��xx ���x��x�x��x����x��x�x�� � �x�x��x�xxx� � �x x�xxx�� ������x�x x� ��x� � x � x�x��x�x�������� x ��� �x x xxx��������x����� x �� x�x�xxx�� �x � x� � xx�� �x��xx ���x��x�x��x����x��x�x�� ���x��x�x��x�x x�xx ���xxx�x�x��x�x�x�� ���� x�� x ����� x� � x� � xx�� �x��xx ���x��x�x��x����x��x�x�� �� xxx� �x��x�x��x x  �x��x�x� ���xxx�x�x��x�x�x�� ���x���x �x � x� � xx�� �x��xx ���x��x�x��x��� x�x�x�x��x� ���xxx�x ��� �x x� �x�� �x�x�x x  �xx �x� � x� � xx�� �x��xx ���x��x�x��x��� x�x�x�x��x� ���x x�x� ���x�x�x��x  �x��x�x�x�� � �x��x�x x  �xx �x� � x� � xx��x�x��xx ���x��x�x��x��x�x�x�� � � �x  �x  ���x�x x��xx � �x�x�x x��x��x  ���  �� xxx�x�xxx� ���xxx��x�� �������x � x� � xx��x�x��xx ���x��x�x��x��x�x�x�� � �x�x x�x x�xxx��xxx� � ���x�x x��xx � �x�x�x x��x��x  ���  �� xxx�x�xxx� ���xxx��x�� �������x � x� � x��� �x��xx ���x��x�x��x��x�x�x�� � �x�x x�x x�xxx��xxx� � ��� �x�x� � �� xxx�x�xxx� ���xxx��x�� �������x � x� � x��� �x��xx ���x��x�x��x��x�x�x�� � � �x�x�x x��x��x  � �  �� xxx�x�xxx� ���xxx��x�� �������x � x� � x��� �x��xx ���x��x�x��x��x�x�x�� � ��� �x  �x��x  ���  �� xxx�x�xxx� ���x��x�xxx�� � ���� � �x � x� � x��� �x��xx ���x��x�x��x��x�x�x�� � ��� �x  �x��x  ���  �� xxx�x�xxx� ���xxx��x�� � � �x � x� � x������x��xx ���x��x�x��x��x�x�x�� � � �x�x�x x��x��x  ���  �� xxx�x�xxx� ���xxx��x�� �������x � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� ���  �� x  ���x��x�x�� ������ ��x �x�x� � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� � �x  x��  �x�x x� x�� ��������� ��x �x�x� � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� �x� �  �x�x x� x�� ������ ��x �x�x� � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� � �x   �x�x x� x�� ������ ��x �x�x� � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� � �x   � �  ���x��x�x�� �x����� �� ���� ��x �x�x� � �� ��x ����������x�x�� � x��� ��x��xx ���x��x�x��xxx�x�x�� �x�� � �x   ���  ���x��x�x�� �x����� �� ���� ��x �x�x� � �� ��x ����������x�x�� � x��� ��x��xx ���x��x�x��xxx�x�x�� �x�� � �x   �x�x�x�x�� � � �� �� ��� ��x �x�x� � �� ��x ����������x�x�� � x���x��x��xx ���x��x�x��xxx�x�x�� �x�� ��xx��x x�� �x�x�x x�� ��� x �x�x�x x  �xx �x� ��x �x�x� � �� ��x ����������x�x�� � x���x��x��xx ���x��x�x��xxx�x�x�� �x�� ��xx��x x�� ���x x �x�x�x x�� ��� x �x�x�x x  �xx �x� ��x �x�x� � �� ��x ����������x�x�� � x������x��xx �  �x�xxx�x�x�� �x�� �  �x�xx��xxx�x�x��x�x� � �������� � x��� �x���x����x�� x� xxx  � � � ���� ���� � x ������� ������� ������ ��x �x�x� � x� � x������x��xx ���x��x�x��x��x�x� �xx ���� ��� �x  � x�  ����� x����� �� x��  ���� � ����� �� ��xxx � x� � x������x��xx ���x��x�x��x��x�x�x x  �xx � �x�x�x� � x� � x������x��xx �x x�x x��x�xxx�� �x�x� x�x�x� ���x��xxx�x�x��x�x�x�� � ��x �xx �x�x�x�� �x� �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x � �� ��x ����������x�x�� � x������x��xx �x�x x��x�xx �x x�xxx�� ���xx� �xxx�x�xx � ���x�x�x�� �   xxx�x x��x� xxx�� ��x �x�x� �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x � x� �x� ��xxx � ����x� ���� � �x� � ���������� ���� �����x � x � ��x� �x�� � x � � x x��xxx x�x��x�xx��xx x�xx  xx�x x� x�x� �x�� � x ���� � x��x xx�xx� x x�x xxx�  �x x�x �xx� x�x� xx�xx � � x�x�x�x��x�x�x�� x�� � � x ���x xx�xx x��� � xxxxx� � �  �xxxx �x�x�x�� �  � � x xx �x�x�x�� �  � � x �xx �x�x�x�� �  � � x� x� ��x �x�x�x�� �  � � x � �xx �x�x�x�� �  � � x�� xx �x�x�x�� �  � �x � x�x� �xxx��  x��x� x ��  �x�x xx � �x��x�x�����x �  �x�x  �x�� � x����x�x� � ���� � x �xxx�x����� �������x �  �x� � � � �x x�� � � ���� ���x�x�x�� � ��x �  �x�x  �x�� �  �� � ���� � � � � x �xxx�x�� �x�����������x �  �x� � � � �x x�� � � ���� ���x�x�x�� � ��x �  �x�x  �x�� �  �� � � � � �� � � x �xxx�x�� ��x �  �x�x  �x�� �  �� � � � � �� � �� x �xxx�x����� � � ��x � x�x� �x�x� � �  �� � � � ����x�� �x � �� ��x ����������x�x�� � x������xx �� x�x� �x�� �x x�x xxxx�  x  ���xx��x���xx �xxx�x�x � ���� �xx�� ���� � ����x x�� ����x�xx �x��x� �x� ������ � ��� �x x�xx �� x�x� � �x�x  �xxx�x� ��x �x�x� � �� ��x ����������x�x�� � x������xx �� x�x� �x�� �� x�x�� x�� �xx � �x��x��xx ���x  � � ���� ���� ������� � �x����� �x��������x��� ��x �x�x� � �� ��x ����������x�x�� � x���x��xx �� x�x� �x�� �x�xx � �x��x x�x�xx �� x�x� � �x�x  �xxx�x� ��x �x�x� � �� ��x ����������x�x�� � x���x�xx �� x�x� �x�� ��  �x��  ���xxx�x��x�x��x�x�x�� ���x���x ��� ��x �x�x� � �� ��x ����������x�x�� � x �����xx �� x�x� �xxx�x� x�������� ���x xx� ���x xxxx � � � � � � ���� � �� �x� �x�x� ��x �x�x� � �� ��x ����������x�x�� � x �� �xx �� x�x� �xxx�x� x�������� ���x xx� �x�x� �xx � � � � � � ���� �  x��x�x� ��x �x�x� � �� ��x ����������x�x�� � xx�����xx �� x�x� �xxx�x� x�������� ���x xx� ��  �x x� � ���xx�x�xx ���� � ��x�x x� ��x �x�x� � �� ��x ����������x�x�� � xx�����xx �� x�x� �x�� �x x�x x  �x��x�x� ���x��x  �x�x x� �x� �x�x� �x�x� x� ���x�xxx�x xxxx�x�x�� ��x �x�x� � �� ��x ����������x�x�� � x������xx �� x�x� �x�� � x x� �x�� �x��x�x� � xx x  �xxx���� ��x �x�x� � �� ��x ����������x�x�� � x������xx �� x�x� �x�� �� �� � � �x x xx � � � � � � � � � � � � �xxx�x x�xx � � � � � � � � � � xx� xx ���x x ���x�x�x�xx � � � � �xxx�x� � �x� ��x �x�x� � �� ��x ����������x�x�� � x������xx �� x�x� �x�� � � � ���x�x� � � � � � � � � � � � � � ��xx��x x�� � �x  �x  � � � � � � � � � � � ���� � � � � �x� � � � � � � � ���� � � ��� ��x �x�x� � �� ��x ����������x�x�� � x � �xx �� x�x� �x�� � � � �  �x�xxx�x�x�� � � � � � � � � � ���x�  � �x  �x  � � � � � � � � � � � � � � � � � � � ��� � � � � � � � � � � � ��� ��x �x�x� � �� ��x ����������x�x�� � x � �xx �� x�x� �x�� � ���� ���x x  �x�x�x� � � � � � � � � � ���x x  �x�x�x� �    � � � � � � � � � � � � � � � � � � � � � � � � � � � � ��� ��x �x�x� � �� ��x ����������x�x�� � xx����xx �� x�x� �x�� �x x� � ���x� � x x� �x�� �x��x�x� � �x x  �xxx� ��x �x�x� � �� ��x ����������x�x�� � x � � �xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � � ���� � x  � �x�x�� � � � � � ���� � ���x  � �x�x������� �� � � ���� � ���x��x�xxx�� ���x ��  � � � x ������� ����� ��xx �x�x  x� ��x �x�x� � �� ��x ����������x�x�� � x �x�� ��xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � � ���� � x  � �x�x�� � � ������x �x� � ���x  � �x�x�������x�x  � � � � ���x��x�xxx�� � �x�x�� � � � x � �������������xx � �x�x  �x� ��x �x�x� � �� ��x ����������x�x�� � x �x�����xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � ������� � x  � �x�x�� � � ���� � ���� � ���x  � �x�x�� �� � � � � ���� � ���x��x�xxx������ x�� ���  � � xx�� �x�� ����� �xx �x�x  x� ��x �x�x� � �� ��x ����������x�x�� � x��� �����xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � ������� � x  � �x�x�� � � � x x����� �� ���x  � �x�x�������x�x  �x�x�� � ���x��x�xxx�� ���� � � � � � x � � ����������xx � �x�x  �x� ��x �x�x� � �� ��x ����������x�x�� � x��� �����xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � � ����� � x  � �x�x�� � � �  �x� � �� ���x  � �x�x�� �� � � � � � � � ���x��x�xxx�� �x�� ����� � � � x � ���� � � �xx � �x�x  �x� ��x �x�x� � �� ��x ����������x�x�� � x���x�x��xx �� x�x� �x�� � �x�x  �xx � �    ���x�x�x�� � x x� �x�� �x��x�x� �  � ���x�x�x�xx � � � x � � � � ��� ��x �x�x� � �� ��x ����������x�x�� � x���x�x��xx �� x�x� �x�� �  x��x�x x  �x��x�x� ���x��x  �x�x x� �x� �x�x� �x�x� x� ���x�xxx�x xxxx�x�x�� ��x �x�x� � �� ��x ����������x�x�� � x �� ����xx ��  xxxx�� �x x� �x�� �x�xx � �x��x x�x�xx �   x� ��x �x�x� � �� ��x ����������x�x�� � x �� ����xx ��  xxxx�� �x x� �x�� � x��x� ��  xx �x� xx�� ��x �x�x� � �� ��x ����������x�x�� � x �� ����xx ��  xxxx�� �x x� �x�� ���x �x x� �x��x�x� �    ��  xx x �x�x� �x�x� � x�x��x� � �x�x� � �  �� � � � � ��  ���� ��x �x�x� � �� ��x ����������x�x�� � x �xx ��  xxxx�� �x x� �x�� �    ��  xx �x� xx�� ��x �x�x� � �� ��x ����������x�x�� � x �����x��xx ��  xxxx�� �x x� �x�� � x��x� ��  xx ��� �x x� � �x�x�xxx� �� x� �xxx� ��x �x�x� � �� ��x ����������x�x�� � x �����x��xx ��  xxxx�� �x x� �x�� ��  xx ���x�xxx x�� ���� �� � � � � � � � � �x�x� ��x �x�x� � �� ��x ����������x�x�� � x �����x��xx ��  xxxx�� �x x� �x�� �    �x��x x  �x��x�x� �x�x�x�x�x�x��x  �x��x�x�x���� ��x �x�x� � �� ��x ����������x�x�� � x ����� �xx ��  xxxx�� �x x� �x�� � x��x�xxxxx  � ���x x��xxx�� � � � � �x x�x x�x��xx�x� �x� ��x �x�x� � �� ��x ����������x�x�� � x �����x��xx ��  xxxx�� �x x� �x�� �    ���xxx�x�x��x�x�x�� � � � � � ���� � � �xxx������� ��x �x�x� � �� ��x ����������x�x�� � x �� �� �xx ��  xxxx�� �x x� �x�� �� x�x�� x�� �xx � �x��x��xxx�� � � � � ���x  � � ���� ���� ������� � �x����� � ���� � ���� ��x �x�x� � �� ��x ����������x�x�� � x �� �����xx ��  xxxx�� �x x� �x�� �x  �x  ���x�� �xx ���x �x x��x�������� � ����x����� x�x�� ����� xx�x�x�� ��x �x�x� � �� ��x ����������x�x�� � x ��x�� �xx ��  xxxx�� �x x� �x�� �x x�x xxxx�  x x�� � � � � � � � � � ���xx��x���xx �xxx�x�x � ���� �xx�� ���� � ����x x�� ����x�xx �x��x� �x�x� ��x �x�x� � �� ��x ����������x�x�� � x ��x�� �xx ��  xxxx�� �x x� �x�� �x�x��x� ��  �x��  ���xxx�x�� � � � � ��� ��x ��� ��x �x�x� � �� ��x ����������x�x�� � x ��������xx ��  xxxx�� �x x� �x�� �x�x   ��  �x��  ���xxx�x�� � � � � ���x���xx�x� ��� ��x �x�x� � �� ��x ����������x�x�� � x ����� �xx ��  xxxx�� �x x� �x�� ��  �x��  ���xxx�x�� � � � � � � � � ���x���x ��� ��x �x�x� � �� ��x ����������x�x�� � x ��������xx � �xxx  xxx�x�x�� �x�� �x�x�x�� �x��x  �x��x�x��x�x�xx ���x x�� � x�x x�� �x x  �xx ���x�x� � �x�x�x x��x��x  �  � �x�x x  �x��x�x�x���� ��x �x�x� � �� ��x ����������x�x�� � x �� � �xx � �xxx  xxx�x�x�� �x�� �  � ����� x x x x��x  � � �xxx� � � � � � �x���� � � x��� ��xx��x x�x��� �  x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � x �� ����xx � �xxx  xxx�x�x�� �x�� �  � ����� x x x�������� � � �xxx� � � � ���� � � � � � x ������� ��xx��x x�x��� �  x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � x ��x����xx � �xxx  xxx�x�x�� �x�� �  � ����� x x  � �� �� � � �xxx� � � � � ���� x  � � x � �� ��xx��x x�x��� �  xxx�x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � x ��x� �xx � �xxx  xxx�x�x�� �x�� �  � ����� x x  �����x�� � � �xxx� � � � � �� x x  � � x � � � ��xx��x x�x��� �  xxx�x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � xx�� �x��xx � �xxx  xxx�x�x�� �x�� �  � � �� � �x�x�� ����� � � �xxx� � � � � � x    � � x ����� ��xx��x x�x��� �x�x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � xx�� ����xx ��� x��xx�� �x x� �x�� � �xx �xxx  �xx � ��  �x�� x�� ���xxx�xxx�x��x x� ��x �x�x� � �� ��x ����������x�x�� � xx�� ����xx ��� x��xx�� �x x� �x�� ��� �x x� � �x�x�x�� � �x��x�x� ��x �x�x� � �� ��x ����������x�x�� � xx����� �xx �   xx�� �x x� �x�� ���x �x x� �x��x�x� ���x  �xx �xx �xxx� ���x� ��  xxx ��� ��x �x�x� � �� ��x ����������x�x�� � xx�����x��xx �   xx�� �x x� �x�� ���x �x x� �x��x�x� ���x  �xx �xx �xxx� ���x� ��  xxxx ��� ��x �x�x� � �� ��x ����������x�x�� � xx�����x��xx �x�x x��x�xx �x x�xxx�� ���x �x x� �xx � ���x� ��  xxx ��� ��x �x�x� � �� ��x ����������x�x�� � xx�����x��xx �x�x x��x�xx �x x�xxx�� �� x  � �x��x�x� �   xxx�x x��x� xxx�� ��x �x�x� � x� � xx�����x��xx ���x��x�x��x����x��x�x�� � �x�x��x�xxx� � �x x�xxx�� ������x�x x� ��x� � x � x�x��x�x�������� x ��� �x x xxx��������x����� x �� x�x�xxx�� �x � x� � xx�� �x��xx ���x��x�x��x����x��x�x�� ���x��x�x��x�x x�xx ���xxx�x�x��x�x�x�� ���� x�� x ����� x� � x� � xx�� �x��xx ���x��x�x��x����x��x�x�� �� xxx� �x��x�x��x x  �x��x�x� ���xxx�x�x��x�x�x�� ���x���x �x � x� � xx�� �x��xx ���x��x�x��x��� x�x�x�x��x� ���xxx�x ��� �x x� �x�� �x�x�x x  �xx �x� � x� � xx�� �x��xx ���x��x�x��x��� x�x�x�x��x� ���x x�x� ���x�x�x��x  �x��x�x�x�� � �x��x�x x  �xx �x� � x� � xx��x�x��xx ���x��x�x��x��x�x�x�� � � �x  �x  ���x�x x��xx � �x�x�x x��x��x  ���  �� xxx�x�xxx� ���xxx��x�� �������x � x� � xx��x�x��xx ���x��x�x��x��x�x�x�� � �x�x x�x x�xxx��xxx� � ���x�x x��xx � �x�x�x x��x��x  ���  �� xxx�x�xxx� ���xxx��x�� �������x � x� � x��� �x��xx ���x��x�x��x��x�x�x�� � �x�x x�x x�xxx��xxx� � ��� �x�x� � �� xxx�x�xxx� ���xxx��x�� �������x � x� � x��� �x��xx ���x��x�x��x��x�x�x�� � � �x�x�x x��x��x  � �  �� xxx�x�xxx� ���xxx��x�� �������x � x� � x��� �x��xx ���x��x�x��x��x�x�x�� � ��� �x  �x��x  ���  �� xxx�x�xxx� ���x��x�xxx�� � ���� � �x � x� � x��� �x��xx ���x��x�x��x��x�x�x�� � ��� �x  �x��x  ���  �� xxx�x�xxx� ���xxx��x�� � � �x � x� � x������x��xx ���x��x�x��x��x�x�x�� � � �x�x�x x��x��x  ���  �� xxx�x�xxx� ���xxx��x�� �������x � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� ���  �� x  ���x��x�x�� ������ ��x �x�x� � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� � �x  x��  �x�x x� x�� ��������� ��x �x�x� � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� �x� �  �x�x x� x�� ������ ��x �x�x� � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� � �x   �x�x x� x�� ������ ��x �x�x� � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� � �x   � �  ���x��x�x�� �x����� �� ���� ��x �x�x� � �� ��x ����������x�x�� � x��� ��x��xx ���x��x�x��xxx�x�x�� �x�� � �x   ���  ���x��x�x�� �x����� �� ���� ��x �x�x� � �� ��x ����������x�x�� � x��� ��x��xx ���x��x�x��xxx�x�x�� �x�� � �x   �x�x�x�x�� � � �� �� ��� ��x �x�x� � �� ��x ����������x�x�� � x���x��x��xx ���x��x�x��xxx�x�x�� �x�� ��xx��x x�� �x�x�x x�� ��� x �x�x�x x  �xx �x� ��x �x�x� � �� ��x ����������x�x�� � x���x��x��xx ���x��x�x��xxx�x�x�� �x�� ��xx��x x�� ���x x �x�x�x x�� ��� x �x�x�x x  �xx �x� ��x �x�x� � �� ��x ����������x�x�� � x������x��xx �  �x�xxx�x�x�� �x�� �  �x�xx��xxx�x�x��x�x� � �������� � x��� �x���x����x�� x� xxx  � � � ���� ���� � x ������� ������� ������ ��x �x�x� � x� � x������x��xx ���x��x�x��x��x�x� �xx ���� ��� �x  � x�  ����� x����� �� x��  ���� � ����� �� ��xxx � x� � x������x��xx ���x��x�x��x��x�x�x x  �xx � �x�x�x� � x� � x������x��xx �x x�x x��x�xxx�� �x�x� x�x�x� ���x��xxx�x�x��x�x�x�� � ��x �xx �x�x�x�� �x� �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x � �� ��x ����������x�x�� � x������x��xx �x�x x��x�xx �x x�xxx�� ���xx� �xxx�x�xx � ���x�x�x�� �   xxx�x x��x� xxx�� ��x �x�x� � x� �x� ��xxx � ����x� ���� � �x� � ���������� ���� �����x � x � ��x� �x�� � x � � x x��xxx x�x��x�xx��xx x�xx  xx�x x� x�x� �x�� � x ���� � x��x xx�xx� x x�x xxx�  �x x�x �xx� x�x� xx�xx � � x�x�x�x��x�x�x�� x�� � � x ���x xx�xx x��� � xxxxx� � �  �xxxx �x�x�x�� �  � � x xx �x�x�x�� �  � � x �xx �x�x�x�� �  � � x� x� ��x �x�x�x�� �  � � x � �xx �x�x�x�� �  � � x�� xx �x�x�x�� �  � �x � x�x� �xxx��  x��x� x ��  �x�x xx � �x��x�x�����x �  �x�x  �x�� � x����x�x� � ���� � x �xxx�x����� �������x �  �x� � � � �x x�� � � ���� ���x�x�x�� � ��x �  �x�x  �x�� �  �� � ���� � � � � x �xxx�x�� �x�����������x �  �x� � � � �x x�� � � ���� ���x�x�x�� � ��x �  �x�x  �x�� �  �� � � � � �� � � x �xxx�x�� ��x �  �x�x  �x�� �  �� � � � � �� � �� x �xxx�x����� � � ��x � x�x� �x�x� � �  �� � � � ����x�� �x � �� ��x ����������x�x�� � x������xx �� x�x� �x�� �x x�x xxxx�  x  ���xx��x���xx �xxx�x�x � ���� �xx�� ���� � ����x x�� ����x�xx �x��x� �x� ������ � ��� �x x�xx �� x�x� � �x�x  �xxx�x� ��x �x�x� � �� ��x ����������x�x�� � x������xx �� x�x� �x�� �� x�x�� x�� �xx � �x��x��xx ���x  � � ���� ���� ������� � �x����� �x��������x��� ��x �x�x� � �� ��x ����������x�x�� � x���x��xx �� x�x� �x�� �x�xx � �x��x x�x�xx �� x�x� � �x�x  �xxx�x� ��x �x�x� � �� ��x ����������x�x�� � x���x�xx �� x�x� �x�� ��  �x��  ���xxx�x��x�x��x�x�x�� ���x���x ��� ��x �x�x� � �� ��x ����������x�x�� � x �����xx �� x�x� �xxx�x� x�������� ���x xx� ���x xxxx � � � � � � ���� � �� �x� �x�x� ��x �x�x� � �� ��x ����������x�x�� � x �� �xx �� x�x� �xxx�x� x�������� ���x xx� �x�x� �xx � � � � � � ���� �  x��x�x� ��x �x�x� � �� ��x ����������x�x�� � xx�����xx �� x�x� �xxx�x� x�������� ���x xx� ��  �x x� � ���xx�x�xx ���� � ��x�x x� ��x �x�x� � �� ��x ����������x�x�� � xx�����xx �� x�x� �x�� �x x�x x  �x��x�x� ���x��x  �x�x x� �x� �x�x� �x�x� x� ���x�xxx�x xxxx�x�x�� ��x �x�x� � �� ��x ����������x�x�� � x������xx �� x�x� �x�� � x x� �x�� �x��x�x� � xx x  �xxx���� ��x �x�x� � �� ��x ����������x�x�� � x������xx �� x�x� �x�� �� �� � � �x x xx � � � � � � � � � � � � �xxx�x x�xx � � � � � � � � � � xx� xx ���x x ���x�x�x�xx � � � � �xxx�x� � �x� ��x �x�x� � �� ��x ����������x�x�� � x������xx �� x�x� �x�� � � � ���x�x� � � � � � � � � � � � � � ��xx��x x�� � �x  �x  � � � � � � � � � � � ���� � � � � �x� � � � � � � � ���� � � ��� ��x �x�x� � �� ��x ����������x�x�� � x � �xx �� x�x� �x�� � � � �  �x�xxx�x�x�� � � � � � � � � � ���x�  � �x  �x  � � � � � � � � � � � � � � � � � � � ��� � � � � � � � � � � � ��� ��x �x�x� � �� ��x ����������x�x�� � x � �xx �� x�x� �x�� � ���� ���x x  �x�x�x� � � � � � � � � � ���x x  �x�x�x� �    � � � � � � � � � � � � � � � � � � � � � � � � � � � � ��� ��x �x�x� � �� ��x ����������x�x�� � xx����xx �� x�x� �x�� �x x� � ���x� � x x� �x�� �x��x�x� � �x x  �xxx� ��x �x�x� � �� ��x ����������x�x�� � x � � �xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � � ���� � x  � �x�x�� � � � � � ���� � ���x  � �x�x������� �� � � ���� � ���x��x�xxx�� ���x ��  � � � x ������� ����� ��xx �x�x  x� ��x �x�x� � �� ��x ����������x�x�� � x �x�� ��xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � � ���� � x  � �x�x�� � � ������x �x� � ���x  � �x�x�������x�x  � � � � ���x��x�xxx�� � �x�x�� � � � x � �������������xx � �x�x  �x� ��x �x�x� � �� ��x ����������x�x�� � x �x�����xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � ������� � x  � �x�x�� � � ���� � ���� � ���x  � �x�x�� �� � � � � ���� � ���x��x�xxx������ x�� ���  � � xx�� �x�� ����� �xx �x�x  x� ��x �x�x� � �� ��x ����������x�x�� � x��� �����xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � ������� � x  � �x�x�� � � � x x����� �� ���x  � �x�x�������x�x  �x�x�� � ���x��x�xxx�� ���� � � � � � x � � ����������xx � �x�x  �x� ��x �x�x� � �� ��x ����������x�x�� � x��� �����xx �x�x� xxx�x��x x�xxx�� ���xxx�x��xxx� � � ����� � x  � �x�x�� � � �  �x� � �� ���x  � �x�x�� �� � � � � � � � ���x��x�xxx�� �x�� ����� � � � x � ���� � � �xx � �x�x  �x� ��x �x�x� � �� ��x ����������x�x�� � x���x�x��xx �� x�x� �x�� � �x�x  �xx � �    ���x�x�x�� � x x� �x�� �x��x�x� �  � ���x�x�x�xx � � � x � � � � ��� ��x �x�x� � �� ��x ����������x�x�� � x���x�x��xx �� x�x� �x�� �  x��x�x x  �x��x�x� ���x��x  �x�x x� �x� �x�x� �x�x� x� ���x�xxx�x xxxx�x�x�� ��x �x�x� � �� ��x ����������x�x�� � x �� ����xx ��  xxxx�� �x x� �x�� �x�xx � �x��x x�x�xx �   x� ��x �x�x� � �� ��x ����������x�x�� � x �� ����xx ��  xxxx�� �x x� �x�� � x��x� ��  xx �x� xx�� ��x �x�x� � �� ��x ����������x�x�� � x �� ����xx ��  xxxx�� �x x� �x�� ���x �x x� �x��x�x� �    ��  xx x �x�x� �x�x� � x�x��x� � �x�x� � �  �� � � � � ��  ���� ��x �x�x� � �� ��x ����������x�x�� � x �xx ��  xxxx�� �x x� �x�� �    ��  xx �x� xx�� ��x �x�x� � �� ��x ����������x�x�� � x �����x��xx ��  xxxx�� �x x� �x�� � x��x� ��  xx ��� �x x� � �x�x�xxx� �� x� �xxx� ��x �x�x� � �� ��x ����������x�x�� � x �����x��xx ��  xxxx�� �x x� �x�� ��  xx ���x�xxx x�� ���� �� � � � � � � � � �x�x� ��x �x�x� � �� ��x ����������x�x�� � x �����x��xx ��  xxxx�� �x x� �x�� �    �x��x x  �x��x�x� �x�x�x�x�x�x��x  �x��x�x�x���� ��x �x�x� � �� ��x ����������x�x�� � x ����� �xx ��  xxxx�� �x x� �x�� � x��x�xxxxx  � ���x x��xxx�� � � � � �x x�x x�x��xx�x� �x� ��x �x�x� � �� ��x ����������x�x�� � x �����x��xx ��  xxxx�� �x x� �x�� �    ���xxx�x�x��x�x�x�� � � � � � ���� � � �xxx������� ��x �x�x� � �� ��x ����������x�x�� � x �� �� �xx ��  xxxx�� �x x� �x�� �� x�x�� x�� �xx � �x��x��xxx�� � � � � ���x  � � ���� ���� ������� � �x����� � ���� � ���� ��x �x�x� � �� ��x ����������x�x�� � x �� �����xx ��  xxxx�� �x x� �x�� �x  �x  ���x�� �xx ���x �x x��x�������� � ����x����� x�x�� ����� xx�x�x�� ��x �x�x� � �� ��x ����������x�x�� � x ��x�� �xx ��  xxxx�� �x x� �x�� �x x�x xxxx�  x x�� � � � � � � � � � ���xx��x���xx �xxx�x�x � ���� �xx�� ���� � ����x x�� ����x�xx �x��x� �x�x� ��x �x�x� � �� ��x ����������x�x�� � x ��x�� �xx ��  xxxx�� �x x� �x�� �x�x��x� ��  �x��  ���xxx�x�� � � � � ��� ��x ��� ��x �x�x� � �� ��x ����������x�x�� � x ��������xx ��  xxxx�� �x x� �x�� �x�x   ��  �x��  ���xxx�x�� � � � � ���x���xx�x� ��� ��x �x�x� � �� ��x ����������x�x�� � x ����� �xx ��  xxxx�� �x x� �x�� ��  �x��  ���xxx�x�� � � � � � � � � ���x���x ��� ��x �x�x� � �� ��x ����������x�x�� � x ��������xx � �xxx  xxx�x�x�� �x�� �x�x�x�� �x��x  �x��x�x��x�x�xx ���x x�� � x�x x�� �x x  �xx ���x�x� � �x�x�x x��x��x  �  � �x�x x  �x��x�x�x���� ��x �x�x� � �� ��x ����������x�x�� � x �� � �xx � �xxx  xxx�x�x�� �x�� �  � ����� x x x x��x  � � �xxx� � � � � � �x���� � � x��� ��xx��x x�x��� �  x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � x �� ����xx � �xxx  xxx�x�x�� �x�� �  � ����� x x x�������� � � �xxx� � � � ���� � � � � � x ������� ��xx��x x�x��� �  x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � x ��x����xx � �xxx  xxx�x�x�� �x�� �  � ����� x x  � �� �� � � �xxx� � � � � ���� x  � � x � �� ��xx��x x�x��� �  xxx�x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � x ��x� �xx � �xxx  xxx�x�x�� �x�� �  � ����� x x  �����x�� � � �xxx� � � � � �� x x  � � x � � � ��xx��x x�x��� �  xxx�x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � xx�� �x��xx � �xxx  xxx�x�x�� �x�� �  � � �� � �x�x�� ����� � � �xxx� � � � � � x    � � x ����� ��xx��x x�x��� �x�x�x x��x� ��x �x�x� � �� ��x ����������x�x�� � xx�� ����xx ��� x��xx�� �x x� �x�� � �xx �xxx  �xx � ��  �x�� x�� ���xxx�xxx�x��x x� ��x �x�x� � �� ��x ����������x�x�� � xx�� ����xx ��� x��xx�� �x x� �x�� ��� �x x� � �x�x�x�� � �x��x�x� ��x �x�x� � �� ��x ����������x�x�� � xx����� �xx �   xx�� �x x� �x�� ���x �x x� �x��x�x� ���x  �xx �xx �xxx� ���x� ��  xxx ��� ��x �x�x� � �� ��x ����������x�x�� � xx�����x��xx �   xx�� �x x� �x�� ���x �x x� �x��x�x� ���x  �xx �xx �xxx� ���x� ��  xxxx ��� ��x �x�x� � �� ��x ����������x�x�� � xx�����x��xx �x�x x��x�xx �x x�xxx�� ���x �x x� �xx � ���x� ��  xxx ��� ��x �x�x� � �� ��x ����������x�x�� � xx�����x��xx �x�x x��x�xx �x x�xxx�� �� x  � �x��x�x� �   xxx�x x��x� xxx�� ��x �x�x� � x� � xx�����x��xx ���x��x�x��x����x��x�x�� � �x�x��x�xxx� � �x x�xxx�� ������x�x x� ��x� � x � x�x��x�x�������� x ��� �x x xxx��������x����� x �� x�x�xxx�� �x � x� � xx�� �x��xx ���x��x�x��x����x��x�x�� ���x��x�x��x�x x�xx ���xxx�x�x��x�x�x�� ���� x�� x ����� x� � x� � xx�� �x��xx ���x��x�x��x����x��x�x�� �� xxx� �x��x�x��x x  �x��x�x� ���xxx�x�x��x�x�x�� ���x���x �x � x� � xx�� �x��xx ���x��x�x��x��� x�x�x�x��x� ���xxx�x ��� �x x� �x�� �x�x�x x  �xx �x� � x� � xx�� �x��xx ���x��x�x��x��� x�x�x�x��x� ���x x�x� ���x�x�x��x  �x��x�x�x�� � �x��x�x x  �xx �x� � x� � xx��x�x��xx ���x��x�x��x��x�x�x�� � � �x  �x  ���x�x x��xx � �x�x�x x��x��x  ���  �� xxx�x�xxx� ���xxx��x�� �������x � x� � xx��x�x��xx ���x��x�x��x��x�x�x�� � �x�x x�x x�xxx��xxx� � ���x�x x��xx � �x�x�x x��x��x  ���  �� xxx�x�xxx� ���xxx��x�� �������x � x� � x��� �x��xx ���x��x�x��x��x�x�x�� � �x�x x�x x�xxx��xxx� � ��� �x�x� � �� xxx�x�xxx� ���xxx��x�� �������x � x� � x��� �x��xx ���x��x�x��x��x�x�x�� � � �x�x�x x��x��x  � �  �� xxx�x�xxx� ���xxx��x�� �������x � x� � x��� �x��xx ���x��x�x��x��x�x�x�� � ��� �x  �x��x  ���  �� xxx�x�xxx� ���x��x�xxx�� � ���� � �x � x� � x��� �x��xx ���x��x�x��x��x�x�x�� � ��� �x  �x��x  ���  �� xxx�x�xxx� ���xxx��x�� � � �x � x� � x������x��xx ���x��x�x��x��x�x�x�� � � �x�x�x x��x��x  ���  �� xxx�x�xxx� ���xxx��x�� �������x � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� ���  �� x  ���x��x�x�� ������ ��x �x�x� � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� � �x  x��  �x�x x� x�� ��������� ��x �x�x� � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� �x� �  �x�x x� x�� ������ ��x �x�x� � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� � �x   �x�x x� x�� ������ ��x �x�x� � �� ��x ����������x�x�� � x������x��xx ���x��x�x��xxx�x�x�� �x�� � �x   � �  ���x��x�x�� �x����� �� ���� ��x �x�x� � �� ��x ����������x�x�� � x��� ��x��xx ���x��x�x��xxx�x�x�� �x�� � �x   ���  ���x��x�x�� �x����� �� ���� ��x �x�x� � �� ��x ����������x�x�� � x��� ��x��xx ���x��x�x��xxx�x�x�� �x�� � �x   �x�x�x�x�� � � �� �� ��� ��x �x�x� � �� ��x ����������x�x�� � x���x��x��xx ���x��x�x��xxx�x�x�� �x�� ��xx��x x�� �x�x�x x�� ��� x �x�x�x x  �xx �x� ��x �x�x� � �� ��x ����������x�x�� � x���x��x��xx ���x��x�x��xxx�x�x�� �x�� ��xx��x x�� ���x x �x�x�x x�� ��� x �x�x�x x  �xx �x� ��x �x�x� � �� ��x ����������x�x�� � x������x��xx �  �x�xxx�x�x�� �x�� �  �x�xx��xxx�x�x��x�x� � �������� � x��� �x���x����x�� x� xxx  � � � ���� ���� � x ������� ������� ������ ��x �x�x� � x� � x������x��xx ���x��x�x��x��x�x� �xx ���� ��� �x  � x�  ����� x����� �� x��  ���� � ����� �� ��xxx � x� � x������x��xx ���x��x�x��x��x�x�x x  �xx � �x�x�x� � x� � x������x��xx �x x�x x��x�xxx�� �x�x� x�x�x� ���x��xxx�x�x��x�x�x�� � ��x �xx �x�x�x�� �x� �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x � �� ��x ����������x�x�� � x������x��xx �x�x x��x�xx �x x�xxx�� ���xx� �xxx�x�xx � ���x�x�x�� �   xxx�x x��x� xxx�� ��x �x�x� �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x �  �x  �x  ���� � �xx � �x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x�x� � x �  �xxx�x�� � � �x � ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x3 (DOWNLOAD_BOOT(UART0/UART1/SDIO_REI_REO_V2))
+waiting for download
+�  U    ��  U    ��  U    ��  U    ��  U    ��  U    ��  U    ��  U    
